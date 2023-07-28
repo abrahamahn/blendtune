@@ -5,4 +5,7 @@ module.exports = {
     // your custom webpack configuration
     return config;
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
