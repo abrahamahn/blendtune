@@ -33,7 +33,10 @@ const Index: React.FC<types.IndexProps> = () => {
   useEffect(() => {
     fetch('/data/tracks.json')
       .then(response => response.json())
-      .then((data: types.Track[]) => setTracks(data))
+      .then((data: types.Track[]) => {
+        const reversedTracks = data.reverse();
+        setTracks(reversedTracks);
+      })
       .catch(error => console.log(error));
   }, []);
 
