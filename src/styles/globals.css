@@ -1,0 +1,94 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+:root {
+  --max-width: 1100px;
+  --border-radius: 12px;
+  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
+    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
+    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
+
+  --background-color: #fff;
+  --gradient-color-top: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0.5));
+  --gradient-color-bottom: linear-gradient(to top, #ffffff, rgba(255, 255, 255, 0.5));
+  --border-color: #c1b8b8f3;
+  --light-border-color: #dededef3;
+
+  --miniplayer-color: #114dfff4;
+  --miniplayer-card-color: hsla(0, 0%, 0%, 0.732);
+  --progress-bar-color: rgba(0, 0, 0, 0.5);
+
+  --text-color: #000;
+  --text-color-inverted: #fff;
+  --light-color: #626262;
+
+  --hover-color: #00000016;
+  --svg-fill: #000000;
+  --svg-stroke: black;
+  --box-shadow: 0 0 14px 2px rgb(98, 96, 255);
+  --card-color: grey;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #151515; /* Dark theme */
+    --border-color: rgba(255, 255, 255, 0.05);
+    --gradient-color-top: linear-gradient(to bottom, #101010, rgba(0, 0, 0, 0.25));
+    --gradient-color-bottom: linear-gradient(to top, #0f0f0f, rgba(0, 0, 0, 0.25));
+    --light-border-color: #ffffff3a;
+
+    --miniplayer-color: #3815d5e7;
+    --miniplayer-card-color: #1d48f2f4;
+    --progress-bar-color: rgba(255, 255, 255, 0.25);
+
+    --text-color: #ffffff;
+    --text-color-inverted: #ffffff;
+    --light-color: #ffffff;
+
+    --hover-color: #ffffff14;
+    --svg-fill: white;
+    --svg-stroke: white;
+    --box-shadow: 0 0 14px 2px rgb(8, 12, 135);
+    --card-color: transparent;
+  }
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  height: 100%;
+  font-family: InterVariable,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,Segoe UI Symbol;
+}
+
+body {
+  color: rgb(var(--background-color));
+  background: var(--background-color);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+path {
+  stroke: var(--svg-fill);
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  path {
+    stroke: var(--svg-fill);
+  }
+}

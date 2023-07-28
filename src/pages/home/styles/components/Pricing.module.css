@@ -1,0 +1,118 @@
+/* pricing container */
+.pricing_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 40px 0;
+  margin: 0;
+  border-top: 1px solid grey;
+}
+
+/* pricing text */
+.pricing_text {
+  text-align: center;
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+.pricing_title {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.pricing_select {
+  margin-bottom: 1rem;
+  padding: 8px 16px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+}
+
+.pricing_description {
+  font-size: 16px;
+  font-weight: 600;
+  width: 100%;
+}
+
+/* pricing cards */
+.pricing_cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.pricing_card {
+  border: 2px solid grey;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin: 0 20px;
+  max-width: 280px;
+  padding: 0;
+  width: 100%;
+  text-align: left;
+  transition: all 0.3s ease-in-out;
+}
+
+.pricing_card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.pricing_card_text {
+  padding: 30px 20px;
+}
+
+.pricing_card_title {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.pricing_card_price {
+  font-size: 1rem;
+  margin-bottom: 24px;
+}
+
+.pricing_card_description {
+  margin-bottom: 24px;
+  list-style: none;
+  padding: 0;
+}
+
+.pricing_card_description li {
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+  color: grey;
+}
+
+.pricing_card_button_container {
+  padding: 20px;
+  border: 1px solid white;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+}
+
+.pricing_card_button {
+  background-color: blue;
+  color: #fff;
+  border: none;
+  border-radius: 15px;
+  padding: 12px 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  width: 100%;
+}
+
+.pricing_card_button:hover {
+  background-color: #fff;
+  color: #1d1d1f;
+}
