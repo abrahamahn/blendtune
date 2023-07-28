@@ -19,10 +19,14 @@ const Email: React.FC = () => {
           Resend Email
         </button>
       </div>
-      <div className={styles.terms_and_policy}>
-        <p className={styles.terms_and_policy_text}>
-          By continuing, you agree to Blend&apos;s{' '}<a className={styles.link}>Terms of Service</a>{' '}and{' '}<a className={styles.link}>Privacy Policy</a>.
-        </p>
+      <div className={styles.container}>
+        <div className={styles.terms_and_policy}>
+          <p className={styles.terms_and_policy_text}>
+            By continuing, you agree to Blend's{' '}
+            <a className={styles.link}>Terms of Service</a> and{' '}
+            <a className={styles.link}>Privacy Policy</a>.
+          </p>
+        </div>
       </div>
     </div>
   );
