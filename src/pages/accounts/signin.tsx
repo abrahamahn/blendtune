@@ -70,7 +70,7 @@ const Login: React.FC = () => {
       </div>
       <div className={styles.terms_and_policy}>
         <p className={styles.terms_and_policy_text}>
-          By continuing, you agree to Blend's{&apos; &apos;}<a className={styles.link}>Terms of Service</a>{&apos; &apos;}and{&apos; &apos;}<a className={styles.link}>Privacy Policy</a>.
+          By continuing, you agree to Blend&apos;s{&apos; &apos;}<a className={styles.link}>Terms of Service</a>{&apos; &apos;}and{&apos; &apos;}<a className={styles.link}>Privacy Policy</a>.
         </p>
       </div>
     </div>
