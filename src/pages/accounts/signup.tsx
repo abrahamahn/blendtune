@@ -75,8 +75,8 @@ const SignUp: React.FC = () => {
       </div>
       <div className={styles.terms_and_policy}>
         <p className={styles.terms_and_policy_text}>
-          By continuing, you agree to Blend's{' '}<a href="#">Terms of Service{' '}</a>
-          and{' '}<a href="#">Privacy Policy</a>.
+          By continuing, you agree to Blend's{&apos; &apos;}<a href="#">Terms of Service{&apos; &apos;}</a>
+          and{&apos; &apos;}<a href="#">Privacy Policy</a>.
         </p>
       </div>
     </div>

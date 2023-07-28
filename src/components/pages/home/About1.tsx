@@ -36,7 +36,7 @@ function About({ tracks }: { tracks: Track[] }) {
             <div className={styles.description_card_text}>
               <h3 className={styles.description_card_title}>Superior Quality</h3>
               <p className={styles.description_card_description}>
-                Browse tracks from the world's top producers using our advanced filtering system.
+                Browse tracks from the world&apos;s top producers using our advanced filtering system.
               </p>
             </div>
           </div>
