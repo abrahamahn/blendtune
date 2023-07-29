@@ -28,7 +28,7 @@ const Index: React.FC<types.IndexProps> = () => {
     console.log(currentTrack);
   };
 
-  const isAuthenticated = false;
+  const isAuthenticated = true;
   
   useEffect(() => {
     fetch('/data/tracks.json')
