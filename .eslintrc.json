@@ -6,16 +6,15 @@
   },
   "parser": "@typescript-eslint/parser",
   "extends": [
-    "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
     "next",
     "next/core-web-vitals"
   ],
-  "plugins": ["@typescript-eslint", "react", "react-hooks"],
-  "rules": {
-  },
+  "plugins": [
+    "@typescript-eslint", 
+    "react", 
+    "react-hooks"
+  ],
   "settings": {
     "react": {
       "version": "detect"
