@@ -1,13 +1,13 @@
-'user client';
+"use client";
 import React from 'react';
 import Image from 'next/image';
 import * as Icon from '@/components/common/icons';
 import { Track } from '@/types/track';
 
-interface MobileCatalogProps {
-  tracks: Track[] | null;
-  playTrack: (track: Track) => void;
-  isPlaying: boolean;
+export interface MobileCatalogProps {
+  tracks: Track[],
+  playTrack: (track: Track) => void,
+  isPlaying: boolean,
 }
 
 const MobileCatalog: React.FC<MobileCatalogProps> = ({
@@ -17,7 +17,7 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
 }) => {
   function renderValue(value: string) {
     return value && value !== 'n/a' && value !== '' ? value : null;
-  }
+  };
 
   if (!tracks) {
     return null;
@@ -30,7 +30,7 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
           <div
             key={track.id}
             className='z-10 flex font-sans flex-row justify-start px-2 overflow-hidden border-b border-gray-800 group hover:bg-gray-900'
-            onClick={() => playTrack(track)}
+            onClick = {() => playTrack(track)}
           >
             <div className='z-10 relative w-67 h-16 object-cover p-1 transition-transform duration-300 ease-in-out rounded-md group-hover:scale-105'>
               <Image

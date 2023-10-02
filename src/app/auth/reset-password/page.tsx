@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 
 const ResetPassword: React.FC = () => {
   return (
@@ -24,31 +23,25 @@ const ResetPassword: React.FC = () => {
             className='w-full bg-transparent text-gray-500 text-sm border border-gray-500 p-4 mb-4 rounded hover:border-indigo-500'
           />
         </div>
-        <Link
-          href='/auth/verify-email'
-          className='w-full bg-indigo-500 text-white text-base p-2 rounded mt-1 mb-4 cursor-pointer'
-        >
+        <a className='w-full bg-indigo-500 text-white text-base p-2 rounded mt-1 mb-4 cursor-pointer'>
           Continue
-        </Link>
+        </a>
         <div className='flex items-center justify-start w-full text-sm'>
-          <Link
-            href='/auth/signin'
-            className='text-indigo-500 cursor-pointer hover:opacity-80'
-          >
+          <a className='text-indigo-500 cursor-pointer hover:opacity-80'>
             Back to Sign In
-          </Link>
+          </a>
         </div>
       </div>
       <div className='flex items-center justify-center w-full text-sm text-gray-500 bg-transparent p-10 mt-auto'>
         <p className='text-center mb-0 w-full'>
           By continuing, you agree to Blend&apos;s{' '}
-          <Link href='/' className='text-indigo-500 hover:opacity-500'>
+          <a href='/' className='text-indigo-500 hover:opacity-500'>
             Terms
-          </Link>{' '}
+          </a>{' '}
           and{' '}
-          <Link href='/' className='text-indigo-500 hover:opacity-500'>
+          <a href='/' className='text-indigo-500 hover:opacity-500'>
             Privacy Policy
-          </Link>
+          </a>
           .
         </p>
       </div>

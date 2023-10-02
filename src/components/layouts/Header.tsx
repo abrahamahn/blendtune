@@ -2,10 +2,14 @@ import React from 'react';
 import Link from 'next/link';
 import { AiOutlineSearch, AiOutlineRight } from 'react-icons/ai';
 
-const Header = ({ openAuthModal }) => {
+interface HeaderProps {
+  openAuthModal: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ openAuthModal }) => {
   return (
-    <div className='sticky top-0 z-50 w-full h-16 p-2 bg-black border-b border-gray-800'>
-      <nav className='flex justify-between w-4/5 items-center mx-auto mt-2 px-4'>
+    <nav className='sticky top-0 z-50 w-full h-16 p-2 bg-black border-b border-gray-800'>
+      <div className='flex justify-between w-4/5 items-center mx-auto mt-2 px-4'>
         <div className='flex items-center space-x-6'>
           <Link className='text-3xl font-extrabold tracking-tighter' href='/'>
             BLEND.
@@ -56,8 +60,8 @@ const Header = ({ openAuthModal }) => {
             <AiOutlineRight className='mt-1 ml-2' />
           </Link>
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
   );
 };
 

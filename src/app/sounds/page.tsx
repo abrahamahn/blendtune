@@ -1,22 +1,14 @@
-'use client';
-import React, { useState, useEffect, useRef } from 'react';
+"use client" 
+import React, { useState, useEffect } from 'react';
 import { MobileCatalog, MiniPlayer } from '@/components/pages/Sounds';
 import { Track } from '@/types/track';
-import supabase from '@/lib/supabase/supabaseClient';
 
 const Sounds: React.FC = () => {
   const [tracks, setTracks] = useState<Track[]>([]);
-  const [currentTrack, setCurrentTrack] = useState<Track | null>(null);
-  const audioRef = useRef<HTMLAudioElement>(null);
+  const [currentTrack, setCurrentTrack] = useState<Track>(tracks[0]);
+  const audioRef = React.useRef<HTMLAudioElement>(null) as React.MutableRefObject<HTMLAudioElement>;
   const [isPlaying, setIsPlaying] = useState(false);
 
-  useEffect(() => {
-    async function getData() {
-      const { data } = await supabase.auth.getSession();
-    }
-    getData();
-  }, []);
-  console.log(data);
   const playTrack = (track: Track) => {
     if (currentTrack === track && isPlaying === true) {
       setIsPlaying(false);
@@ -32,16 +24,14 @@ const Sounds: React.FC = () => {
       setCurrentTrack(track);
       setIsPlaying(true);
     }
+    console.log(currentTrack);
   };
+
 
   useEffect(() => {
     fetch('/data/tracks.json')
       .then(response => response.json())
-      .then((data: Track[]) => {
-        // Reverse the order of tracks here
-        const reversedTracks = [...data].reverse();
-        setTracks(reversedTracks);
-      })
+      .then((data: Track[]) => setTracks(data))
       .catch(error => console.log(error));
   }, []);
 
@@ -50,18 +40,17 @@ const Sounds: React.FC = () => {
       <div className='w-full overflow-scroll z-auto'>
         <div className='m-0 p-0'>
           <MobileCatalog
-            tracks={tracks}
+            tracks={tracks} 
             playTrack={playTrack}
-            currentTrack={currentTrack}
             isPlaying={isPlaying}
           />
         </div>
-        <MiniPlayer
+        <MiniPlayer 
           currentTrack={currentTrack}
-          playTrack={playTrack}
           isPlaying={isPlaying}
           setIsPlaying={setIsPlaying}
           audioRef={audioRef}
+          
         />
       </div>
     </div>

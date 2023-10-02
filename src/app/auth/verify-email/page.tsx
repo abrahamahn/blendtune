@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 
 const VerifyEmail: React.FC = () => {
   return (
@@ -24,13 +23,13 @@ const VerifyEmail: React.FC = () => {
       <div className='flex items-center justify-center w-full text-sm text-gray-500 bg-transparent p-10 mt-auto'>
         <p className='text-center mb-0 w-full'>
           By continuing, you agree to Blend&apos;s{' '}
-          <Link href='/' className='text-indigo-500 hover:opacity-500'>
+          <a href='/' className='text-indigo-500 hover:opacity-500'>
             Terms
-          </Link>{' '}
+          </a>{' '}
           and{' '}
-          <Link href='/' className='text-indigo-500 hover:opacity-500'>
+          <a href='/' className='text-indigo-500 hover:opacity-500'>
             Privacy Policy
-          </Link>
+          </a>
           .
         </p>
       </div>
