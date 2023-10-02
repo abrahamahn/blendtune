@@ -1,6 +1,6 @@
 import { Header, Footer } from '@/components/layouts';
 
-export default function SoundsLayout({
+export default function SignUpLayout({
   children,
 }: {
   children: React.ReactNode;

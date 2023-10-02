@@ -1,19 +1,19 @@
 import { Header, Footer } from '@/components/layouts';
 
-export default function SoundsLayout({
+export default function ResetPasswordtLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <div className='flex flex-col min-h-screen'>
-      <header>
+    <section className='flex flex-col min-h-screen'>
+      <nav>
         <Header />
-      </header>
+      </nav>
       <main className='flex-grow'>{children}</main>
       <footer>
         <Footer />
       </footer>
-    </div>
+    </section>
   );
 }

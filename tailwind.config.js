@@ -1,3 +1,6 @@
+/** @type {import('tailwindcss').Config} */
+
+
 module.exports = {
   content: [
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
@@ -21,5 +24,5 @@ module.exports = {
       '6xl': '4rem',
     },
   },
-  plugins: [],
+  plugins: ['@tailwindcss/forms'],
 };

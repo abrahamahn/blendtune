@@ -2,13 +2,21 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MobileCatalog, MiniPlayer } from '@/components/pages/Sounds';
 import { Track } from '@/types/track';
+import supabase from '@/lib/supabase/supabaseClient';
 
-const Discover: React.FC = () => {
+const Sounds: React.FC = () => {
   const [tracks, setTracks] = useState<Track[]>([]);
   const [currentTrack, setCurrentTrack] = useState<Track | null>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
+  useEffect(() => {
+    async function getData() {
+      const { data } = await supabase.auth.getSession();
+    }
+    getData();
+  }, []);
+  console.log(data);
   const playTrack = (track: Track) => {
     if (currentTrack === track && isPlaying === true) {
       setIsPlaying(false);
@@ -44,6 +52,7 @@ const Discover: React.FC = () => {
           <MobileCatalog
             tracks={tracks}
             playTrack={playTrack}
+            currentTrack={currentTrack}
             isPlaying={isPlaying}
           />
         </div>
@@ -59,4 +68,4 @@ const Discover: React.FC = () => {
   );
 };
 
-export default Discover;
+export default Sounds;

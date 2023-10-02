@@ -1,8 +1,5 @@
-import { createClient } from '@supabase/supabase-js';
+import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
 
-const supabaseUrl = 'your-supabase-url';
-const supabaseAnonKey = 'your-anon-key';
-
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+const supabase = createBrowserSupabaseClient();
 
 export default supabase;

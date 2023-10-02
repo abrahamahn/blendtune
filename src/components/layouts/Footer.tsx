@@ -36,7 +36,7 @@ function ListSection({ title, items }: { title: string; items: string[] }) {
   );
 }
 
-function Footer() {
+const Footer = () => {
   const sections = [
     {
       title: 'Music',
@@ -83,6 +83,6 @@ function Footer() {
       </div>
     </div>
   );
-}
+};
 
 export default Footer;
