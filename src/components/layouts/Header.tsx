@@ -12,7 +12,7 @@ const Header: React.FC<HeaderProps> = ({
   openSignUpModal,
 }) => {
   return (
-    <nav className='sticky top-0 z-20 w-full h-18 p-2 bg-black border-b border-gray-800'>
+    <nav className='fixed top-0 z-20 w-full h-18 p-2 bg-black border-b border-gray-800'>
       <div className='flex justify-between w-4/5 items-center mx-auto mt-2 px-4'>
         <div className='flex items-center space-x-6'>
           <Link className='text-3xl font-extrabold tracking-tighter' href='/'>
