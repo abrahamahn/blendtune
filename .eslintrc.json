@@ -10,11 +10,7 @@
     "next",
     "next/core-web-vitals"
   ],
-  "plugins": [
-    "@typescript-eslint", 
-    "react", 
-    "react-hooks"
-  ],
+  "plugins": ["@typescript-eslint", "react", "react-hooks"],
   "settings": {
     "react": {
       "version": "detect"

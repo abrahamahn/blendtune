@@ -19,15 +19,21 @@ function SocialIcon({ icon }: { icon: IconDefinition }) {
   );
 }
 
-function ListSection({ title, items }: { title: string; items: string[] }) {
+function ListSection({
+  title,
+  items,
+}: {
+  title: string;
+  items: { name: string; url: string }[];
+}) {
   return (
     <div>
       <h3 className='text-lg text-gray-500 mb-2 font-medium'>{title}</h3>
       <ul className='list-none text-sm'>
         {items.map(item => (
-          <li key={item} className='mb-2'>
-            <a href='#' className='text-indigo-700 hover:text-gray-300'>
-              {item}
+          <li key={item.name} className='mb-2'>
+            <a href={item.url} className='text-indigo-700 hover:text-gray-300'>
+              {item.name}
             </a>
           </li>
         ))}
@@ -40,18 +46,41 @@ const Footer = () => {
   const sections = [
     {
       title: 'Music',
-      items: ['Beats', 'Packs', 'Selections', 'Creators', 'Free samples'],
+      items: [{ name: 'Sounds', url: '/sounds' }],
     },
     {
       title: 'Support',
-      items: ['Help', 'Licensing', 'Contact Support', 'Feedback'],
+      items: [
+        { name: 'Help', url: '/help' },
+        { name: 'Licensing', url: '/licensing' },
+        { name: 'Contact Support', url: '/contact-support' },
+        { name: 'Feedback', url: '/feedback' },
+      ],
     },
     {
       title: 'Social Media',
-      items: ['Youtube', 'Instagram', 'Facebook', 'Twitter'],
+      items: [
+        { name: 'Youtube', url: 'https://www.youtube.com' },
+        { name: 'Instagram', url: 'https://www.instagram.com' },
+        { name: 'Facebook', url: 'https://www.facebook.com' },
+        { name: 'Twitter', url: 'https://www.twitter.com' },
+      ],
     },
-    { title: 'Account', items: ['Start Selling', 'Subscribe', 'Sign In'] },
-    { title: 'Legal', items: ['Terms of Use', 'Privacy Policy'] },
+    {
+      title: 'Account',
+      items: [
+        { name: 'Sign In', url: '/auth/signin' },
+        { name: 'Sign Up', url: '/auth/signup' },
+        { name: 'Forgot Password', url: '/auth/reset-password' },
+      ],
+    },
+    {
+      title: 'Legal',
+      items: [
+        { name: 'Terms of Use', url: '/terms' },
+        { name: 'Privacy Policy', url: '/privacy-policy' },
+      ],
+    },
   ];
 
   return (

@@ -2,13 +2,9 @@
 import React, { useState } from 'react';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
+import Link from 'next/link';
 
-interface SignUpProps {
-  openSignIn: () => void;
-  openSignUp: () => void;
-}
-
-const SignUp: React.FC<SignUpProps> = ({ openSignIn, openSignUp }) => {
+const SignUp: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
   const [agreePolicy, setAgreePolicy] = useState(true);
@@ -20,17 +16,6 @@ const SignUp: React.FC<SignUpProps> = ({ openSignIn, openSignUp }) => {
   return (
     <div className='fixed top-0 left-0 flex justify-center items-center w-full h-full bg-opacity-60 bg-gray-900'>
       <div className='w-96 rounded-lg bg-gray-900 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-        <div className=' flex justify-between w-full'>
-          <button
-            className={`w-1/2 py-6 bg-black font-bold text-white`}
-            onClick={openSignIn}
-          >
-            Sign In
-          </button>
-          <button className={`w-1/2 py-6  text-white`} onClick={openSignUp}>
-            Create Account
-          </button>
-        </div>
         <div className='rounded-lg bg-gray-900 px-6 py-4'>
           <div className='flex items-center mt-8 justify-center'>
             <p className='text-3xl font-extrabold tracking-tighter'>BLEND.</p>
@@ -120,22 +105,20 @@ const SignUp: React.FC<SignUpProps> = ({ openSignIn, openSignUp }) => {
             </div>
             <div>
               <p className='text-white text-sm'>
-                I agree to the{' '}
-                <a
+                http://localhost:3001/auth/signin I agree to the{' '}
+                <Link
                   href='/terms'
-                  target='_blank'
                   className='text-indigo-500 hover:text-indigo-800'
                 >
                   Terms
-                </a>{' '}
+                </Link>{' '}
                 and{' '}
-                <a
+                <Link
                   href='/privacy-policy'
-                  target='_blank'
                   className='text-indigo-500 hover:text-indigo-800'
                 >
                   Privacy Policy
-                </a>
+                </Link>
               </p>
             </div>
           </div>
@@ -144,12 +127,12 @@ const SignUp: React.FC<SignUpProps> = ({ openSignIn, openSignUp }) => {
           </button>
           <div className='flex items-center justify-center w-full text-sm mb-2'>
             <p className='text-gray-500'>Already have an account?</p>
-            <a
-              onClick={openSignIn}
+            <Link
+              href='/auth/signin'
               className='text-indigo-500 ml-1 cursor-pointer hover:opacity-80'
             >
               Sign in
-            </a>
+            </Link>
           </div>
         </div>
       </div>

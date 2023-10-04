@@ -3,12 +3,16 @@ import Link from 'next/link';
 import { AiOutlineSearch, AiOutlineRight } from 'react-icons/ai';
 
 interface HeaderProps {
-  openAuthModal: () => void;
+  openSignInModal: () => void;
+  openSignUpModal: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ openAuthModal }) => {
+const Header: React.FC<HeaderProps> = ({
+  openSignInModal,
+  openSignUpModal,
+}) => {
   return (
-    <nav className='sticky top-0 z-50 w-full h-16 p-2 bg-black border-b border-gray-800'>
+    <nav className='sticky top-0 z-20 w-full h-18 p-2 bg-black border-b border-gray-800'>
       <div className='flex justify-between w-4/5 items-center mx-auto mt-2 px-4'>
         <div className='flex items-center space-x-6'>
           <Link className='text-3xl font-extrabold tracking-tighter' href='/'>
@@ -34,9 +38,6 @@ const Header: React.FC<HeaderProps> = ({ openAuthModal }) => {
             <Link className='text-sm text-gray-400 ml-4 mr-4' href='/sounds'>
               Discover
             </Link>
-            <Link className='text-sm text-gray-400 ml-4' href='/sounds'>
-              Beats
-            </Link>
           </div>
         </div>
         <div className='flex items-center space-x-4'>
@@ -46,19 +47,19 @@ const Header: React.FC<HeaderProps> = ({ openAuthModal }) => {
           >
             Pricing
           </Link>
-          <a
-            onClick={openAuthModal}
+          <button
+            onClick={openSignInModal}
             className='text-sm text-gray-100 bg-gray-700 px-4 py-1 rounded-xl'
           >
             Sign In
-          </a>
-          <Link
+          </button>
+          <button
+            onClick={openSignUpModal}
             className='text-sm flex text-gray-100 px-4 py-1 bg-indigo-700 rounded-xl'
-            href='/auth/signup'
           >
             Get Started
             <AiOutlineRight className='mt-1 ml-2' />
-          </Link>
+          </button>
         </div>
       </div>
     </nav>

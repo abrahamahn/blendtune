@@ -6,8 +6,15 @@ import AuthModal from '@/components/auth';
 
 const Home: React.FC = () => {
   const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [currentForm, setCurrentForm] = useState('signin');
 
-  const openAuthModal = () => {
+  const openSignInModal = () => {
+    setCurrentForm('signin');
+    setAuthModalOpen(true);
+  };
+
+  const openSignUpModal = () => {
+    setCurrentForm('signup');
     setAuthModalOpen(true);
   };
 
@@ -18,13 +25,18 @@ const Home: React.FC = () => {
   return (
     <div className='flex flex-col justify-center items-center w-full h-full bg-[var(--background-color)] overflow-x-scroll'>
       <main className='flex flex-col justify-center items-center w-full h-full bg-[var(--background-color)]'>
-        <Header openAuthModal={openAuthModal} />
+        <Header
+          openSignInModal={openSignInModal}
+          openSignUpModal={openSignUpModal}
+        />
         <div className='w-full h-screen mx-auto'>
-          <Hero />
+          <Hero openSignUpModal={openSignUpModal} />
         </div>
         <Footer />
       </main>
-      {authModalOpen && <AuthModal closeAuthModal={closeAuthModal} />}
+      {authModalOpen && (
+        <AuthModal closeAuthModal={closeAuthModal} form={currentForm} />
+      )}
     </div>
   );
 };

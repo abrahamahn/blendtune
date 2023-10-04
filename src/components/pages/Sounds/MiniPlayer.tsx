@@ -15,7 +15,7 @@ const MiniPlayer: React.FC<MiniPlayerProps> = ({
   currentTrack,
   isPlaying,
   setIsPlaying,
-  audioRef
+  audioRef,
 }) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -24,14 +24,13 @@ const MiniPlayer: React.FC<MiniPlayerProps> = ({
     if (audioRef.current) {
       const updateTime = () => {
         setCurrentTime(audioRef?.current?.currentTime || 0);
-      }
-      audioRef.current.addEventListener('timeupdate', updateTime);
-      setDuration(audioRef.current.duration);
+      };
+      const audioElement = audioRef.current;
+      audioElement.addEventListener('timeupdate', updateTime);
+      setDuration(audioElement.duration);
       return () => {
-        if (audioRef.current) {
-          audioRef.current.removeEventListener('timeupdate', updateTime);
-        }
-      }
+        audioElement.removeEventListener('timeupdate', updateTime);
+      };
     }
   }, [audioRef]);
 
@@ -59,8 +58,7 @@ const MiniPlayer: React.FC<MiniPlayerProps> = ({
       className='flex items-center justify-center w-8 h-8 rounded-full mx-auto absolute top-0 bottom-0 left-0 right-0 text-white'
       fill='white'
     />
-  )
-
+  );
 
   return (
     <div className='fixed bottom-16 left-0 w-full bg-opacity-0 mx-auto z-10'>
@@ -114,7 +112,7 @@ const MiniPlayer: React.FC<MiniPlayerProps> = ({
           className='w-full mt-2.5px h-20'
           style={{ width: 'calc(100% + 11px)' }}
         >
-           <audio
+          <audio
             className='flex justify-center items-center w-full h-5 bg-opacity-0 rounded-md opacity-0'
             src={`/audio/tracks/${currentTrack?.file}`}
             controls
