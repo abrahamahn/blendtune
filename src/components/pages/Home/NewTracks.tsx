@@ -71,21 +71,27 @@ const NewTracks: React.FC<NewTracksProps> = ({
   );
 
   useEffect(() => {
-    if (audioRef.current && currentTrack) {
-      audioRef.current.src = `/audio/tracks/${currentTrack.file}`;
-      if (isPlaying) {
-        audioRef.current.play();
-      } else {
-        audioRef.current.pause();
+    const handleEsc = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsPlaying(false);
+        if (audioRef.current) {
+          audioRef.current.pause();
+        }
       }
-    }
-  }, [currentTrack, isPlaying, audioRef]);
+    };
+
+    window.addEventListener('keydown', handleEsc);
+
+    return () => {
+      window.removeEventListener('keydown', handleEsc);
+    };
+  }, [setIsPlaying, audioRef]);
 
   return (
     <div className='w-full flex flex-col h-auto px-6'>
       {/* Header */}
-      <div className='w-4/5 mx-auto flex flex-col items-center justify-between mb-4'>
-        <div className='w-full mx-auto flex items-center justify-between mb-4'>
+      <div className='w-full mx-auto flex flex-col items-center justify-between mb-4'>
+        <div className='w-4/5 mx-auto flex items-center justify-between mb-4'>
           <h1 className='font-custom text-white text-3xl'>What&apos;s New</h1>
           <div className='flex space-x-4'>
             {/* Left Arrow Button */}
@@ -109,7 +115,7 @@ const NewTracks: React.FC<NewTracksProps> = ({
             </button>
           </div>
         </div>
-        <div className='w-full mx-auto flex items-center justify-between mb-4'>
+        <div className='w-4/5 mx-auto flex items-center justify-between mb-4'>
           {/* Card Container */}
           <div className='flex space-x-4'>
             {displayedTracks.map((track, index) => (
