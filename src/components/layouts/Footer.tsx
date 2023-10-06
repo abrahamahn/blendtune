@@ -27,7 +27,7 @@ function ListSection({
   items: { name: string; url: string }[];
 }) {
   return (
-    <div>
+    <div className='xl:w-full lg:w-full items-center mx-auto'>
       <h3 className='text-lg text-gray-500 mb-2 font-medium'>{title}</h3>
       <ul className='list-none text-sm'>
         {items.map(item => (
@@ -84,10 +84,11 @@ const Footer = () => {
   ];
 
   return (
-    <div className='w-full h-72 bg-black'>
-      <div className='w-4/5 h-full flex py-5 px-5 mx-auto'>
+    <div className='w-full h-72 bg-black flex-row md:flex-col'>
+      <div className='w-4/5 h-full flex py-5 px-5 mx-auto  flex-wrap'>
         {/* Left Section (20%) */}
-        <div className='w-1/5 flex flex-col items-start justify-center mx-auto space-y-4'>
+        <div className='w-1/5 flex flex-col items-start justify-center mx-auto space-y-4 order-2 md:order-1'>
+          {/* This component will be hidden on medium-sized screens and smaller */}
           <h1 className='text-4xl font-extrabold tracking-tighter'>BLEND.</h1>
           <div className='flex space-x-2'>
             <SocialIcon icon={faYoutube} />
@@ -99,8 +100,8 @@ const Footer = () => {
             © 2023 Blend, Inc. All rights reserved.
           </p>
         </div>
-        {/* Right Section (80%) */}
-        <div className='w-4/5 grid grid-cols-5 gap-10 mx-auto mt-8'>
+        {/* List Sections (80%) */}
+        <div className='w-4/5 flex flex-row gap-10 mx-auto mt-8 order-1 md:order-2'>
           {sections.map(section => (
             <ListSection
               key={section.title}

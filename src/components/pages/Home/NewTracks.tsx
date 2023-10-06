@@ -8,7 +8,7 @@ import {
   faArrowLeft,
   faArrowRight,
   faPlay,
-  faPause,
+  faStop,
 } from '@fortawesome/free-solid-svg-icons';
 
 const NewTracks: React.FC = () => {
@@ -160,10 +160,10 @@ const NewTracks: React.FC = () => {
   }, [tracks, currentPage, itemsPerPage]);
 
   return (
-    <div className='w-full flex flex-col h-auto px-6'>
+    <div className='w-full mx-auto flex flex-col h-auto px-6'>
       <audio
-        key={currentTrack?.file}
-        className='flex justify-center items-center w-full h-5 bg-opacity-0 rounded-md opacity-0'
+        key={currentTrack?.id}
+        className='h-5 bg-opacity-0 rounded-md opacity-0'
         src={`/audio/tracks/${currentTrack?.file}`}
         controls
         ref={audioRef}
@@ -177,8 +177,8 @@ const NewTracks: React.FC = () => {
           setIsPlaying(true);
         }}
       />
-      <div className='w-full mx-auto flex flex-col items-center justify-between mb-4'>
-        <div className='w-4/5 mx-auto flex items-center justify-between mb-4'>
+      <div className='xl:w-4/5 lg:w-full md:full mx-auto flex flex-col items-center justify-between mb-4'>
+        <div className='w-full mx-auto flex items-center justify-between mb-4'>
           <h1 className='font-custom text-white text-3xl'>What&apos;s New</h1>
           <div className='flex space-x-4'>
             <button
@@ -201,14 +201,14 @@ const NewTracks: React.FC = () => {
             </button>
           </div>
         </div>
-        <div className='w-4/5 mx-auto flex items-center justify-between mb-4'>
+        <div className='w-full mx-auto flex items-center justify-between mb-4'>
           <div className='flex space-x-4'>
             {displayedTracks.map((track, index) => (
               <div
                 key={index}
                 onMouseEnter={() => setHoverIndex(index)}
                 onMouseLeave={() => setHoverIndex(null)}
-                className='bg-neutral-900 rounded-lg p-3 pb-4 hover:bg-neutral-800'
+                className='bg-neutral-900 rounded-lg p-3 pb-4 hover:bg-neutral-800 relative'
               >
                 <div className='relative'>
                   <Image
@@ -217,30 +217,30 @@ const NewTracks: React.FC = () => {
                     width='200'
                     height='200'
                   />
-                  {hoverIndex === index && (
-                    <button
-                      className={`absolute w-10 h-10 bottom-2 right-2 bg-indigo-700 rounded-full p-2 z-50 transition-opacity duration-500 ease-in-out ${
-                        hoverIndex === index ? 'opacity-100' : 'opacity-0'
-                      }`}
-                      onClick={() => {
-                        if (isPlaying && currentTrack === track) {
-                          setIsPlaying(false);
-                        } else {
-                          playTrack(track);
-                          setIsPlaying(true);
-                        }
-                      }}
-                    >
-                      <FontAwesomeIcon
-                        icon={
-                          isPlaying && currentTrack === track ? faPause : faPlay
-                        }
-                        size='lg'
-                        color='white'
-                        className='ml-0.5'
-                      />
-                    </button>
-                  )}
+                  <button
+                    className={`absolute w-10 h-10 bottom-2 right-2 bg-indigo-700 rounded-full p-2 z-50 opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out hover:bg-indigo-500 ${
+                      hoverIndex === index ? 'opacity-100' : 'opacity-0'
+                    }`}
+                    onClick={() => {
+                      if (isPlaying && currentTrack === track) {
+                        setIsPlaying(false);
+                      } else {
+                        playTrack(track);
+                        setIsPlaying(true);
+                      }
+                    }}
+                  >
+                    <FontAwesomeIcon
+                      icon={
+                        isPlaying && currentTrack === track ? faStop : faPlay
+                      }
+                      size='lg'
+                      color='white'
+                      className={
+                        isPlaying && currentTrack === track ? 'ml-0' : 'ml-1'
+                      }
+                    />
+                  </button>
                 </div>
                 <p className='text-white text-md mt-2 ml-1 hover:underline hover:pointer'>
                   {track.metadata.title}
