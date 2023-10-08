@@ -1,14 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from '@/styles/Home/Hero.module.css';
+import styles from '@/styles/pages/Home.module.css';
 
 interface HeroProps {
   openSignUpModal: () => void;
 }
 
 const Hero: React.FC<HeroProps> = ({ openSignUpModal }) => {
-  // Generating array of artwork image file paths
   const artworks = Array.from(
     { length: 999 },
     (_, i) => `/images/artwork/CRB${String(i + 1).padStart(3, '0')}.jpg`
@@ -64,7 +63,7 @@ const Hero: React.FC<HeroProps> = ({ openSignUpModal }) => {
         </div>
         <div className='flex justify-center'>
           <Link
-            className='w-40 text-md text-white rounded-full py-4 px-10 mr-5 bg-neutral-800 hover:bg-neutral-900'
+            className='w-40 text-md text-white rounded-full py-4 px-10 mr-5 bg-neutral-800 hover:bg-neutral-700'
             href='/sounds'
           >
             Explore

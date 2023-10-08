@@ -1,6 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { AiOutlineSearch, AiOutlineRight } from 'react-icons/ai';
+import { AiOutlineRight } from 'react-icons/ai';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import styled, { keyframes } from 'styled-components';
+
+import SearchBar from '@/components/common/shared/SearchBar';
+import Logo from '@/components/common/shared/Logo';
+import DropdownMenu from '@/components/common/shared/Dropdown';
+
+const rotate180 = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+`;
+
+const ChevronIcon = styled(FontAwesomeIcon)`
+  transition: transform 0.3s ease-in-out;
+  &.rotate-180-animation {
+    animation: ${rotate180} 0.3s ease-in-out forwards;
+  }
+`;
 
 interface HeaderProps {
   openSignInModal: () => void;
@@ -11,53 +34,64 @@ const Header: React.FC<HeaderProps> = ({
   openSignInModal,
   openSignUpModal,
 }) => {
+  const [isSoundsHovered, setIsSoundsHovered] = useState(false);
+
+  const toggleSoundsHover = () => {
+    setIsSoundsHovered(!isSoundsHovered);
+  };
+
   return (
-    <nav className='fixed top-0 z-20 w-full h-18 p-2 bg-black border-b border-gray-800'>
-      <div className='flex justify-between xl:w-4/5 lg:w-full md:full items-center mx-auto mt-2 px-4'>
-        <div className='flex items-center space-x-6'>
-          <Link className='text-3xl font-extrabold tracking-tighter' href='/'>
-            BLEND.
-          </Link>
+    <nav className='fixed top-0 z-20 w-full h-16 p-2 bg-black border-b border-neutral-800'>
+      <div className='-mt-1 flex justify-between xl:w-4/5 lg:w-full md:full items-center mx-auto px-4'>
+        <div className='flex justify-between items-center space-x-6'>
+          <Logo />
           {/* Search Bar */}
-          <div className='relative rounded-2xl w-30 border border-gray-500'>
-            <input
-              type='text'
-              className='w-full top-0 h-8 pl-4 pr-8 rounded text-gray-800 bg-transparent'
-              placeholder='Search...'
-            />
-            <div className='absolute inset-y-0 right-0 flex items-center px-2 '>
-              {/* Search Icon */}
-              <AiOutlineSearch
-                width={16}
-                height={16}
-                className='text-gray-500'
-              />
+          <SearchBar />
+          <div className='flex items-center space-x-0 mr-0'>
+            {/* Container for "Sounds" text and icon */}
+            <div className='relative group'>
+              <Link
+                href='/sounds'
+                className='flex flex-row text-sm text-gray-400 hover:text-gray-300 hover:bg-neutral-800 px-2.5 py-1.5 rounded-md'
+                onMouseEnter={toggleSoundsHover}
+                onMouseLeave={toggleSoundsHover}
+              >
+                <p className='mr-1.5'>Sounds</p>
+                <ChevronIcon
+                  icon={isSoundsHovered ? faChevronUp : faChevronDown}
+                  size='xs'
+                  className={`text-neutral-500 relative mt-1 ${
+                    isSoundsHovered ? 'rotate-180-animation' : ''
+                  }`}
+                />
+              </Link>
+              {isSoundsHovered && (
+                <DropdownMenu
+                  isSoundsHovered={isSoundsHovered}
+                  toggleSoundsHover={toggleSoundsHover}
+                />
+              )}
             </div>
-          </div>
-          <div className='flex items-center space-x-2 ml-8 mr-4'>
-            <Link className='text-sm text-gray-400 ml-4 mr-4' href='/sounds'>
-              Discover
-            </Link>
           </div>
         </div>
         <div className='flex items-center space-x-4'>
           <Link
-            className='text-sm text-gray-400 bg-transparent px-4 py-1'
+            className='text-sm text-gray-400 hover:bg-neutral-900 hover:text-gray-200 rounded-md py-1.5 px-3'
             href='/'
           >
             Pricing
           </Link>
           <button
             onClick={openSignInModal}
-            className='text-sm text-gray-100 bg-gray-700 px-4 py-1 rounded-xl'
+            className='text-sm text-gray-100 bg-neutral-800 py-1.5 px-4 rounded-2xl hover:bg-neutral-900'
           >
-            Sign In
+            Sign in
           </button>
           <button
             onClick={openSignUpModal}
-            className='text-sm flex text-gray-100 px-4 py-1 bg-indigo-700 rounded-xl'
+            className='flex flex-row text-sm text-gray-100 py-1.5 px-4 bg-indigo-700 rounded-2xl hover:bg-indigo-500'
           >
-            Get Started
+            Get started
             <AiOutlineRight className='mt-1 ml-2' />
           </button>
         </div>

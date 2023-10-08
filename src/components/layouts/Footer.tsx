@@ -1,23 +1,12 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faYoutube,
   faInstagram,
   faFacebook,
   faTwitter,
 } from '@fortawesome/free-brands-svg-icons';
-import { IconDefinition } from '@fortawesome/fontawesome-common-types';
-
-function SocialIcon({ icon }: { icon: IconDefinition }) {
-  return (
-    <a
-      href='#'
-      className='w-8 h-8 rounded-full bg-neutral-800 flex items-center justify-center'
-    >
-      <FontAwesomeIcon icon={icon} style={{ color: '#ffffff' }} />
-    </a>
-  );
-}
+import Logo from '@/components/common/shared/Logo';
+import SocialIcon from '@/components/common/shared/SocialIcons';
 
 function ListSection({
   title,
@@ -89,7 +78,7 @@ const Footer = () => {
         {/* Left Section (20%) */}
         <div className='w-1/5 flex flex-col items-start justify-center mx-auto space-y-4 order-2 md:order-1'>
           {/* This component will be hidden on medium-sized screens and smaller */}
-          <h1 className='text-4xl font-extrabold tracking-tighter'>BLEND.</h1>
+          <Logo />
           <div className='flex space-x-2'>
             <SocialIcon icon={faYoutube} />
             <SocialIcon icon={faInstagram} />
