@@ -6,15 +6,19 @@ interface SocialIconProps {
   icon: IconDefinition;
 }
 
-const SocialIcon: React.FC<SocialIconProps> = ({ icon }) => {
-  const socialMediaUrls = {
-    faYoutube: 'https://www.youtube.com',
-    faInstagram: 'https://www.instagram.com',
-    faFacebook: 'https://www.facebook.com',
-    faTwitter: 'https://www.twitter.com',
-  };
+interface SocialMediaUrls {
+  [key: string]: string;
+}
 
-  const url = socialMediaUrls[icon.iconName];
+const socialMediaUrls: SocialMediaUrls = {
+  faYoutube: 'https://www.youtube.com',
+  faInstagram: 'https://www.instagram.com',
+  faFacebook: 'https://www.facebook.com',
+  faTwitter: 'https://www.twitter.com',
+};
+
+const SocialIcon: React.FC<SocialIconProps> = ({ icon }) => {
+  const url = socialMediaUrls[icon.iconName as string];
 
   return (
     <a

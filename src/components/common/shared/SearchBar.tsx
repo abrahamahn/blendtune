@@ -4,6 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import styled, { css, keyframes } from 'styled-components';
 
+interface StyledSearchBarProps {
+  isFocused: boolean;
+  isAnimating: boolean;
+}
+
 const expand = keyframes`
   0% {
     width: 12.5rem;
@@ -16,7 +21,7 @@ const expand = keyframes`
   }
 `;
 
-const StyledSearchBar = styled.div`
+const StyledSearchBar = styled.div<StyledSearchBarProps>`
   transition: all 0.5s ease-in-out;
   width: ${props => (props.isFocused ? '22.5rem' : '12.5rem')};
 
@@ -27,7 +32,7 @@ const StyledSearchBar = styled.div`
     `}
 `;
 
-const SearchBar: React.FC<SearchBarProps> = () => {
+const SearchBar: React.FC = () => {
   const [inputValue, setInputValue] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
