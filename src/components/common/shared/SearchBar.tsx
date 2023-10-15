@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faChevronDown } from '@fortawesome/free-solid-svg-icons';
@@ -36,19 +36,29 @@ const SearchBar: React.FC = () => {
   const [inputValue, setInputValue] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedMenu, setSelectedMenu] = useState('Genre'); // Track selected menu
+  const dropdownRef = useRef(null);
 
   const handleFocus = () => {
+    if (!isFocused) {
+      setIsAnimating(true);
+      setTimeout(() => setIsAnimating(false), 400);
+    }
     setIsFocused(true);
-    setIsAnimating(true);
-    setTimeout(() => setIsAnimating(false), 500);
   };
 
   const clearInput = () => {
     setInputValue('');
   };
 
-  const openGenreDropdown = () => {
-    // Add your logic to open the genre dropdown here
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleMenuItemClick = (menuItem: string) => {
+    setSelectedMenu(menuItem); // Update selected menu
+    setIsDropdownOpen(false); // Close the dropdown
   };
 
   return (
@@ -64,14 +74,9 @@ const SearchBar: React.FC = () => {
         value={inputValue}
         onChange={e => setInputValue(e.target.value)}
         onFocus={handleFocus}
-        onBlur={() => setIsFocused(false)}
         className={`searchInput focus:outline-none w-full h-8 pl-4 pr-8 text-sm rounded-2xl text-neutral-200 bg-transparent border-neutral-600 hover:border-neutral-400 z-10 focus:border-indigo-500`}
+        placeholder='Search...'
       />
-      {!inputValue && (
-        <p className='absolute inset-y-0 left-0 ml-4 flex items-center text-sm text-neutral-600 group-hover:text-neutral-400'>
-          Search...
-        </p>
-      )}
       <div className='absolute inset-y-0 right-0 flex items-center pl-2 cursor-pointer'>
         {inputValue && (
           <FontAwesomeIcon
@@ -83,15 +88,100 @@ const SearchBar: React.FC = () => {
         )}
         {isFocused && (
           <div
-            className='flex items-center border-l border-neutral-600 px-4'
-            onClick={openGenreDropdown}
+            className='flex items-center border-l border-neutral-600 px-4 dropdown-trigger'
+            onClick={toggleDropdown}
           >
-            <span className='text-neutral-500 text-sm mr-1.5'>Genre</span>
+            <span className='text-neutral-400 text-sm mr-1.5'>
+              {selectedMenu}
+            </span>
             <FontAwesomeIcon
               icon={faChevronDown}
               size='2xs'
-              className='text-neutral-500 -mt-0.5'
+              className='text-neutral-400 -mt-0.5'
             />
+          </div>
+        )}
+
+        {/* Dropdown content */}
+        {isDropdownOpen && (
+          <div
+            ref={dropdownRef}
+            className='absolute top-12 left-4 bg-neutral-800 rounded-2xl w-36'
+          >
+            <ul className='p-4'>
+              <li className='mb-3'>
+                <button
+                  className={`text-sm ${
+                    selectedMenu === 'Genre'
+                      ? 'text-indigo-600'
+                      : 'text-neutral-400'
+                  } hover:text-indigo-600`}
+                  onClick={() => handleMenuItemClick('Genre')}
+                >
+                  Genre
+                </button>
+              </li>
+              <li className='mb-3'>
+                <button
+                  className={`text-sm ${
+                    selectedMenu === 'Instruments'
+                      ? 'text-indigo-600'
+                      : 'text-neutral-400'
+                  } hover:text-indigo-600`}
+                  onClick={() => handleMenuItemClick('Instruments')}
+                >
+                  Instruments
+                </button>
+              </li>
+              <li className='mb-3'>
+                <button
+                  className={`text-sm ${
+                    selectedMenu === 'Artist'
+                      ? 'text-indigo-600'
+                      : 'text-neutral-400'
+                  } hover:text-indigo-600`}
+                  onClick={() => handleMenuItemClick('Artist')}
+                >
+                  Artist
+                </button>
+              </li>
+              <li className='mb-3'>
+                <button
+                  className={`text-sm ${
+                    selectedMenu === 'Mood'
+                      ? 'text-indigo-600'
+                      : 'text-neutral-400'
+                  } hover:text-indigo-600`}
+                  onClick={() => handleMenuItemClick('Mood')}
+                >
+                  Mood
+                </button>
+              </li>
+              <li className='mb-3'>
+                <button
+                  className={`text-sm ${
+                    selectedMenu === 'Key'
+                      ? 'text-indigo-600'
+                      : 'text-neutral-400'
+                  } hover:text-indigo-600`}
+                  onClick={() => handleMenuItemClick('Key')}
+                >
+                  Key
+                </button>
+              </li>
+              <li>
+                <button
+                  className={`text-sm ${
+                    selectedMenu === 'BPM'
+                      ? 'text-indigo-600'
+                      : 'text-neutral-400'
+                  } hover:text-indigo-600`}
+                  onClick={() => handleMenuItemClick('BPM')}
+                >
+                  BPM
+                </button>
+              </li>
+            </ul>
           </div>
         )}
 
@@ -106,7 +196,7 @@ const SearchBar: React.FC = () => {
             width={16}
             height={16}
             className={`group-hover:text-neutral-200 search-icon ${
-              isFocused ? 'text-neutral-200' : 'text-neutral-600' // Apply different colors based on focus
+              isFocused ? 'text-neutral-200' : 'text-neutral-400'
             }`}
           />
         </div>
