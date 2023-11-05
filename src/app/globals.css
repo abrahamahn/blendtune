@@ -107,10 +107,6 @@ path {
   }
 }
 
-body {
-  background-color: red !important; /* temporary, just to see if CSS is being applied */
-}
-
 /* Header Animation */
 .search-input,
 .search-icon {

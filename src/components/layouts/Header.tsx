@@ -50,7 +50,7 @@ const Header: React.FC<HeaderProps> = ({
       {/* Desktop Menu */}
       <nav className='hidden md:block fixed top-0 z-20 w-full h-16 p-2 bg-black border-b border-neutral-800'>
         <div className='-mt-1 flex justify-between xl:w-4/5 lg:w-full md:full items-center mx-auto px-4'>
-          <div className='flex justify-between items-center space-x-6'>
+          <div className='flex justify-between items-center space-x-4'>
             <Logo />
             {/* Search Bar */}
             <SearchBar />
@@ -59,11 +59,11 @@ const Header: React.FC<HeaderProps> = ({
               <div className='relative group'>
                 <Link
                   href='/sounds'
-                  className='flex flex-row text-sm text-gray-400 hover:text-gray-300 hover:bg-neutral-800 px-2.5 py-1.5 rounded-md'
+                  className='flex flex-row text-sm text-gray-400 hover:text-gray-300 hover:bg-neutral-800 px-3 py-2 rounded-md'
                   onMouseEnter={toggleSoundsHover}
                   onMouseLeave={toggleSoundsHover}
                 >
-                  <p className='mr-1.5'>Sounds</p>
+                  <p className='mr-2'>Sounds</p>
                   <ChevronIcon
                     icon={isSoundsHovered ? faChevronUp : faChevronDown}
                     size='xs'
@@ -83,7 +83,7 @@ const Header: React.FC<HeaderProps> = ({
                 {' '}
                 <Link
                   href='/studio'
-                  className='flex flex-row text-sm text-gray-400 hover:text-gray-300 hover:bg-neutral-800 px-2.5 py-1.5 rounded-md'
+                  className='flex flex-row text-sm text-gray-400 hover:text-gray-300 hover:bg-neutral-800 px-3 py-2 rounded-md'
                 >
                   <p className='mr-1.5'>Studio</p>
                 </Link>
@@ -92,20 +92,20 @@ const Header: React.FC<HeaderProps> = ({
           </div>
           <div className='flex items-center space-x-4'>
             <Link
-              className='text-sm text-gray-400 hover:bg-neutral-900 hover:text-gray-200 rounded-md py-1.5 px-3'
+              className='text-sm text-gray-400 hover:bg-neutral-900 hover:text-gray-200 rounded-md py-2 px-3'
               href='/'
             >
               Pricing
             </Link>
             <button
               onClick={openSignInModal}
-              className='text-sm text-gray-100 bg-neutral-800 py-1.5 px-4 rounded-2xl hover:bg-neutral-900'
+              className='text-sm text-gray-100 bg-neutral-800 py-2 px-4 rounded-2xl hover:bg-neutral-900'
             >
               Sign in
             </button>
             <button
               onClick={openSignUpModal}
-              className='flex flex-row text-sm text-gray-100 py-1.5 px-4 bg-indigo-700 rounded-2xl hover:bg-indigo-500'
+              className='flex flex-row text-sm text-gray-100 py-2 px-4 bg-indigo-700 rounded-2xl hover:bg-indigo-500'
             >
               Get started
               <AiOutlineRight className='mt-1 ml-2' />
@@ -119,13 +119,13 @@ const Header: React.FC<HeaderProps> = ({
           {/* First Row */}
           <div className='flex justify-between items-center w-full'>
             {/* Search Icon */}
-            <div className='text-white cursor-pointer bg-neutral-800 rounded-full px-2.5 py-1.5'>
+            <div className='text-white cursor-pointer bg-neutral-800 rounded-full px-3 py-2'>
               <FontAwesomeIcon icon={faSearch} size='sm' />
             </div>
             {/* Logo */}
             <Logo />
             {/* Menu Icon */}
-            <div className='text-white cursor-pointer bg-neutral-800 rounded-full px-2.5 py-1.5'>
+            <div className='text-white cursor-pointer bg-neutral-800 rounded-full px-3 py-2'>
               <FontAwesomeIcon icon={faBars} size='sm' />
             </div>
           </div>
@@ -135,7 +135,7 @@ const Header: React.FC<HeaderProps> = ({
               {/* Sounds */}
               <Link
                 href='/sounds'
-                className='text-sm text-gray-400 hover:text-gray-200 px-2.5 py-1.5 rounded-md'
+                className='text-sm text-gray-400 hover:text-gray-200 px-3 py-2 rounded-md'
                 onMouseEnter={toggleSoundsHover}
                 onMouseLeave={toggleSoundsHover}
               >
@@ -143,13 +143,13 @@ const Header: React.FC<HeaderProps> = ({
               </Link>
               <Link
                 href='/studio'
-                className='text-sm text-gray-400 hover:text-gray-200 px-2.5 py-1.5 rounded-md'
+                className='text-sm text-gray-400 hover:text-gray-200 px-3 py-2 rounded-md'
               >
                 <p className='mr-1.5'>Studio</p>
               </Link>
               {/* Pricing */}
               <Link
-                className='text-sm text-gray-400 hover:text-gray-200  rounded-md py-1.5 px-3'
+                className='text-sm text-gray-400 hover:text-gray-200  rounded-md py-2 px-3'
                 href='/'
               >
                 Pricing
