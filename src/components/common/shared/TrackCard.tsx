@@ -114,7 +114,7 @@ const TrackCard: React.FC = () => {
       } else if (window.innerWidth > 767) {
         setItemsPerPage(4);
       } else {
-        setItemsPerPage(4);
+        setItemsPerPage(3);
       }
     };
 
