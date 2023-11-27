@@ -8,9 +8,9 @@ interface DropdownMenuProps {
 
 const DropdownMenu: React.FC<DropdownMenuProps> = () => {
   return (
-    <div className='absolute top-10 left-2 px-0 pt-0.5 flex bg-neutral-800 rounded-2xl'>
+    <div className='absolute top-10 left-2 px-0 pt-1 flex bg-neutral-800 rounded-2xl'>
       <div className='flex-1 p-4 w-96 pl-5 border-r border-neutral-700'>
-        <h4 className='text-neutral-500 text-xs mb-3.5'>EXPLORE</h4>
+        <h4 className='text-neutral-500 text-xs mb-3'>EXPLORE</h4>
         <ul className='list-none p-0 m-0'>
           <li className='mb-3'>
             <Link href='/sounds'>
@@ -50,7 +50,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = () => {
         </ul>
       </div>
       <div className='flex-1 p-4 w-pl-5  border-r border-neutral-700'>
-        <h4 className='text-neutral-500 text-xs mb-3.5'>GENRES</h4>
+        <h4 className='text-neutral-500 text-xs mb-3'>GENRES</h4>
         <ul className='list-none p-0 m-0'>
           <li className='mb-3'>
             <Link href='/pop'>
@@ -95,7 +95,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = () => {
         </ul>
       </div>
       <div className='flex-1 p-4 pl-5'>
-        <h4 className='text-neutral-500 text-xs mb-3.5'>INSTRUMENTS</h4>
+        <h4 className='text-neutral-500 text-xs mb-3'>INSTRUMENTS</h4>
         <ul className='list-none p-0 m-0'>
           <li className='mb-3'>
             <Link href='/drums'>

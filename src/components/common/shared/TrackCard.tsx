@@ -228,8 +228,8 @@ const TrackCard: React.FC = () => {
                     <Image
                       src={`/images/artwork/${track.metadata.catalog}.jpg`}
                       alt={track.metadata.title}
-                      width='300'
-                      height='300'
+                      width={210}
+                      height={210}
                     />
                     <button
                       className={`absolute w-10 h-10 bottom-2 right-2 bg-indigo-700 rounded-full p-2 z-50 opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out hover:bg-indigo-500 ${

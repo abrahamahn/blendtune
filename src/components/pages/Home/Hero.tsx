@@ -32,16 +32,13 @@ const Hero: React.FC<HeroProps> = ({ openSignUpModal }) => {
             }`}
           >
             {chunk.map((art, artIndex) => (
-              <div
-                key={artIndex}
-                className='relative z-0 m-1.5 overflow-visible'
-              >
+              <div key={artIndex} className='relative z-0 m-1 overflow-visible'>
                 <div className='vintage-cover relative'>
                   <Image
                     src={art}
                     alt='artwork'
-                    width={1000}
-                    height={1000}
+                    width={200}
+                    height={200}
                     className='object-cover w-full h-auto border-0 border-black rounded-xl'
                   />
                 </div>
@@ -53,7 +50,7 @@ const Hero: React.FC<HeroProps> = ({ openSignUpModal }) => {
       <div className={styles.overlay}></div>
       <div className='flex flex-col justify-center items-center text-center w-full sm:h-screen z-10 h-1/2'>
         <div className='flex flex-col justify-center text-center w-full md:w-4/5 xl:w-3/5 mb-5 px-8 mt-28 '>
-          <h1 className='font-custom text-3xl font-medium mb-2.5 mx-auto leading-tight xl:text-6xl lg:text-5xl md:text-4xl sm:text-4xl'>
+          <h1 className='font-custom text-3xl font-medium mb-3 mx-auto leading-tight xl:text-6xl lg:text-5xl md:text-4xl sm:text-4xl'>
             World&apos;s best web studio and music library
           </h1>
           <p className='text-center text-neutral-400 text-base sm:text-lg md:text-xl w-full mx-auto sm:w-3/5 md:w-4/5 lg:w-full'>
@@ -63,14 +60,14 @@ const Hero: React.FC<HeroProps> = ({ openSignUpModal }) => {
         </div>
         <div className='flex justify-center'>
           <Link
-            className='w-56 sm:w-40 text-md text-white rounded-full py-3.5 sm:py-4 px-10 bg-neutral-800 hover:bg-neutral-700 mr-4'
+            className='w-56 sm:w-40 text-md text-white rounded-full py-4 sm:py-4 px-10 bg-neutral-800 hover:bg-neutral-700 mr-4'
             href='/sounds'
           >
             Explore
           </Link>
           <button
             onClick={openSignUpModal}
-            className='w-56 sm:w-40 text-md text-white rounded-full py-3.5 sm:py-4 px-10 bg-indigo-700 hover:bg-indigo-800 cursor-pointer'
+            className='w-56 sm:w-40 text-md text-white rounded-full py-4 sm:py-4 px-10 bg-indigo-700 hover:bg-indigo-800 cursor-pointer'
           >
             Try Free
           </button>
