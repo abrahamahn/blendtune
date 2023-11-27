@@ -114,7 +114,7 @@ const TrackCard: React.FC = () => {
       } else if (window.innerWidth > 767) {
         setItemsPerPage(4);
       } else {
-        setItemsPerPage(3);
+        setItemsPerPage(4);
       }
     };
 
@@ -160,7 +160,7 @@ const TrackCard: React.FC = () => {
   }, [tracks, currentPage, itemsPerPage]);
 
   return (
-    <div className='w-full mx-auto flex flex-col mt-16 md:mt-0 md:h-auto md:px-6'>
+    <div className='w-full mx-auto flex flex-col mt-20 md:mt-20 sm:mt-0 md:h-auto md:px-6'>
       <audio
         key={currentTrack?.id}
         className='h-5 bg-opacity-0 rounded-md opacity-0'
@@ -177,7 +177,7 @@ const TrackCard: React.FC = () => {
           setIsPlaying(true);
         }}
       />
-      <div className='xl:w-full lg:w-full md:full mx-auto flex flex-col items-center justify-between mb-4'>
+      <div className='md:w-full mx-auto flex flex-col items-center justify-between mb-4'>
         <div className='container mx-auto px-4'>
           {/* Header and Navigation */}
           <div className='w-full flex items-center justify-between mb-4'>
@@ -232,7 +232,14 @@ const TrackCard: React.FC = () => {
                       alt={track.metadata.title}
                       width={200}
                       height={200}
-                      className='rounded-sm'
+                      className='rounded-sm hidden md:block'
+                    />
+                    <Image
+                      src={`/images/artwork/${track.metadata.catalog}.jpg`}
+                      alt={track.metadata.title}
+                      width={130}
+                      height={130}
+                      className='rounded-sm block md:hidden'
                     />
                     <button
                       className={`absolute w-10 h-10 bottom-2 right-2 bg-indigo-700 rounded-full p-2 z-50 opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out hover:bg-indigo-500 ${

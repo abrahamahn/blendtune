@@ -32,7 +32,9 @@ const Home: React.FC = () => {
         <div className='w-full h-4/6 md:h-screen mx-auto'>
           <Hero openSignUpModal={openSignUpModal} />
         </div>
-        <NewTracks />
+        <div className='w-full'>
+          <NewTracks />
+        </div>
         <Footer />
       </main>
       {authModalOpen && (
