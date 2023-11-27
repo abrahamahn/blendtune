@@ -218,13 +218,13 @@ const TrackCard: React.FC = () => {
 
           {/* Album Cover Cards */}
           <div className='xl:w-full lg:w-full md:full flex items-center justify-between mb-4'>
-            <div className='flex space-x-4'>
+            <div className='flex space-x-4 '>
               {displayedTracks.map((track, index) => (
                 <div
                   key={index}
                   onMouseEnter={() => setHoverIndex(index)}
                   onMouseLeave={() => setHoverIndex(null)}
-                  className='md:bg-neutral-900 rounded-lg p-3 pb-4 hover:bg-neutral-800 relative'
+                  className='md:bg-neutral-900 rounded-lg p-3 pb-4 hover:bg-neutral-800 relative overflow-x-auto'
                 >
                   <div className='relative'>
                     <Image
