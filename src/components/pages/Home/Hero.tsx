@@ -22,7 +22,7 @@ const Hero: React.FC<HeroProps> = ({ openSignUpModal }) => {
   ];
 
   return (
-    <div className='flex flex-col justify-center items-center text-white relative mt-28 md:mt-24 sm:mt-0 w-full md:h-screen overflow-hidden'>
+    <div className='flex flex-col justify-center items-center text-white relative mt-28 md:mt-0 sm:mt-0 w-full md:h-screen overflow-hidden'>
       <div className='absolute top-0 left-0 right-0 bottom-0 flex justify-center overflow-visible z-0'>
         {chunks.map((chunk, chunkIndex) => (
           <div
