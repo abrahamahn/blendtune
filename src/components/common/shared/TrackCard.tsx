@@ -160,7 +160,7 @@ const TrackCard: React.FC = () => {
   }, [tracks, currentPage, itemsPerPage]);
 
   return (
-    <div className='w-full mx-auto flex flex-col mt-20 md:mt-20 sm:mt-0 md:h-auto md:px-6'>
+    <div className='w-full mx-auto flex flex-col mt-20 md:mt-20 sm:mt-0 md:h-auto px-0'>
       <audio
         key={currentTrack?.id}
         className='h-5 bg-opacity-0 rounded-md opacity-0'
@@ -237,8 +237,8 @@ const TrackCard: React.FC = () => {
                     <Image
                       src={`/images/artwork/${track.metadata.catalog}.jpg`}
                       alt={track.metadata.title}
-                      width={130}
-                      height={130}
+                      width={125}
+                      height={125}
                       className='rounded-sm block md:hidden'
                     />
                     <button
