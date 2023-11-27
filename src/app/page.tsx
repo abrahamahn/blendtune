@@ -23,8 +23,8 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className='flex flex-col justify-center items-center w-full h-full bg-[var(--background-color)] overflow-x-scroll'>
-      <main className='flex flex-col justify-center items-center w-full h-full bg-[var(--background-color)]'>
+    <div className='flex flex-col justify-center items-center w-full h-full overflow-x-scroll bg-black'>
+      <main className='flex flex-col justify-center items-center w-full h-full'>
         <Header
           openSignInModal={openSignInModal}
           openSignUpModal={openSignUpModal}
