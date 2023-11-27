@@ -177,7 +177,7 @@ const TrackCard: React.FC = () => {
           setIsPlaying(true);
         }}
       />
-      <div className='xl:w-4/5 lg:w-full md:full mx-auto flex flex-col items-center justify-between mb-4'>
+      <div className='xl:w-full lg:w-full md:full mx-auto flex flex-col items-center justify-between mb-4'>
         <div className='container mx-auto px-4'>
           {/* Header and Navigation */}
           <div className='w-full flex items-center justify-between mb-4'>
@@ -215,7 +215,7 @@ const TrackCard: React.FC = () => {
           </div>
 
           {/* Album Cover Cards */}
-          <div className='w-full flex items-center justify-between mb-4'>
+          <div className='xl:w-full lg:w-full md:full flex items-center justify-between mb-4'>
             <div className='flex space-x-4'>
               {displayedTracks.map((track, index) => (
                 <div
@@ -228,8 +228,9 @@ const TrackCard: React.FC = () => {
                     <Image
                       src={`/images/artwork/${track.metadata.catalog}.jpg`}
                       alt={track.metadata.title}
-                      width={210}
-                      height={210}
+                      width={200}
+                      height={200}
+                      className='rounded-sm'
                     />
                     <button
                       className={`absolute w-10 h-10 bottom-2 right-2 bg-indigo-700 rounded-full p-2 z-50 opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out hover:bg-indigo-500 ${
@@ -256,10 +257,10 @@ const TrackCard: React.FC = () => {
                       />
                     </button>
                   </div>
-                  <p className='text-white text-md mt-2 ml-1 hover:underline hover:pointer'>
+                  <p className='text-white text-md mt-3 hover:underline hover:pointer'>
                     {track.metadata.title}
                   </p>
-                  <p className='text-neutral-400 text-sm ml-1 hover:underline hover:pointer'>
+                  <p className='text-neutral-400 text-sm hover:underline hover:pointer'>
                     {renderValue(track.info.relatedartist[1])},{' '}
                     {renderValue(track.info.relatedartist[2])}
                   </p>

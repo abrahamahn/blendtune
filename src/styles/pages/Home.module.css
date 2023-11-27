@@ -8,6 +8,7 @@
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   margin: 0 auto;
+  width: 200px;
 }
 
 .vintage-cover {

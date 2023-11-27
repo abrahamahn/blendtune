@@ -73,8 +73,8 @@ const Footer = () => {
   ];
 
   return (
-    <div className='w-full h-72 bg-black flex-row md:flex-col'>
-      <div className='w-4/5 h-full flex py-5 px-5 mx-auto  flex-wrap'>
+    <div className='xl:w-full lg:w-full md:full h-72 bg-black flex-row md:flex-col px-6'>
+      <div className='xl:w-full lg:w-full md:full flex py-5 px-5 mx-auto  flex-wrap'>
         {/* Left Section (20%) */}
         <div className='w-1/5 flex flex-col items-start justify-center mx-auto space-y-4 order-2 md:order-1'>
           {/* This component will be hidden on medium-sized screens and smaller */}
