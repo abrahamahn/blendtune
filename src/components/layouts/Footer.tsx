@@ -16,12 +16,15 @@ function ListSection({
   items: { name: string; url: string }[];
 }) {
   return (
-    <div className='xl:w-full lg:w-full items-center mx-auto'>
+    <div className='w-full items-center mx-auto'>
       <h3 className='text-lg text-gray-500 mb-2 font-medium'>{title}</h3>
-      <ul className='list-none text-sm'>
+      <ul className='list-none'>
         {items.map(item => (
           <li key={item.name} className='mb-2'>
-            <a href={item.url} className='text-indigo-700 hover:text-gray-300'>
+            <a
+              href={item.url}
+              className='text-indigo-700 hover:text-gray-300 md:text-sm text-base'
+            >
               {item.name}
             </a>
           </li>
@@ -73,11 +76,19 @@ const Footer = () => {
   ];
 
   return (
-    <div className='xl:w-full lg:w-full md:full h-72 bg-black flex-row md:flex-col px-6'>
-      <div className='xl:w-full lg:w-full md:full flex py-5 px-5 mx-auto  flex-wrap'>
-        {/* Left Section (20%) */}
-        <div className='w-1/5 flex flex-col items-start justify-center mx-auto space-y-4 order-2 md:order-1'>
-          {/* This component will be hidden on medium-sized screens and smaller */}
+    <div className='w-full h-72 flex-row md:flex-col'>
+      <div className='xl:w-full lg:w-full md:full flex py-5 px-5 mx-auto flex-wrap'>
+        {/* List Sections in a 2x3 Grid on Mobile */}
+        <div className='w-full md:w-4/5 flex md:flex-col flex-wrap md:gap-10 mx-auto mt-8 order-1 md:order-2'>
+          {sections.map(section => (
+            <div key={section.title} className='w-1/2 md:w-1/4 md:mb-0 mb-6'>
+              <ListSection title={section.title} items={section.items} />
+            </div>
+          ))}
+        </div>
+
+        {/* Left Section (20%) - Displayed below on mobile */}
+        <div className='w-full md:w-1/5 flex flex-col items-start justify-center mx-auto space-y-4 order-2 md:order-1 md:hidden'>
           <Logo />
           <div className='flex space-x-2'>
             <SocialIcon icon={faYoutube} />
@@ -89,16 +100,20 @@ const Footer = () => {
             © 2023 Blend, Inc. All rights reserved.
           </p>
         </div>
-        {/* List Sections (80%) */}
-        <div className='w-4/5 flex flex-row gap-10 mx-auto mt-8 order-1 md:order-2'>
-          {sections.map(section => (
-            <ListSection
-              key={section.title}
-              title={section.title}
-              items={section.items}
-            />
-          ))}
+      </div>
+
+      {/* Left Section (20%) - Displayed on desktop */}
+      <div className='hidden md:flex w-1/5 flex flex-col items-start justify-center mx-auto space-y-4 order-2 md:order-1'>
+        <Logo />
+        <div className='flex space-x-2'>
+          <SocialIcon icon={faYoutube} />
+          <SocialIcon icon={faInstagram} />
+          <SocialIcon icon={faFacebook} />
+          <SocialIcon icon={faTwitter} />
         </div>
+        <p className='text-xs text-neutral-400'>
+          © 2023 Blend, Inc. All rights reserved.
+        </p>
       </div>
     </div>
   );
