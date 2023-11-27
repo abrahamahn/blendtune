@@ -217,14 +217,14 @@ const TrackCard: React.FC = () => {
           </div>
 
           {/* Album Cover Cards */}
-          <div className='xl:w-full lg:w-full md:full flex items-center justify-between mb-4'>
-            <div className='flex space-x-4 '>
+          <div className='xl:w-full lg:w-full md:full flex items-center justify-between mb-4 overflow-x-hidden'>
+            <div className='flex space-x-4 overflow-x-auto'>
               {displayedTracks.map((track, index) => (
                 <div
                   key={index}
                   onMouseEnter={() => setHoverIndex(index)}
                   onMouseLeave={() => setHoverIndex(null)}
-                  className='md:bg-neutral-900 rounded-lg p-3 pb-4 hover:bg-neutral-800 relative overflow-x-auto'
+                  className='md:bg-neutral-900 rounded-lg p-3 pb-4 hover:bg-neutral-800 relative'
                 >
                   <div className='relative'>
                     <Image
