@@ -160,7 +160,7 @@ const TrackCard: React.FC = () => {
   }, [tracks, currentPage, itemsPerPage]);
 
   return (
-    <div className='w-full mx-auto flex flex-col h-auto px-6'>
+    <div className='w-full mx-auto flex flex-col mt-16 md:mt-0 md:h-auto md:px-6'>
       <audio
         key={currentTrack?.id}
         className='h-5 bg-opacity-0 rounded-md opacity-0'
@@ -181,7 +181,9 @@ const TrackCard: React.FC = () => {
         <div className='container mx-auto px-4'>
           {/* Header and Navigation */}
           <div className='w-full flex items-center justify-between mb-4'>
-            <h1 className='font-custom text-white text-3xl'>What&apos;s New</h1>
+            <h1 className='font-custom text-white text-2xl md:text-3xl'>
+              What&apos;s New
+            </h1>
             <div className='flex space-x-4'>
               <button
                 onClick={handlePrevious}
@@ -222,7 +224,7 @@ const TrackCard: React.FC = () => {
                   key={index}
                   onMouseEnter={() => setHoverIndex(index)}
                   onMouseLeave={() => setHoverIndex(null)}
-                  className='bg-neutral-900 rounded-lg p-3 pb-4 hover:bg-neutral-800 relative'
+                  className='md:bg-neutral-900 rounded-lg p-3 pb-4 hover:bg-neutral-800 relative'
                 >
                   <div className='relative'>
                     <Image

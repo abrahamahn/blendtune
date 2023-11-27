@@ -22,7 +22,7 @@ const Hero: React.FC<HeroProps> = ({ openSignUpModal }) => {
   ];
 
   return (
-    <div className='flex flex-col justify-center items-center text-white relative mt-24 sm:mt-0 w-full h-5/6 sm:h-screen overflow-hidden'>
+    <div className='flex flex-col justify-center items-center text-white relative mt-28 md:mt-24 sm:mt-0 w-full md:h-screen overflow-hidden'>
       <div className='absolute top-0 left-0 right-0 bottom-0 flex justify-center overflow-visible z-0'>
         {chunks.map((chunk, chunkIndex) => (
           <div
@@ -34,13 +34,26 @@ const Hero: React.FC<HeroProps> = ({ openSignUpModal }) => {
             {chunk.map((art, artIndex) => (
               <div key={artIndex} className='relative z-0 m-1 overflow-visible'>
                 <div className='vintage-cover relative'>
-                  <Image
-                    src={art}
-                    alt='artwork'
-                    width={200}
-                    height={200}
-                    className='object-cover w-full h-auto border-0 border-black rounded-xl'
-                  />
+                  {/* Div for Mobile View */}
+                  <div className='block sm:hidden'>
+                    <Image
+                      src={art}
+                      alt='artwork'
+                      width={150}
+                      height={150}
+                      className='object-cover w-full h-auto border-0 border-black rounded-xl'
+                    />
+                  </div>
+                  {/* Div for Desktop View */}
+                  <div className='hidden sm:block'>
+                    <Image
+                      src={art}
+                      alt='artwork'
+                      width={200}
+                      height={200}
+                      className='object-cover w-full h-auto border-0 border-black rounded-xl'
+                    />
+                  </div>
                 </div>
               </div>
             ))}
@@ -48,26 +61,26 @@ const Hero: React.FC<HeroProps> = ({ openSignUpModal }) => {
         ))}
       </div>
       <div className={styles.overlay}></div>
-      <div className='flex flex-col justify-center items-center text-center w-full sm:h-screen z-10 h-1/2'>
-        <div className='flex flex-col justify-center text-center w-full md:w-4/5 xl:w-3/5 mb-5 px-8 mt-28 '>
-          <h1 className='font-custom text-3xl font-medium mb-3 mx-auto leading-tight xl:text-6xl lg:text-5xl md:text-4xl sm:text-4xl'>
+      <div className='flex flex-col justify-center items-center text-center w-full md:h-screen z-10 h-1/2'>
+        <div className='flex flex-col justify-center text-center w-full md:w-4/5 xl:w-3/5 mb-5 px-8 mt-80 md:mt-28'>
+          <h1 className='font-custom text-3xl font-medium mb-3 mx-auto leading-tight xl:text-6xl lg:text-5xl md:text-4xl'>
             World&apos;s best web studio and music library
           </h1>
-          <p className='text-center text-neutral-400 text-base sm:text-lg md:text-xl w-full mx-auto sm:w-3/5 md:w-4/5 lg:w-full'>
+          <p className='text-center text-neutral-400 text-base md:text-base w-full mx-auto md:w-4/5'>
             Create your masterpiece with highly-curated instrumentals, and share
             it with the world.
           </p>
         </div>
         <div className='flex justify-center'>
           <Link
-            className='w-56 sm:w-40 text-md text-white rounded-full py-4 sm:py-4 px-10 bg-neutral-800 hover:bg-neutral-700 mr-4'
+            className='md:w-56 w-40 text-sm md:text-base text-white rounded-full py-3 sm:py-4 px-10 bg-neutral-800 hover:bg-neutral-700 mr-4'
             href='/sounds'
           >
             Explore
           </Link>
           <button
             onClick={openSignUpModal}
-            className='w-56 sm:w-40 text-md text-white rounded-full py-4 sm:py-4 px-10 bg-indigo-700 hover:bg-indigo-800 cursor-pointer'
+            className='md:w-56 w-40 text-sm md:text-base text-white rounded-full py-3 md:py-4 px-10 bg-indigo-700 hover:bg-indigo-800 cursor-pointer'
           >
             Try Free
           </button>

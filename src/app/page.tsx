@@ -29,7 +29,7 @@ const Home: React.FC = () => {
           openSignInModal={openSignInModal}
           openSignUpModal={openSignUpModal}
         />
-        <div className='w-full h-screen mx-auto'>
+        <div className='w-full h-4/6 md:h-screen mx-auto'>
           <Hero openSignUpModal={openSignUpModal} />
         </div>
         <NewTracks />

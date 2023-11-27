@@ -76,19 +76,18 @@ const Footer = () => {
   ];
 
   return (
-    <div className='w-full h-72 flex-row md:flex-col'>
+    <div className='w-full h-72 flex-row md:flex-col mx-auto md:px-10'>
       <div className='xl:w-full lg:w-full md:full flex py-5 px-5 mx-auto flex-wrap'>
-        {/* List Sections in a 2x3 Grid on Mobile */}
-        <div className='w-full md:w-4/5 flex md:flex-col flex-wrap md:gap-10 mx-auto mt-8 order-1 md:order-2'>
+        <div className='w-full md:w-4/5 flex md:flex-row flex-wrap gap-0 md:gap-10 mx-auto mt-8 order-1 md:order-2'>
           {sections.map(section => (
-            <div key={section.title} className='w-1/2 md:w-1/4 md:mb-0 mb-6'>
+            <div key={section.title} className='md:w-40 w-1/2 md:mb-0 mb-6'>
               <ListSection title={section.title} items={section.items} />
             </div>
           ))}
         </div>
 
         {/* Left Section (20%) - Displayed below on mobile */}
-        <div className='w-full md:w-1/5 flex flex-col items-start justify-center mx-auto space-y-4 order-2 md:order-1 md:hidden'>
+        <div className='w-full md:w-1/5 flex flex-col items-start justify-center mx-auto space-y-4 order-2 md:order-1'>
           <Logo />
           <div className='flex space-x-2'>
             <SocialIcon icon={faYoutube} />
@@ -100,20 +99,6 @@ const Footer = () => {
             © 2023 Blend, Inc. All rights reserved.
           </p>
         </div>
-      </div>
-
-      {/* Left Section (20%) - Displayed on desktop */}
-      <div className='hidden md:flex w-1/5 flex flex-col items-start justify-center mx-auto space-y-4 order-2 md:order-1'>
-        <Logo />
-        <div className='flex space-x-2'>
-          <SocialIcon icon={faYoutube} />
-          <SocialIcon icon={faInstagram} />
-          <SocialIcon icon={faFacebook} />
-          <SocialIcon icon={faTwitter} />
-        </div>
-        <p className='text-xs text-neutral-400'>
-          © 2023 Blend, Inc. All rights reserved.
-        </p>
       </div>
     </div>
   );
