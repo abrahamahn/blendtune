@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faTimes,
   faHeadphones,
-  faCogs,
   faArrowRight,
+  faWandSparkles,
 } from '@fortawesome/free-solid-svg-icons';
 
 interface MobileMenuProps {
@@ -56,7 +56,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ closeMenu }) => {
           {/* Fourth Row */}
           <div className='flex items-center py-4 px-4 border-b border-gray-100'>
             <FontAwesomeIcon
-              icon={faCogs}
+              icon={faWandSparkles}
               className='text-xl text-gray-300 mr-4'
             />
             <p className='text-white text-base'>Studio</p>
