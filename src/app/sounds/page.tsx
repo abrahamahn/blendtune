@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { MobileCatalog, MiniPlayer } from '@/components/pages/Sounds';
+import { MobileCatalog, MusicPlayer } from '@/components/pages/Sounds';
 import { Track } from '@/types/track';
 
 const Sounds: React.FC = () => {
@@ -49,7 +49,7 @@ const Sounds: React.FC = () => {
             isPlaying={isPlaying}
           />
         </div>
-        <MiniPlayer
+        <MusicPlayer
           currentTrack={currentTrack}
           isPlaying={isPlaying}
           setIsPlaying={setIsPlaying}
