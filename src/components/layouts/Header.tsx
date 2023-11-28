@@ -137,12 +137,11 @@ const Header: React.FC<HeaderProps> = ({
             {/* Logo */}
             <Logo />
             {/* Menu Icon */}
-            <div className='text-white cursor-pointer bg-neutral-800 rounded-full px-3 py-2'>
-              <FontAwesomeIcon
-                onClick={openMobileMenu}
-                icon={faBars}
-                size='sm'
-              />
+            <div
+              onClick={openMobileMenu}
+              className='text-white cursor-pointer bg-neutral-800 rounded-full px-3 py-2'
+            >
+              <FontAwesomeIcon icon={faBars} size='sm' />
             </div>
           </div>
           {/* Second Row */}
