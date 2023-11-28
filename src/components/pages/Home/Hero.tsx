@@ -62,7 +62,7 @@ const Hero: React.FC<HeroProps> = ({ openSignUpModal }) => {
       </div>
       <div className={styles.overlay}></div>
       <div className='flex flex-col justify-center items-center text-center w-full md:h-screen z-10 h-1/2'>
-        <div className='flex flex-col justify-center text-center w-full md:w-4/5 xl:w-3/5 mb-5 px-8 mt-80 md:mt-28'>
+        <div className='flex flex-col justify-center text-center w-full md:w-4/5 xl:w-3/5 mb-5 px-8 mt-36 md:mt-28'>
           <h1 className='font-custom text-3xl font-medium mb-3 mx-auto leading-tight xl:text-6xl lg:text-5xl md:text-4xl'>
             World&apos;s best web studio and music library
           </h1>

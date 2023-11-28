@@ -160,7 +160,7 @@ const TrackCard: React.FC = () => {
   }, [tracks, currentPage, itemsPerPage]);
 
   return (
-    <div className='w-full mx-auto flex flex-col mt-20 md:mt-20 sm:mt-0 md:h-auto px-0'>
+    <div className='w-full mx-auto flex flex-col'>
       <audio
         key={currentTrack?.id}
         className='h-5 bg-opacity-0 rounded-md opacity-0'
