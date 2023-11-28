@@ -13,6 +13,7 @@ import styled, { keyframes } from 'styled-components';
 import SearchBar from '@/components/common/shared/SearchBar';
 import Logo from '@/components/common/shared/Logo';
 import DropdownMenu from '@/components/common/shared/Dropdown';
+import MobileMenu from './MobileMenu';
 
 const rotate180 = keyframes`
   0% {
@@ -40,6 +41,17 @@ const Header: React.FC<HeaderProps> = ({
   openSignUpModal,
 }) => {
   const [isSoundsHovered, setIsSoundsHovered] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Function to open the mobile menu
+  const openMobileMenu = () => {
+    setIsMobileMenuOpen(true);
+  };
+
+  // Function to close the mobile menu
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
 
   const toggleSoundsHover = () => {
     setIsSoundsHovered(!isSoundsHovered);
@@ -126,7 +138,11 @@ const Header: React.FC<HeaderProps> = ({
             <Logo />
             {/* Menu Icon */}
             <div className='text-white cursor-pointer bg-neutral-800 rounded-full px-3 py-2'>
-              <FontAwesomeIcon icon={faBars} size='sm' />
+              <FontAwesomeIcon
+                onClick={openMobileMenu}
+                icon={faBars}
+                size='sm'
+              />
             </div>
           </div>
           {/* Second Row */}
@@ -158,7 +174,9 @@ const Header: React.FC<HeaderProps> = ({
           </div>
         </div>
       </nav>
-      <div></div>
+      <div>
+        {isMobileMenuOpen && <MobileMenu closeMenu={closeMobileMenu} />}
+      </div>
     </React.Fragment>
   );
 };

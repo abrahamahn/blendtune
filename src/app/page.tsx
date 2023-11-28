@@ -23,13 +23,13 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className='flex flex-col justify-center items-center w-full h-full overflow-x-scroll bg-black'>
-      <main className='flex flex-col justify-center items-center w-full h-full'>
+    <div className='w-full h-screen overflow-x-scroll bg-black m-0 p-0'>
+      <main className='flex flex-col justify-center items-center'>
         <Header
           openSignInModal={openSignInModal}
           openSignUpModal={openSignUpModal}
         />
-        <div className='w-full h-4/6 md:h-screen mx-auto'>
+        <div className='w-full'>
           <Hero openSignUpModal={openSignUpModal} />
         </div>
         <div className='w-full'>
