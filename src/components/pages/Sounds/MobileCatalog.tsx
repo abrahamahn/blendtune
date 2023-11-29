@@ -24,8 +24,8 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
   }
 
   return (
-    <div className='flex flex-col justify-center items-center w-5/6 h-full mx-auto m-0 p-0 bg-var(--background-color) overflow-hidden relative'>
-      <div className='flex flex-col w-full h-full-screen m-0 p-0 px-10 relative'>
+    <div className='flex flex-col justify-center items-center w-full md:w-5/6 h-full mx-auto bg-var(--background-color) overflow-hidden relative mt-28 md:mt-16'>
+      <div className='flex flex-col w-full h-full-screen m-0 p-0 px-0 md:px-10 relative'>
         {tracks.map((track: Track) => (
           <div
             key={track.id}
