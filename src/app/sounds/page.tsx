@@ -9,10 +9,12 @@ type CustomAudioRef = React.RefObject<HTMLAudioElement> & {
 
 const Sounds: React.FC = () => {
   const [tracks, setTracks] = useState<Track[]>([]);
-  const [currentTrack, setCurrentTrack] = useState<Track | null>(null);
+  const [currentTrack, setCurrentTrack] = useState<Track | null | undefined>(
+    null
+  );
   const audioRef = useRef<HTMLAudioElement>(null) as CustomAudioRef;
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMusicPlayerVisible, setIsMusicPlayerVisible] = useState(false); // New state variable
+  const [isMusicPlayerVisible, setIsMusicPlayerVisible] = useState(false);
 
   const playTrack = (track: Track) => {
     if (currentTrack === track && isPlaying === true) {
@@ -28,7 +30,7 @@ const Sounds: React.FC = () => {
     } else {
       setCurrentTrack(track);
       setIsPlaying(true);
-      setIsMusicPlayerVisible(true); // Show the MusicPlayer when a track is clicked
+      setIsMusicPlayerVisible(true);
     }
   };
 
@@ -42,7 +44,6 @@ const Sounds: React.FC = () => {
       .catch(error => console.log(error));
   }, []);
 
-  // Inside the MusicPlayer component
   const handleBackwardClick = () => {
     const currentIndex = tracks.findIndex(
       track => track.id === currentTrack?.id
@@ -75,16 +76,17 @@ const Sounds: React.FC = () => {
             isPlaying={isPlaying}
           />
         </div>
-        {isMusicPlayerVisible && ( // Conditionally render MusicPlayer based on isMusicPlayerVisible state
-          <MusicPlayer
-            currentTrack={currentTrack}
-            isPlaying={isPlaying}
-            setIsPlaying={setIsPlaying}
-            audioRef={audioRef}
-            playPreviousTrack={handleBackwardClick}
-            playNextTrack={handleForwardClick}
-          />
-        )}
+        {isMusicPlayerVisible &&
+          currentTrack && ( // Check for currentTrack existence
+            <MusicPlayer
+              currentTrack={currentTrack}
+              isPlaying={isPlaying}
+              setIsPlaying={setIsPlaying}
+              audioRef={audioRef}
+              playPreviousTrack={handleBackwardClick}
+              playNextTrack={handleForwardClick}
+            />
+          )}
       </div>
     </div>
   );
