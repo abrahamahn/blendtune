@@ -81,7 +81,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
       let newVolume = 1 - mouseY / rect.height; // Invert the volume
 
       // Ensure that the newVolume is within the valid range [0, 1]
-      newVolume = Math.max(0, Math.min(0.9, newVolume));
+      newVolume = Math.max(0, Math.min(1, newVolume));
 
       // Set the audio's volume using the newVolume
       audioRef.current.volume = newVolume;
@@ -97,7 +97,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
   useEffect(() => {
     if (audioRef.current) {
       // Set the initial playback volume to 95%
-      audioRef.current.volume = 0.9;
+      audioRef.current.volume = 1;
 
       const currentAudioRef = audioRef.current;
       currentAudioRef.addEventListener('loadedmetadata', () => {
