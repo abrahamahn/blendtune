@@ -9,9 +9,10 @@ type CustomAudioRef = React.RefObject<HTMLAudioElement> & {
 
 const Sounds: React.FC = () => {
   const [tracks, setTracks] = useState<Track[]>([]);
-  const [currentTrack, setCurrentTrack] = useState<Track>(tracks[0]);
+  const [currentTrack, setCurrentTrack] = useState<Track | null>(null);
   const audioRef = useRef<HTMLAudioElement>(null) as CustomAudioRef;
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isMusicPlayerVisible, setIsMusicPlayerVisible] = useState(false); // New state variable
 
   const playTrack = (track: Track) => {
     if (currentTrack === track && isPlaying === true) {
@@ -27,8 +28,8 @@ const Sounds: React.FC = () => {
     } else {
       setCurrentTrack(track);
       setIsPlaying(true);
+      setIsMusicPlayerVisible(true); // Show the MusicPlayer when a track is clicked
     }
-    console.log(currentTrack);
   };
 
   useEffect(() => {
@@ -74,14 +75,16 @@ const Sounds: React.FC = () => {
             isPlaying={isPlaying}
           />
         </div>
-        <MusicPlayer
-          currentTrack={currentTrack}
-          isPlaying={isPlaying}
-          setIsPlaying={setIsPlaying}
-          audioRef={audioRef}
-          playPreviousTrack={handleBackwardClick}
-          playNextTrack={handleForwardClick}
-        />
+        {isMusicPlayerVisible && ( // Conditionally render MusicPlayer based on isMusicPlayerVisible state
+          <MusicPlayer
+            currentTrack={currentTrack}
+            isPlaying={isPlaying}
+            setIsPlaying={setIsPlaying}
+            audioRef={audioRef}
+            playPreviousTrack={handleBackwardClick}
+            playNextTrack={handleForwardClick}
+          />
+        )}
       </div>
     </div>
   );
