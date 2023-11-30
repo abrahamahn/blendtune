@@ -91,6 +91,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
 
       // Update the initialVolumePosition for future interactions
       setInitialVolumePosition(mouseY);
+      console.log(initialVolumePosition);
     }
   };
 
