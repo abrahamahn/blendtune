@@ -24,7 +24,7 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
   }
 
   return (
-    <div className='flex flex-col justify-center items-center w-full md:w-5/6 h-full mx-auto bg-var(--background-color) overflow-hidden relative mt-28 md:mt-16'>
+    <div className='flex flex-col justify-center items-center w-full md:w-5/6 h-full mx-auto bg-black overflow-hidden relative mt-28 md:mt-16'>
       <div className='flex flex-col w-full h-full-screen m-0 p-0 px-0 md:px-10 relative'>
         {tracks.map((track: Track) => (
           <div
@@ -32,13 +32,13 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
             className='z-10 flex font-sans flex-row justify-start px-2 overflow-hidden border-b border-gray-800 group hover:bg-gray-900'
             onClick={() => playTrack(track)}
           >
-            <div className='z-10 relative w-67 h-16 object-cover p-1 transition-transform duration-300 ease-in-out rounded-md group-hover:scale-105'>
+            <div className='z-10 relative w-16 h-16 object-cover p-1 transition-transform duration-300 ease-in-out rounded-md group-hover:scale-105'>
               <Image
                 src={`/images/artwork/${track.metadata.catalog}.jpg`}
                 alt={track.metadata.title}
                 className='z-20 rounded-md object-center object-cover max-w-full max-h-full h-auto mx-auto w-full p-1 transition-transform duration-200 ease-in-out shadow-md'
-                width='100'
-                height='100'
+                width={50}
+                height={50}
               />
               <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 text-white transition-opacity duration-300 group-hover:opacity-100'>
                 {isPlaying ? (

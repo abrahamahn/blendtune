@@ -52,27 +52,6 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
   const [isDraggingVolume, setIsDraggingVolume] = useState(false);
   const [initialVolumePosition, setInitialVolumePosition] = useState(0);
 
-  const handleVolumeChange = (e: React.MouseEvent) => {
-    if (audioRef.current) {
-      const volumeBar = e.currentTarget;
-      const rect = volumeBar.getBoundingClientRect();
-      const mouseY = e.clientY - rect.top;
-      let newVolume = 1 - mouseY / rect.height; // Invert the volume
-
-      // Ensure that the newVolume is within the valid range [0, 1]
-      newVolume = Math.max(0, Math.min(1, newVolume));
-
-      // Set the audio's volume using the newVolume
-      audioRef.current.volume = newVolume;
-
-      // Update the state to reflect the new volume level
-      setVolume(newVolume);
-
-      // Update the initialVolumePosition for future interactions
-      setInitialVolumePosition(mouseY);
-    }
-  };
-
   // Toggle play/pause
   const togglePlayPause = () => {
     if (audioRef.current) {
@@ -94,8 +73,32 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
     setIsVolumeVisible(!isVolumeVisible);
   };
 
+  const handleVolumeChange = (e: React.MouseEvent) => {
+    if (audioRef.current) {
+      const volumeBar = e.currentTarget;
+      const rect = volumeBar.getBoundingClientRect();
+      const mouseY = e.clientY - rect.top;
+      let newVolume = 1 - mouseY / rect.height; // Invert the volume
+
+      // Ensure that the newVolume is within the valid range [0, 1]
+      newVolume = Math.max(0, Math.min(0.9, newVolume));
+
+      // Set the audio's volume using the newVolume
+      audioRef.current.volume = newVolume;
+
+      // Update the state to reflect the new volume level
+      setVolume(newVolume);
+
+      // Update the initialVolumePosition for future interactions
+      setInitialVolumePosition(mouseY);
+    }
+  };
+
   useEffect(() => {
     if (audioRef.current) {
+      // Set the initial playback volume to 95%
+      audioRef.current.volume = 0.9;
+
       const currentAudioRef = audioRef.current;
       currentAudioRef.addEventListener('loadedmetadata', () => {
         setTrackDuration(currentAudioRef.duration);
@@ -142,7 +145,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
             </div>
             {/* Play Button */}
             <div
-              className='flex bg-white rounded-full w-10 h-10 items-center justify-center'
+              className='flex bg-white rounded-full w-10 h-10 items-center justify-center user-select-none' // Apply user-select-none here
               onClick={togglePlayPause}
             >
               <p className='ml-0.5 cursor-pointer hover:opacity-75'>
@@ -174,7 +177,6 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
               <audio
                 className='hidden'
                 src={`/audio/tracks/${currentTrack?.file}`}
-                controls
                 ref={audioRef}
                 autoPlay={isPlaying}
                 onEnded={() => setIsPlaying(false)}
@@ -213,10 +215,12 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
               </div>
             </div>
             {/* Timestamp */}
-            <div className='text-xs ml-2 w-28 h-full flex items-center justify-center'>
+            <div className='text-xs ml-2 w-28 h-full flex items-center justify-center user-select-none'>
+              {' '}
+              {/* Apply user-select-none here */}
               <p className='text-white'>
                 {formatTime(currentTime)}
-                <span className='text-transparent'> / </span>{' '}
+                <span className='text-transparent'> / </span>
                 {/* Separate trackDuration */}
                 <span className='text-neutral-500'>
                   {formatTime(trackDuration)}
@@ -239,25 +243,25 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
               </div>
               {isVolumeVisible && (
                 // Volume Bar
-                <div className='bg-neutral-800 h-28 w-6 rounded-full absolute bottom-10 right-[-3px] transform z-10 flex justify-center items-center'>
+                <div
+                  onMouseDown={e => {
+                    setIsDraggingVolume(true);
+                    setInitialVolumePosition(e.clientY);
+                    handleVolumeChange(e); // Call it when you click on the volume bar
+                  }}
+                  onMouseMove={e => {
+                    if (isDraggingVolume) {
+                      handleVolumeChange(e); // Call it when you drag the volume bar
+                    }
+                  }}
+                  onMouseUp={() => {
+                    setIsDraggingVolume(false);
+                  }}
+                  onClick={handleVolumeChange} // Call it when you click anywhere on the volume bar
+                  className='bg-neutral-800 h-28 w-6 rounded-full absolute bottom-10 right-[-3px] transform z-10 flex justify-center items-center'
+                >
                   {/* Full Volume Bar */}
-                  <div
-                    className='bg-indigo-500 rounded-lg h-20 w-1 relativ cursor-pointer'
-                    onMouseDown={e => {
-                      setIsDraggingVolume(true);
-                      setInitialVolumePosition(e.clientY);
-                      handleVolumeChange(e); // Call it when you click on the volume bar
-                    }}
-                    onMouseMove={e => {
-                      if (isDraggingVolume) {
-                        handleVolumeChange(e); // Call it when you drag the volume bar
-                      }
-                    }}
-                    onMouseUp={() => {
-                      setIsDraggingVolume(false);
-                    }}
-                    onClick={handleVolumeChange} // Call it when you click anywhere on the volume bar
-                  >
+                  <div className='bg-indigo-500 rounded-lg h-20 w-1 relativ cursor-pointer'>
                     {/* Threshold (currently set to full, with h-20) */}
                     <div
                       className='bg-neutral-500 rounded-lg w-1'
@@ -293,7 +297,9 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
             </div>
             <div className='flex flex-col justify-center items-left p-4 w-56 h-full'>
               <div className='flex flex-row justify-left items-center'>
-                <p className='text-white text-sm mb-1 cursor-pointer hover:underline'>
+                <p className='text-white text-sm mb-1 cursor-pointer hover:underline user-select-none'>
+                  {' '}
+                  {/* Apply user-select-none here */}
                   {currentTrack?.metadata.title}
                 </p>
               </div>
