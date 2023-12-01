@@ -77,7 +77,7 @@ const SearchBar: React.FC = () => {
           value={inputValue}
           onChange={e => setInputValue(e.target.value)}
           onFocus={handleFocus}
-          className={`searchInput focus:outline-none w-full h-8 pl-4 pr-8 text-sm rounded-2xl text-neutral-200 bg-transparent border-neutral-600 hover:border-neutral-400 z-10 focus:border-indigo-500`}
+          className={`search-input focus:outline-none w-full h-8 pl-4 pr-8 text-sm rounded-2xl text-neutral-200 bg-transparent border-neutral-600 hover:border-neutral-400 z-10 focus:border-indigo-500`}
           placeholder='Search...'
         />
         <div className='absolute inset-y-0 right-0 flex items-center pl-2 cursor-pointer'>

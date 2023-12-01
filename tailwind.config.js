@@ -24,7 +24,5 @@ module.exports = {
       '6xl': '4rem',
     },
   },
-  plugins: [
-    require('@tailwindcss/forms'),
-  ]
+  plugins: [require('@tailwindcss/forms')],
 };

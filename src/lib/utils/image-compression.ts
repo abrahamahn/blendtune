@@ -4,7 +4,10 @@ const path = require('path');
 
 // Input and output directories
 const inputDirectory = path.join(__dirname, '../../../public/images/artwork');
-const outputDirectory = path.join(__dirname, '../../../public/images/optimized');
+const outputDirectory = path.join(
+  __dirname,
+  '../../../public/images/optimized'
+);
 
 // Create the output directory if it doesn't exist
 if (!fs.existsSync(outputDirectory)) {

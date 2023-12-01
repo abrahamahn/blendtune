@@ -24,7 +24,7 @@
   --font-sans: ui-sans-serif, system-ui, -apple-system, blinkmacsystemfont,
     'Segoe UI', roboto, 'Helvetica Neue', arial, 'Noto Sans', sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  --background-color: #fff;
+  --background-color: #000000;
   --gradient-color-top: linear-gradient(
     to bottom,
     #fff,
@@ -114,19 +114,19 @@ path {
   transition: border-color 0.3s ease-in-out;
 }
 
-.group:hover .searchInput::placeholder {
+.group:hover .search-input::placeholder {
   color: white !important;
 }
 
 .group:hover .search-icon {
-  color: #A0AEC0;
+  color: #a0aec0;
 }
 
-.searchInput:focus {
-  border-color: #4C6EF5;
+.search-input:focus {
+  border-color: #4c6ef5;
 }
 
-.searchInput:hover {
+.search-input:hover {
   outline: none;
 }
 
@@ -134,15 +134,16 @@ path {
   0% {
     width: 7.5rem;
   }
+
   70% {
     width: 24rem;
   }
+
   100% {
     width: 20rem;
   }
 }
 
-.animating .searchInput {
+.animating .search-input {
   animation: expand 0.5s ease-in-out forwards;
 }
-

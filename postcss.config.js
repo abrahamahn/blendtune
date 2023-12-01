@@ -10,8 +10,7 @@ module.exports = {
               './src/**/*.{js,ts,jsx,tsx}',
               './pages/**/*.{js,ts,jsx,tsx}',
             ],
-            defaultExtractor: (content) =>
-              content.match(/[\w-/:]+(?<!:)/g) || [],
+            defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
           },
         }
       : {}),
