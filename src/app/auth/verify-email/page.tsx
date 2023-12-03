@@ -2,38 +2,23 @@ import React from 'react';
 
 const VerifyEmail: React.FC = () => {
   return (
-    <div className='fixed top-0 left-0 flex justify-center items-center w-full h-full bg-opacity-60 bg-gray-900 z-16'>
-      <div className='w-96 rounded-lg bg-gray-900 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-18'>
-        <div className='rounded-lg bg-gray-900 px-6 py-4'>
-          <div className='flex items-center mt-8 justify-center'>
+    <div className='w-full h-screen bg-opacity-60 bg-gray-900'>
+      <div className='w-96 rounded-lg bg-gray-900 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10'>
+        <div className='rounded-lg bg-gray-900 px-6 py-8'>
+          <div className='flex items-center justify-center'>
             <p className='text-3xl font-extrabold tracking-tighter'>BLEND.</p>
           </div>
-          <div className='flex flex-col items-center justify-center w-full mt-5 mb-2'>
-            <h1 className='text-1xl text-white mb-2 text-center'>
-              Check Your Email
-            </h1>
+          <div className='text-xs text-center text-neutral-500 p-6'>
+            <h1 className='text-base text-white'>Check your email</h1>
           </div>
-          <div className='flex flex-col items-center w-full mb-5 rounded'>
-            <p className='text-sm text-gray-500 w-full text-left'>
-              Please check inbox for instruction to password reset.
+          <div className='flex flex-col items-center w-full rounded'>
+            <p className='text-sm text-gray-500 w-full text-center'>
+              Please check inbox for further instruction.
             </p>
           </div>
-          <button className='w-full bg-indigo-500 text-white text-base p-2 rounded mt-1 mb-4 cursor-pointer'>
+          <button className='w-full mt-6 bg-indigo-600 text-white text-sm p-2 rounded-md cursor-pointer hover:bg-indigo-700'>
             Resend Email
           </button>
-        </div>
-        <div className='flex items-center justify-center w-full text-sm text-gray-500 bg-transparent p-10 mt-auto'>
-          <p className='text-center mb-0 w-full'>
-            By continuing, you agree to Blend&apos;s{' '}
-            <a href='/' className='text-indigo-500 hover:opacity-500'>
-              Terms
-            </a>{' '}
-            and{' '}
-            <a href='/' className='text-indigo-500 hover:opacity-500'>
-              Privacy Policy
-            </a>
-            .
-          </p>
         </div>
       </div>
     </div>
