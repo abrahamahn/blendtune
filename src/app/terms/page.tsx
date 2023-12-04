@@ -15,7 +15,7 @@ const Terms: React.FC = () => {
 
   return (
     <div className='flex justify-center items-center'>
-      <div className='w-4/5 p-10 bg-black text-white rounded-lg'>
+      <div className='w-4/5 p-10 mt-16 text-white rounded-lg'>
         <div
           className='w-full overflow-scroll z-auto'
           dangerouslySetInnerHTML={{ __html: htmlContent }}

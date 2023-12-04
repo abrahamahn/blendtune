@@ -31,7 +31,7 @@ const ResetPassword: React.FC = () => {
           <div className='text-indigo-500 text-sm mt-4'>
             <Link
               href='/auth/signin/'
-              className='cursor-pointer hover:opacity-80'
+              className='cursor-pointer hover:opacity-80 text-xs'
             >
               Back to Sign In
             </Link>

@@ -23,20 +23,20 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className='w-full h-screen overflow-x-scroll z-auto bg-black m-0 p-0 overflow-scroll'>
-      <main className='h-full-screen flex flex-col justify-center items-center'>
+    <div className='flex flex-col min-h-screen'>
+      <header>
         <Header
           openSignInModal={openSignInModal}
           openSignUpModal={openSignUpModal}
         />
-        <div className='w-full'>
-          <Hero openSignUpModal={openSignUpModal} />
-        </div>
-        <div className='w-full'>
-          <NewTracks />
-        </div>
-        <Footer />
+      </header>
+      <main>
+        <Hero openSignUpModal={openSignUpModal} />
+        <NewTracks />
       </main>
+      <footer>
+        <Footer />
+      </footer>
       {authModalOpen && (
         <AuthModal closeAuthModal={closeAuthModal} form={currentForm} />
       )}

@@ -67,15 +67,13 @@ const Sounds: React.FC = () => {
   };
 
   return (
-    <div className='m-0 p-0'>
-      <div className='w-full overflow-scroll z-auto'>
-        <div className='m-0 p-0'>
-          <MobileCatalog
-            tracks={tracks}
-            playTrack={playTrack}
-            isPlaying={isPlaying}
-          />
-        </div>
+    <div className='w-full overflow-scroll z-auto'>
+      <div className='m-0 p-0'>
+        <MobileCatalog
+          tracks={tracks}
+          playTrack={playTrack}
+          isPlaying={isPlaying}
+        />
         {isMusicPlayerVisible &&
           currentTrack && ( // Check for currentTrack existence
             <MusicPlayer

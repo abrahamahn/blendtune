@@ -49,11 +49,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
 
   if (showSignIn) {
     modalContent = (
-      <SignIn
-        openSignIn={openSignIn}
-        openSignUp={openSignUp}
-        openResetPassword={openResetPassword}
-      />
+      <SignIn openSignUp={openSignUp} openResetPassword={openResetPassword} />
     );
   } else if (showResetPassword) {
     modalContent = (
@@ -63,9 +59,9 @@ const AuthModal: React.FC<AuthModalProps> = ({
       />
     );
   } else if (showVerifyEmail) {
-    modalContent = <VerifyEmail openSignIn={openSignIn} />;
+    modalContent = <VerifyEmail />;
   } else {
-    modalContent = <SignUp openSignIn={openSignIn} openSignUp={openSignUp} />;
+    modalContent = <SignUp openSignIn={openSignIn} />;
   }
 
   return (

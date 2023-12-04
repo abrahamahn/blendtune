@@ -33,7 +33,7 @@ export default function SoundsLayout({
           openSignUpModal={openSignUpModal}
         />
       </header>
-      <main className='flex-grow'>{children}</main>
+      <main>{children}</main>
       <footer>
         <Footer />
       </footer>
