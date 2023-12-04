@@ -24,7 +24,7 @@
   --font-sans: ui-sans-serif, system-ui, -apple-system, blinkmacsystemfont,
     'Segoe UI', roboto, 'Helvetica Neue', arial, 'Noto Sans', sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  --background-color: #000000;
+  --background-color: #fff;
   --gradient-color-top: linear-gradient(
     to bottom,
     #fff,
