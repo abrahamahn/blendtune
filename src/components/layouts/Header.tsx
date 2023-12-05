@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { AiOutlineRight } from 'react-icons/ai';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faChevronDown,
   faChevronUp,
   faBars,
   faSearch,
@@ -68,12 +67,14 @@ const Header: React.FC<HeaderProps> = ({
             <SearchBar />
             <div className='flex items-center'>
               {/* Container for "Sounds" text and icon */}
-              <div className='relative group'>
+              <div
+                className='relative group'
+                onMouseEnter={() => setIsSoundsHovered(true)}
+                onMouseLeave={() => setIsSoundsHovered(false)}
+              >
                 <Link
                   href='/sounds'
                   className='flex flex-row text-sm text-gray-400 hover:text-gray-300 hover:bg-neutral-800 px-1 lg:px-2 py-2 rounded-md'
-                  onMouseEnter={toggleSoundsHover}
-                  onMouseLeave={toggleSoundsHover}
                 >
                   <p className='mr-1'>Sounds</p>
                   <ChevronIcon
@@ -84,13 +85,13 @@ const Header: React.FC<HeaderProps> = ({
                     }`}
                   />
                 </Link>
-                {isSoundsHovered && (
-                  <DropdownMenu
-                    isSoundsHovered={isSoundsHovered}
-                    toggleSoundsHover={toggleSoundsHover}
-                  />
-                )}
+
+                <DropdownMenu
+                  isSoundsHovered={isSoundsHovered}
+                  toggleSoundsHover={() => setIsSoundsHovered(true)} // Ensure it stays open
+                />
               </div>
+
               <div className='relative group'>
                 {' '}
                 <Link
