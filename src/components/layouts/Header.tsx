@@ -77,7 +77,7 @@ const Header: React.FC<HeaderProps> = ({
                 >
                   <p className='mr-1'>Sounds</p>
                   <ChevronIcon
-                    icon={isSoundsHovered ? faChevronUp : faChevronDown}
+                    icon={faChevronUp}
                     size='xs'
                     className={`text-neutral-500 relative mt-1 ${
                       isSoundsHovered ? 'rotate-180-animation' : ''

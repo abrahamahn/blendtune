@@ -8,143 +8,143 @@ interface DropdownMenuProps {
 
 const DropdownMenu: React.FC<DropdownMenuProps> = () => {
   return (
-    <div className='absolute top-10 left-2 px-0 pt-1 flex bg-neutral-800 rounded-2xl'>
-      <div className='flex-1 p-4 w-96 pl-5 border-r border-neutral-700'>
-        <h4 className='text-neutral-500 text-xs mb-3'>EXPLORE</h4>
-        <ul className='list-none p-0 m-0'>
+    <div className='flex absolute top-10 pt-1  bg-neutral-800 rounded-2xl'>
+      <div className='flex-1 p-4 w-96 pl-5 border-r border-neutral-700 text-neutral-500 text-xs'>
+        <h4 className='mb-3'>EXPLORE</h4>
+        <ul className='text-neutral-400 text-sm'>
           <li className='mb-3'>
             <Link href='/sounds'>
-              <p className='text-neutral-400 text-sm'>Sounds</p>
+              <p>Sounds</p>
             </Link>
           </li>
           <li className='mb-3'>
             <Link href='/packs'>
-              <p className='text-neutral-400 text-sm'>Packs</p>
+              <p>Packs</p>
             </Link>
           </li>
           <li className='mb-3'>
             <Link href='/selections'>
-              <p className='text-neutral-400 text-sm'>Selections</p>
+              <p>Selections</p>
             </Link>
           </li>
           <li className='mb-3'>
             <Link href='/popular'>
-              <p className='text-neutral-400 text-sm'>Popular</p>
+              <p>Popular</p>
             </Link>
           </li>
           <li className='mb-3'>
             <Link href='/newest'>
-              <p className='text-neutral-400 text-sm'>Newest</p>
+              <p>Newest</p>
             </Link>
           </li>
           <li className='mb-3'>
             <Link href='/creators'>
-              <p className='text-neutral-400 text-sm'>Creators</p>
+              <p>Creators</p>
             </Link>
           </li>
           <li>
             <Link href='/free-beats'>
-              <p className='text-neutral-400 text-sm'>Free Beats</p>
+              <p>Free Beats</p>
             </Link>
           </li>
         </ul>
       </div>
-      <div className='flex-1 p-4 w-pl-5  border-r border-neutral-700'>
-        <h4 className='text-neutral-500 text-xs mb-3'>GENRES</h4>
-        <ul className='list-none p-0 m-0'>
+      <div className='flex-1 p-4 w-pl-5  border-r border-neutral-700 text-neutral-500 text-xs'>
+        <h4 className='mb-3'>GENRES</h4>
+        <ul className='text-neutral-400 text-sm'>
           <li className='mb-3'>
             <Link href='/pop'>
-              <p className='text-neutral-400 text-sm'>Pop</p>
+              <p className=''>Pop</p>
             </Link>
           </li>
           <li className='mb-3'>
             <Link href='/hip-hop'>
-              <p className='text-neutral-400 text-sm'>Hip-Hop</p>
+              <p>Hip-Hop</p>
             </Link>
           </li>
           <li className='mb-3'>
             <Link href='/trap'>
-              <p className='text-neutral-400 text-sm'>Trap</p>
+              <p>Trap</p>
             </Link>
           </li>
           <li className='mb-3'>
             <Link href='/r&b'>
-              <p className='text-neutral-400 text-sm'>R&B</p>
+              <p>R&B</p>
             </Link>
           </li>
           <li className='mb-3'>
             <Link href='/reggaeton'>
-              <p className='text-neutral-400 text-sm'>Reggaeton</p>
+              <p>Reggaeton</p>
             </Link>
           </li>
           <li className='mb-3'>
             <Link href='/afrobeat'>
-              <p className='text-neutral-400 text-sm'>Afrobeat</p>
+              <p>Afrobeat</p>
             </Link>
           </li>
           <li className='mb-3'>
             <Link href='/rock'>
-              <p className='text-neutral-400 text-sm'>Rock</p>
+              <p>Rock</p>
             </Link>
           </li>
           <li>
             <Link href='/electronic'>
-              <p className='text-neutral-400 text-sm'>Electronic</p>
+              <p>Electronic</p>
             </Link>
           </li>
         </ul>
       </div>
-      <div className='flex-1 p-4 pl-5'>
-        <h4 className='text-neutral-500 text-xs mb-3'>INSTRUMENTS</h4>
-        <ul className='list-none p-0 m-0'>
+      <div className='flex-1 p-4 pl-5 text-neutral-500 text-xs'>
+        <h4 className='mb-3'>INSTRUMENTS</h4>
+        <ul className='text-neutral-400 text-sm'>
           <li className='mb-3'>
             <Link href='/drums'>
-              <p className='text-neutral-400 text-sm'>Drums</p>
+              <p>Drums</p>
             </Link>
           </li>
           <li className='mb-3'>
             <Link href='/guitars'>
-              <p className='text-neutral-400 text-sm'>Guitars</p>
+              <p>Guitars</p>
             </Link>
           </li>
           <li className='mb-3'>
             <Link href='/bass'>
-              <p className='text-neutral-400 text-sm'>Bass</p>
+              <p>Bass</p>
             </Link>
           </li>
           <li className='mb-3'>
             <Link href='/vocals'>
-              <p className='text-neutral-400 text-sm'>Vocals</p>
+              <p>Vocals</p>
             </Link>
           </li>
           <li className='mb-3'>
             <Link href='/synth'>
-              <p className='text-neutral-400 text-sm'>Synth</p>
+              <p>Synth</p>
             </Link>
           </li>
           <li className='mb-3'>
             <Link href='/piano'>
-              <p className='text-neutral-400 text-sm'>Piano</p>
+              <p>Piano</p>
             </Link>
           </li>
           <li className='mb-3'>
             <Link href='/keyboard'>
-              <p className='text-neutral-400 text-sm'>Keyboard</p>
+              <p>Keyboard</p>
             </Link>
           </li>
           <li className='mb-3'>
             <Link href='/percussion'>
-              <p className='text-neutral-400 text-sm'>Percussion</p>
+              <p>Percussion</p>
             </Link>
           </li>
           <li className='mb-3'>
             <Link href='/strings'>
-              <p className='text-neutral-400 text-sm'>Strings</p>
+              <p>Strings</p>
             </Link>
           </li>
           <li>
             <Link href='/brass'>
-              <p className='text-neutral-400 text-sm'>Brass</p>
+              <p>Brass</p>
             </Link>
           </li>
         </ul>
