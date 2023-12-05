@@ -59,7 +59,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
       />
     );
   } else if (showVerifyEmail) {
-    modalContent = <VerifyEmail />;
+    modalContent = <VerifyEmail openSignIn={openSignIn} />;
   } else {
     modalContent = <SignUp openSignIn={openSignIn} />;
   }
