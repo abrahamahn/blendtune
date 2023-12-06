@@ -147,3 +147,27 @@ path {
 .animating .search-input {
   animation: expand 0.5s ease-in-out forwards;
 }
+
+@keyframes expand {
+  0% {
+    width: 12.5rem;
+  }
+  30% {
+    width: 25rem;
+  }
+  70% {
+    width: 22.5rem;
+  }
+}
+
+@keyframes shrink {
+  0% {
+    width: 22.5rem;
+  }
+  30% {
+    width: 12.5rem;
+  }
+  70% {
+    width: 15rem;
+  }
+}

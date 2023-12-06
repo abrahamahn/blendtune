@@ -76,20 +76,21 @@ const Header: React.FC<HeaderProps> = ({
                   href='/sounds'
                   className='flex flex-row text-sm text-gray-400 hover:text-gray-300 hover:bg-neutral-800 px-1 lg:px-2 py-2 rounded-md'
                 >
-                  <p className='mr-1'>Sounds</p>
+                  <p className='mr-2'>Sounds</p>
                   <ChevronIcon
                     icon={faChevronUp}
                     size='xs'
                     className={`text-neutral-500 relative mt-1 ${
-                      isSoundsHovered ? 'rotate-180-animation' : ''
+                      !isSoundsHovered ? 'rotate-180-animation' : ''
                     }`}
                   />
                 </Link>
-
-                <DropdownMenu
-                  isSoundsHovered={isSoundsHovered}
-                  toggleSoundsHover={() => setIsSoundsHovered(true)} // Ensure it stays open
-                />
+                {isSoundsHovered && (
+                  <DropdownMenu
+                    isSoundsHovered={isSoundsHovered}
+                    toggleSoundsHover={() => setIsSoundsHovered(true)} // Ensure it stays open
+                  />
+                )}
               </div>
 
               <div className='relative group'>

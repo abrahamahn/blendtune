@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import Link from 'next/link';
+import Logo from '@/components/common/shared/Logo';
 
 const ResetPassword: React.FC = () => {
   return (
@@ -8,7 +9,7 @@ const ResetPassword: React.FC = () => {
       <div className='w-96 rounded-lg bg-gray-900 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10'>
         <div className='rounded-lg bg-gray-900 px-6 py-4'>
           <div className='flex items-center pt-6 justify-center'>
-            <p className='text-3xl font-extrabold tracking-tighter'>BLEND.</p>
+            <Logo />
           </div>
           <div className='flex flex-col items-center mt-8'>
             <h1 className='text-base text-white'>Forgot Your Password?</h1>

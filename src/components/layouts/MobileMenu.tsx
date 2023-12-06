@@ -31,7 +31,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ closeMenu }) => {
         </div>
         <div className='bg-black'>
           {/* Second Row */}
-          <div className='flex justify-between px-2'>
+          <div className='flex justify-between px-2'>e
             <button className='font-semibold text-base flex-1 m-1 py-3 bg-neutral-700 rounded-3xl text-white'>
               Sign in
             </button>

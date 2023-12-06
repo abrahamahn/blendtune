@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 import Link from 'next/link';
+import Logo from '@/components/common/shared/Logo';
 
 interface SignInProps {
   openSignUp: () => void;
@@ -23,7 +24,7 @@ const SignIn: React.FC<SignInProps> = ({ openSignUp, openResetPassword }) => {
       <div className='w-96 rounded-lg bg-gray-900 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10'>
         <div className='rounded-lg bg-gray-900 px-6 py-4'>
           <div className='flex items-center pt-6 justify-center'>
-            <p className='text-3xl font-extrabold tracking-tighter'>BLEND.</p>
+            <Logo />
           </div>
           <div className='flex flex-col items-center mt-8'>
             <h1 className='text-base text-white'>Log into your account</h1>
