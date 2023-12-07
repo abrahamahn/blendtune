@@ -29,7 +29,7 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
         {tracks.map((track: Track) => (
           <div
             key={track.id}
-            className='z-10 flex px-2 border-b border-neutral-800 group hover:bg-neutral-900'
+            className='z-10 flex px-2 border-b border-neutral-800 group hover:bg-neutral-900 '
             onClick={() => playTrack(track)}
           >
             <div className='z-10 w-20 md:w-16 h-14 p-1 md:p-0.5 transition-transform duration-300 ease-in-out rounded-md group-hover:scale-105 mt-1'>
@@ -134,14 +134,10 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
             </div>
             <div className='flex items-center p-2 w-70px'>
               <div className='flex justify-center mr-2 md:mr-4'>
-                <Icon.Plus width={18} height={18} fill='var(--light-color)' />
+                <Icon.Plus width={18} height={18} fill='white' />
               </div>
               <div className='flex justify-center '>
-                <Icon.MoreInfo
-                  width={15}
-                  height={15}
-                  fill='var(--light-color)'
-                />
+                <Icon.MoreInfo width={15} height={15} fill='white' />
               </div>
             </div>
           </div>
