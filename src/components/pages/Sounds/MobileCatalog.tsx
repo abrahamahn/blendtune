@@ -24,7 +24,7 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
   }
 
   return (
-    <div className='w-full md:w-4/6 mx-auto mt-24 md:mt-16'>
+    <div className='w-full md:w-4/6 mx-auto mt-24 md:mt-16 px-1'>
       <div className='flex flex-col relative'>
         {tracks.map((track: Track) => (
           <div
@@ -132,12 +132,9 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
                 </div>
               </div>
             </div>
-            <div className='flex items-center p-2 w-70px'>
-              <div className='flex justify-center mr-2 md:mr-4'>
+            <div className='flex items-center p-1.5 w-70px'>
+              <div className='flex justify-center mr-0 md:mr-4'>
                 <Icon.Plus width={18} height={18} fill='white' />
-              </div>
-              <div className='flex justify-center '>
-                <Icon.MoreInfo width={15} height={15} fill='white' />
               </div>
             </div>
           </div>
