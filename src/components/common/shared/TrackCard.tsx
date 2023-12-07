@@ -14,6 +14,11 @@ import {
 const TrackCard: React.FC = () => {
   // State for Fetching Data
   const [tracks, setTracks] = useState<Track[]>([]);
+  const [currentTrack, setCurrentTrack] = useState<Track | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [playbackPosition, setPlaybackPosition] = useState<number>(0);
+
+  const audioRef = React.useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     fetch('/data/tracks.json')
@@ -25,56 +30,42 @@ const TrackCard: React.FC = () => {
       .catch(error => console.error(error));
   }, []);
 
-  // State for Audio
-  const [currentTrack, setCurrentTrack] = useState<Track | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isAudioReady, setIsAudioReady] = useState(false);
-  const audioRef = React.useRef<HTMLAudioElement>(null);
-
-  // Audio Functions
-  const playTrack = (track: Track) => {
+  const togglePlayPause = (track: Track) => {
     if (track !== currentTrack) {
-      setIsAudioReady(false);
       setCurrentTrack(track);
+      setIsPlaying(true);
+      setPlaybackPosition(0);
+    } else if (isPlaying) {
+      setIsPlaying(false);
+      setPlaybackPosition(audioRef.current?.currentTime || 0);
+      audioRef.current?.pause();
     } else {
-      setIsPlaying(!isPlaying);
+      setIsPlaying(true);
+      audioRef.current.currentTime = playbackPosition;
+      // Set position to playbackPosition
+      const position = playbackPosition;
+      audioRef.current?.play();
     }
   };
-
   useEffect(() => {
     const audio = audioRef.current;
 
     if (audio) {
-      if (currentTrack) {
-        audio.src = `/audio/tracks/${currentTrack.file}`;
-        setIsPlaying(true);
+      const audioSrc = `/audio/tracks/${currentTrack?.file}`;
+
+      if (currentTrack && audio.src !== audioSrc) {
+        audio.src = audioSrc;
+        audio.load();
       }
-
-      if (isPlaying && isAudioReady) {
-        audio.play().catch(error => console.error('Play error:', error));
-      }
-
-      const handleCanPlay = () => {
-        setIsAudioReady(true);
-        if (isPlaying) {
-          audio.play().catch(error => console.error('Play error:', error));
-        }
-      };
-
-      audio.addEventListener('canplay', handleCanPlay);
 
       if (isPlaying) {
-        audio.play();
-        audio.volume = Math.max(0, Math.min(1, 1));
+        audio.currentTime = playbackPosition;
+        audio.play().catch(error => console.error('Play error:', error));
       } else {
         audio.pause();
       }
-
-      return () => {
-        audio.removeEventListener('canplay', handleCanPlay);
-      };
     }
-  }, [currentTrack, isPlaying, isAudioReady]);
+  }, [currentTrack, isPlaying, playbackPosition]);
 
   // Pagination Functions
   const [currentPage, setCurrentPage] = useState(0);
@@ -117,8 +108,8 @@ const TrackCard: React.FC = () => {
     updateItemsPerPage();
     window.addEventListener('resize', updateItemsPerPage);
 
-    const handleKeyDown = (e: KeyboardEvent) => {
-      switch (e.key) {
+    const handleKeyDown = event => {
+      switch (event.key) {
         case 'ArrowLeft':
           handlePrevious();
           break;
@@ -139,27 +130,21 @@ const TrackCard: React.FC = () => {
   }, [currentPage, handlePrevious, handleNext]);
 
   return (
-    <div className='w-full mx-auto flex flex-col'>
+    <div className='w-full flex justify-center items-center'>
       <audio
         key={currentTrack?.id}
-        className='h-5 bg-opacity-0 rounded-md opacity-0'
+        className='hidden'
         src={`/audio/tracks/${currentTrack?.file}`}
         controls
         ref={audioRef}
         onEnded={() => {
           setIsPlaying(false);
         }}
-        onPause={() => {
-          setIsPlaying(false);
-        }}
-        onPlay={() => {
-          setIsPlaying(true);
-        }}
       />
-      <div className='md:w-full mx-auto flex flex-col items-center justify-between mb-4'>
+      <div className='w-full xl:w-4/5 flex flex-col items-center justify-between py-4'>
         <div className='container mx-auto px-4'>
           {/* Header and Navigation */}
-          <div className='w-full flex items-center justify-between mb-4'>
+          <div className='w-full flex items-center justify-between mb-4 px-3 md:px-0'>
             <h1 className='font-custom text-white text-2xl md:text-3xl'>
               What&apos;s New
             </h1>
@@ -175,7 +160,7 @@ const TrackCard: React.FC = () => {
                 <FontAwesomeIcon
                   icon={faArrowLeft}
                   size='xs'
-                  style={{ color: '#ffffff' }}
+                  className='text-white'
                 />
               </button>
               <button
@@ -189,23 +174,23 @@ const TrackCard: React.FC = () => {
                 <FontAwesomeIcon
                   icon={faArrowRight}
                   size='xs'
-                  style={{ color: '#ffffff' }}
+                  className='text-white'
                 />
               </button>
             </div>
           </div>
 
           {/* Album Cover Cards */}
-          <div className='xl:w-full lg:w-full md:full flex items-center justify-between mb-4 overflow-x-hidden'>
-            <div className='flex space-x-4 overflow-x-auto md:overflow-x-hidden'>
+          <div className='w-full flex items-center justify-center mb-4'>
+            <div className='flex space-x-4'>
               {displayedTracks.map((track, index) => (
                 <div
                   key={index}
                   onMouseEnter={() => setHoverIndex(index)}
                   onMouseLeave={() => setHoverIndex(null)}
-                  className='md:bg-neutral-900 rounded-lg p-3 pb-4 hover:bg-neutral-800 relative'
+                  className='flex-grow md:bg-neutral-900 rounded-lg p-3 pb-4 hover:bg-neutral-800 relative'
                 >
-                  <div className='relative'>
+                  <div className='relative aspect-ratio-1/1'>
                     <Image
                       src={`/images/artwork/${track.metadata.catalog}.jpg`}
                       alt={track.metadata.title}
@@ -221,16 +206,11 @@ const TrackCard: React.FC = () => {
                       className='rounded-sm block md:hidden'
                     />
                     <button
-                      className={`absolute w-10 h-10 bottom-2 right-2 bg-indigo-700 rounded-full p-2 z-50 opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out hover:bg-indigo-500 ${
+                      className={`absolute w-10 h-10 bottom-2 right-2 bg-indigo-700 rounded-full p-2 z-10 opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out hover:bg-indigo-500 ${
                         hoverIndex === index ? 'opacity-100' : 'opacity-0'
                       }`}
                       onClick={() => {
-                        if (isPlaying && currentTrack === track) {
-                          setIsPlaying(false);
-                        } else {
-                          playTrack(track);
-                          setIsPlaying(true);
-                        }
+                        togglePlayPause(track);
                       }}
                     >
                       <FontAwesomeIcon
@@ -245,11 +225,11 @@ const TrackCard: React.FC = () => {
                       />
                     </button>
                   </div>
-                  <p className='text-white text-md mt-3 hover:underline hover:pointer'>
+                  <p className='text-white text-base mt-3 hover:underline hover:cursor-pointer'>
                     {track.metadata.title}
                   </p>
-                  <p className='text-neutral-400 text-sm hover:underline hover:pointer'>
-                    {renderValue(track.info.relatedartist[1])},{' '}
+                  <p className='text-neutral-400 text-sm hover:underline hover:cursor-pointer overflow-x-auto w-28'>
+                    {renderValue(track.info.relatedartist[1])}
                     {renderValue(track.info.relatedartist[2])}
                   </p>
                 </div>

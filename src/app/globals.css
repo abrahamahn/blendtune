@@ -3,7 +3,7 @@
 @import url('tailwindcss/utilities');
 
 @font-face {
-  font-family: Header; /* You can name it however you want */
+  font-family: Header;
   src: url('/fonts/Berthold Akzidenz Grotesk Medium Extended.ttf')
     format('truetype');
   font-weight: normal;
@@ -16,59 +16,6 @@
   width: 100%;
   height: 100%;
 
-  --max-width: 1100px;
-  --border-radius: 12px;
-  --font-mono: ui-monospace, menlo, monaco, 'Cascadia Mono', 'Segoe UI Mono',
-    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
-    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
-  --font-sans: ui-sans-serif, system-ui, -apple-system, blinkmacsystemfont,
-    'Segoe UI', roboto, 'Helvetica Neue', arial, 'Noto Sans', sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  --background-color: #000000;
-  --gradient-color-top: linear-gradient(
-    to bottom,
-    #fff,
-    rgb(255 255 255 / 50%)
-  );
-  --gradient-color-bottom: linear-gradient(
-    to top,
-    #fff,
-    rgb(255 255 255 / 50%)
-  );
-  --border-color: #c1b8b8f3;
-  --light-border-color: #dededef3;
-  --miniplayer-color: #114dfff4;
-  --miniplayer-card-color: hsl(0deg 0% 0% / 73.2%);
-  --progress-bar-color: rgb(0 0 0 / 50%);
-  --text-color: #000;
-  --text-color-inverted: #fff;
-  --light-color: #626262;
-  --hover-color: #00000016;
-  --svg-fill: #000;
-  --svg-stroke: black;
-  --box-shadow: 0 0 14px 2px rgb(98 96 255);
-  --card-color: grey;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background-color: #06060c; /* Dark theme */
-    --border-color: rgb(255 255 255 / 5%);
-    --gradient-color-top: linear-gradient(to bottom, #101010, rgb(0 0 0 / 25%));
-    --gradient-color-bottom: linear-gradient(to top, #0f0f0f, rgb(0 0 0 / 25%));
-    --light-border-color: #ffffff3a;
-    --miniplayer-color: #3815d5e7;
-    --miniplayer-card-color: #1d48f2f4;
-    --progress-bar-color: rgb(255 255 255 / 25%);
-    --text-color: #fff;
-    --text-color-inverted: #fff;
-    --light-color: #fff;
-    --hover-color: #ffffff14;
-    --svg-fill: white;
-    --svg-stroke: white;
-    --box-shadow: 0 0 14px 2px rgb(8 12 135);
-    --card-color: transparent;
-  }
 }
 
 * {
@@ -84,28 +31,14 @@ body {
 }
 
 body {
-  color: rgb(var(--background-color));
-  background: var(--background-color);
+  color: black;
+  background: black;
   overflow-x: hidden;
 }
 
 a {
   color: inherit;
   text-decoration: none;
-}
-
-path {
-  stroke: var(--svg-fill);
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-
-  path {
-    stroke: var(--svg-fill);
-  }
 }
 
 /* Header Animation */
@@ -128,20 +61,6 @@ path {
 
 .search-input:hover {
   outline: none;
-}
-
-@keyframes expand {
-  0% {
-    width: 7.5rem;
-  }
-
-  70% {
-    width: 24rem;
-  }
-
-  100% {
-    width: 20rem;
-  }
 }
 
 .animating .search-input {

@@ -59,8 +59,8 @@ const Header: React.FC<HeaderProps> = ({
   return (
     <React.Fragment>
       {/* Desktop Menu */}
-      <nav className='hidden md:block fixed top-0 z-20 w-full h-16 p-2 bg-black border-b border-neutral-800'>
-        <div className='-mt-1 flex justify-between 2xl:w-4/5 w-full items-center mx-auto md:px-2 lg:px-4 xl:px-6'>
+      <nav className='items-center justify-between hidden md:block fixed top-0 z-50 w-full h-16 border-b border-neutral-900 bg-black'>
+        <div className='flex items-center justify-between mx-auto w-full 2xl:w-4/5 px-4 xl:px-6'>
           <div className='flex items-center space-x-2 lg:space-x-4'>
             <Logo />
             {/* Search Bar */}
@@ -74,7 +74,7 @@ const Header: React.FC<HeaderProps> = ({
               >
                 <Link
                   href='/sounds'
-                  className='flex flex-row text-sm text-gray-400 hover:text-gray-300 hover:bg-neutral-800 px-1 lg:px-2 py-2 rounded-md'
+                  className='flex flex-row text-sm text-neutral-400 hover:text-neutral-300 hover:bg-neutral-800 px-1 lg:px-2 py-2 rounded-md'
                 >
                   <p className='mr-2'>Sounds</p>
                   <ChevronIcon
@@ -88,7 +88,7 @@ const Header: React.FC<HeaderProps> = ({
                 {isSoundsHovered && (
                   <DropdownMenu
                     isSoundsHovered={isSoundsHovered}
-                    toggleSoundsHover={() => setIsSoundsHovered(true)} // Ensure it stays open
+                    toggleSoundsHover={() => setIsSoundsHovered(true)}
                   />
                 )}
               </div>
@@ -97,43 +97,43 @@ const Header: React.FC<HeaderProps> = ({
                 {' '}
                 <Link
                   href='/studio'
-                  className='flex flex-row text-sm text-gray-400 hover:text-gray-300 hover:bg-neutral-800 px-2 lg:px-3 py-2 rounded-md'
+                  className='flex text-sm text-neutral-400 hover:text-neutral-300 hover:bg-neutral-800 px-2 lg:px-3 py-2 rounded-md'
                 >
-                  <p className='mr-1.5'>Studio</p>
+                  <p>Studio</p>
                 </Link>
               </div>
             </div>
           </div>
           <div className='flex items-center space-x-2 lg:space-x-4'>
             <Link
-              className='text-sm text-gray-400 hover:bg-neutral-900 hover:text-gray-200 rounded-md py-2 px-1 lg:px-3'
+              className='text-sm text-neutral-400 hover:bg-neutral-900 hover:text-neutral-200 rounded-md py-1.5 px-2 lg:px-3'
               href='/'
             >
               Pricing
             </Link>
             <button
               onClick={openSignInModal}
-              className='text-sm text-gray-100 bg-neutral-800 py-1.5 px-4 rounded-xl hover:bg-neutral-900'
+              className='text-sm text-neutral-100 bg-neutral-800 py-1.5 px-4 rounded-xl hover:bg-neutral-900'
             >
               Sign in
             </button>
             <button
               onClick={openSignUpModal}
-              className='flex flex-row text-sm text-gray-100 py-1.5 px-4 bg-indigo-700 rounded-xl hover:bg-indigo-500'
+              className='flex flex-row text-sm text-neutral-100 py-1.5 px-4 bg-indigo-700 rounded-xl hover:bg-indigo-500'
             >
               Get started
-              <AiOutlineRight className='block md:hidden lg:block mt-1 ml-2' />
+              <AiOutlineRight className='lg:block mt-1 ml-2' />
             </button>
           </div>
         </div>
       </nav>
       {/* Mobile Menu */}
       <nav className='md:hidden fixed top-0 z-20 w-full h-30 bg-black border-b border-neutral-800'>
-        <div className='flex flex-col justify-between items-center w-full mx-auto px-4'>
+        <div className='flex flex-col items-center w-full px-4'>
           {/* First Row */}
           <div className='flex justify-between items-center w-full'>
             {/* Search Icon */}
-            <div className='text-white cursor-pointer bg-neutral-800 rounded-full px-3 py-2'>
+            <div className='text-white cursor-pointer bg-neutral-800 rounded-full px-3.5 py-2'>
               <FontAwesomeIcon icon={faSearch} size='sm' />
             </div>
             {/* Logo */}
@@ -141,18 +141,18 @@ const Header: React.FC<HeaderProps> = ({
             {/* Menu Icon */}
             <div
               onClick={openMobileMenu}
-              className='text-white cursor-pointer bg-neutral-800 rounded-full px-3 py-2'
+              className='text-white cursor-pointer bg-neutral-800 rounded-full px-3.5 py-2'
             >
               <FontAwesomeIcon icon={faBars} size='sm' />
             </div>
           </div>
           {/* Second Row */}
-          <div className='flex justify-between items-center w-full mx-auto pb-1'>
+          <div className='flex w-full pb-1'>
             <div className='flex items-center mx-auto'>
               {/* Sounds */}
               <Link
                 href='/sounds'
-                className='text-sm text-gray-400 hover:text-gray-200 px-3 py-2 rounded-md'
+                className='text-sm text-neutral-400 hover:text-neutral-200 px-3 py-2 rounded-md'
                 onMouseEnter={toggleSoundsHover}
                 onMouseLeave={toggleSoundsHover}
               >
@@ -160,13 +160,13 @@ const Header: React.FC<HeaderProps> = ({
               </Link>
               <Link
                 href='/studio'
-                className='text-sm text-gray-400 hover:text-gray-200 px-3 py-2 rounded-md'
+                className='text-sm text-neutral-400 hover:text-neutral-200 px-3 py-2 rounded-md'
               >
                 <p className='mr-1.5'>Studio</p>
               </Link>
               {/* Pricing */}
               <Link
-                className='text-sm text-gray-400 hover:text-gray-200  rounded-md py-2 px-3'
+                className='text-sm text-neutral-400 hover:text-neutral-200 py-2 px-3 rounded-md'
                 href='/'
               >
                 Pricing

@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from '@/styles/pages/Home.module.css';
+import styles from '@/styles/Home.module.css';
 
 interface HeroProps {
   openSignUpModal: () => void;
@@ -22,8 +22,8 @@ const Hero: React.FC<HeroProps> = ({ openSignUpModal }) => {
   ];
 
   return (
-    <div className='flex flex-col justify-center items-center text-white relative mt-24 md:mt-0 sm:mt-0 w-full h-96 md:h-screen overflow-hidden'>
-      <div className='absolute top-0 left-0 right-0 bottom-0 flex justify-center overflow-visible z-0'>
+    <div className='flex flex-col justify-center items-center text-white relative  w-full h-96 md:h-screen overflow-hidden mt-24 md:mt-0'>
+      <div className='absolute top-0 left-0 right-0 bottom-0 flex justify-center overflow-visible'>
         {chunks.map((chunk, chunkIndex) => (
           <div
             key={chunkIndex}
@@ -41,7 +41,7 @@ const Hero: React.FC<HeroProps> = ({ openSignUpModal }) => {
                       alt='artwork'
                       width={110}
                       height={110}
-                      className='object-cover w-full h-auto border-0 border-black rounded-xl'
+                      className='object-cover w-full border-black rounded-xl'
                     />
                   </div>
                   {/* Div for Desktop View */}
@@ -51,7 +51,7 @@ const Hero: React.FC<HeroProps> = ({ openSignUpModal }) => {
                       alt='artwork'
                       width={200}
                       height={200}
-                      className='object-cover w-full h-auto border-0 border-black rounded-xl'
+                      className='object-cover w-full border-black rounded-xl'
                     />
                   </div>
                 </div>
@@ -61,12 +61,12 @@ const Hero: React.FC<HeroProps> = ({ openSignUpModal }) => {
         ))}
       </div>
       <div className={styles.overlay}></div>
-      <div className='flex flex-col justify-center items-center text-center w-full md:h-screen z-10 h-1/2'>
-        <div className='flex flex-col justify-center text-center w-full md:w-4/5 xl:w-3/5 mb-5 px-8 mt-36 md:mt-28'>
-          <h1 className='font-custom text-3xl font-medium mb-3 mx-auto leading-tight xl:text-6xl lg:text-5xl md:text-4xl'>
+      <div className='flex flex-col justify-center items-center text-center w-full md:h-screen z-10 '>
+        <div className='flex flex-col justify-center text-center w-3/4 md:w-4/6 lg:w-3/4 xl:w-3/5 mb-05 px-8 mt-36 md:mt-28'>
+          <h1 className='font-custom text-3xl font-medium mb-3 mx-auto leading-tight lg:text-5xl md:text-3xl'>
             World&apos;s best web studio and music library
           </h1>
-          <p className='text-center text-neutral-400 text-sm md:text-base w-full mx-auto md:w-4/5'>
+          <p className='text-center text-neutral-400 text-sm md:text-base mx-auto w-full sm:w-3/4 md:w-4/5 lg:w-3/5 xl:w-1/2 2xl:w-96 mb-4'>
             Create your masterpiece with highly-curated instrumentals, and share
             it with the world.
           </p>

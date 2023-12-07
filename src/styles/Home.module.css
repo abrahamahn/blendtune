@@ -37,11 +37,11 @@
 }
 
 .up {
-  animation-name: moveUp;
+  animation-name: moveup;
 }
 
 .down {
-  animation-name: moveDown;
+  animation-name: movedown;
 }
 
 @keyframes moveup {
