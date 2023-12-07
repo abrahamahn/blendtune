@@ -109,7 +109,7 @@ const TrackCard: React.FC = () => {
         setItemsPerPage(6);
       } else if (window.innerWidth > 1000) {
         setItemsPerPage(5);
-      } else if (window.innerWidth > 767) {
+      } else if (window.innerWidth > 480) {
         setItemsPerPage(4);
       } else {
         setItemsPerPage(3);
@@ -153,9 +153,9 @@ const TrackCard: React.FC = () => {
         }}
       />
       <div className='w-full xl:w-4/5 flex flex-col items-center justify-between py-4'>
-        <div className='container mx-auto px-4'>
+        <div className='container mx-auto'>
           {/* Header and Navigation */}
-          <div className='w-full flex items-center justify-between mb-4 px-3 md:px-0'>
+          <div className='w-full flex items-center justify-between mb-4 px-0 md:px-0'>
             <h1 className='font-custom text-white text-2xl md:text-3xl'>
               What&apos;s New
             </h1>
@@ -192,14 +192,14 @@ const TrackCard: React.FC = () => {
           </div>
 
           {/* Album Cover Cards */}
-          <div className='w-full flex items-center justify-center mb-4'>
-            <div className='flex space-x-4'>
+          <div className='w-full flex items-center justify-center mb-2 '>
+            <div className='flex space-x-0 sm:space-x-4 px-0 overflow-x-scroll'>
               {displayedTracks.map((track, index) => (
                 <div
                   key={index}
                   onMouseEnter={() => setHoverIndex(index)}
                   onMouseLeave={() => setHoverIndex(null)}
-                  className='flex-grow md:bg-neutral-900 rounded-lg p-3 pb-4 hover:bg-neutral-800 relative'
+                  className='flex-grow md:bg-neutral-900 rounded-lg p-3.5 pb-4 hover:bg-neutral-800 relative'
                 >
                   <div className='relative aspect-ratio-1/1'>
                     <Image
