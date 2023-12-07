@@ -76,13 +76,13 @@ const DropdownMenu: React.FC<DropdownMenuProps> = () => {
               className='mb-1 hover:text-neutral-200 hover:bg-neutral-600 rounded-lg'
             >
               <Link className='flex flex-row px-2 py-1.5' href='/sounds'>
-                <div className='flex items-center w-4'>
+                <div className='flex items-center w-4 mr-2'>
                   <FontAwesomeIcon
                     icon={item.icon}
                     className='justify-center items-center'
                   />
                 </div>
-                <p className='ml-2'>{item.text}</p>
+                {item.text}
               </Link>
             </li>
           ))}

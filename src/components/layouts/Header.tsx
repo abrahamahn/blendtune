@@ -67,16 +67,22 @@ const Header: React.FC<HeaderProps> = ({
             <SearchBar />
             <div className='flex items-center'>
               {/* Container for "Sounds" text and icon */}
+              <div className='relative group'>
+                {' '}
+                <Link
+                  href='/sounds'
+                  className='flex text-sm text-neutral-400 hover:text-neutral-300 hover:bg-neutral-800 px-2 lg:px-3 py-2 rounded-md'
+                >
+                  <p>Explore</p>
+                </Link>
+              </div>
               <div
                 className='relative group'
                 onMouseEnter={() => setIsSoundsHovered(true)}
                 onMouseLeave={() => setIsSoundsHovered(false)}
               >
-                <Link
-                  href='/sounds'
-                  className='flex flex-row text-sm text-neutral-400 hover:text-neutral-300 hover:bg-neutral-800 px-1 lg:px-2 py-2 rounded-md'
-                >
-                  <p className='mr-2'>Sounds</p>
+                <div className='flex flex-row text-sm text-neutral-400 hover:text-neutral-300 hover:bg-neutral-800 px-1 lg:px-2 py-2 rounded-md'>
+                  <p className='mr-2 hover:cursor-pointer'>Sounds</p>
                   <ChevronIcon
                     icon={faChevronUp}
                     size='xs'
@@ -84,23 +90,13 @@ const Header: React.FC<HeaderProps> = ({
                       !isSoundsHovered ? 'rotate-180-animation' : ''
                     }`}
                   />
-                </Link>
+                </div>
                 {isSoundsHovered && (
                   <DropdownMenu
                     isSoundsHovered={isSoundsHovered}
                     toggleSoundsHover={() => setIsSoundsHovered(true)}
                   />
                 )}
-              </div>
-
-              <div className='relative group'>
-                {' '}
-                <Link
-                  href='/studio'
-                  className='flex text-sm text-neutral-400 hover:text-neutral-300 hover:bg-neutral-800 px-2 lg:px-3 py-2 rounded-md'
-                >
-                  <p>Studio</p>
-                </Link>
               </div>
             </div>
           </div>
