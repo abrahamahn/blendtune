@@ -10,28 +10,6 @@ const SearchBar: React.FC = () => {
   const [selectedMenu, setSelectedMenu] = useState('Genre');
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const styledSearchBarRef = useRef<HTMLDivElement | null>(null);
-  const menuItems = ['Genre', 'Instruments', 'Artist', 'Mood', 'Key', 'BPM'];
-
-  const clearInput = () => {
-    setInputValue('');
-    console.log('Input cleared');
-  };
-
-  const toggleDropdown = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (dropdownRef.current && dropdownRef.current.contains(e.target as Node)) {
-      return;
-    }
-    setIsDropdownOpen(!isDropdownOpen);
-    setIsFocused(true);
-    console.log('Dropdown toggled');
-  };
-
-  const handleMenuItemClick = (menuItem: string) => {
-    setSelectedMenu(menuItem);
-    setIsDropdownOpen(false);
-    console.log(`Selected menu item: ${menuItem}`);
-  };
 
   const handleFocus = () => {
     setIsFocused(true);
@@ -79,6 +57,29 @@ const SearchBar: React.FC = () => {
       ? 'expand 0.4s ease-in-out forwards'
       : 'shrink 0.4s ease-in-out forwards',
   };
+
+  const clearInput = () => {
+    setInputValue('');
+    console.log('Input cleared');
+  };
+
+  const toggleDropdown = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (dropdownRef.current && dropdownRef.current.contains(e.target as Node)) {
+      return;
+    }
+    setIsDropdownOpen(!isDropdownOpen);
+    setIsFocused(true);
+    console.log('Dropdown toggled');
+  };
+
+  const handleMenuItemClick = (menuItem: string) => {
+    setSelectedMenu(menuItem);
+    setIsDropdownOpen(false);
+    console.log(`Selected menu item: ${menuItem}`);
+  };
+
+  const menuItems = ['Genre', 'Instruments', 'Artist', 'Mood', 'Key', 'BPM'];
 
   return (
     <div

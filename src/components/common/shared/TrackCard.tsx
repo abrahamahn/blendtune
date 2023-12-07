@@ -12,30 +12,24 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 const TrackCard: React.FC = () => {
-  // State for Pagination
-  const [currentPage, setCurrentPage] = useState(0);
-  const [itemsPerPage, setItemsPerPage] = useState(6);
+  // State for Fetching Data
+  const [tracks, setTracks] = useState<Track[]>([]);
+
+  useEffect(() => {
+    fetch('/data/tracks.json')
+      .then(response => response.json())
+      .then((data: Track[]) => {
+        const reversedTracks = [...data].reverse();
+        setTracks(reversedTracks);
+      })
+      .catch(error => console.error(error));
+  }, []);
 
   // State for Audio
-  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   const [currentTrack, setCurrentTrack] = useState<Track | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isAudioReady, setIsAudioReady] = useState(false);
   const audioRef = React.useRef<HTMLAudioElement>(null);
-
-  // State for Fetching Data
-  const [tracks, setTracks] = useState<Track[]>([]);
-
-  // Pagination Functions
-  const totalPages = Math.ceil(tracks.length / itemsPerPage);
-
-  const handleNext = useCallback(() => {
-    setCurrentPage(prev => Math.min(prev + 1, totalPages - 1));
-  }, [totalPages]);
-
-  const handlePrevious = useCallback(() => {
-    setCurrentPage(prev => Math.max(prev - 1, 0));
-  }, []);
 
   // Audio Functions
   const playTrack = (track: Track) => {
@@ -47,64 +41,66 @@ const TrackCard: React.FC = () => {
     }
   };
 
-  // Fetch Data Effect
-  useEffect(() => {
-    fetch('/data/tracks.json')
-      .then(response => response.json())
-      .then((data: Track[]) => {
-        const reversedTracks = [...data].reverse();
-        setTracks(reversedTracks);
-      })
-      .catch(error => console.error(error));
-  }, []);
-
-  // Audio Effects
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (audio && currentTrack) {
-      audio.src = `/audio/tracks/${currentTrack.file}`;
-      setIsPlaying(true);
-    }
-  }, [currentTrack]);
-
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (audio && isPlaying && isAudioReady) {
-      audio.play().catch(error => console.error('Play error:', error));
-    }
-  }, [isPlaying, isAudioReady]);
-
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    const handleCanPlay = () => {
-      setIsAudioReady(true);
-      if (isPlaying) {
-        audio.play().catch(error => console.error('Play error:', error));
-      }
-    };
-
-    audio.addEventListener('canplay', handleCanPlay);
-    return () => {
-      audio.removeEventListener('canplay', handleCanPlay);
-    };
-  }, [isPlaying, currentTrack]);
-
   useEffect(() => {
     const audio = audioRef.current;
 
     if (audio) {
+      if (currentTrack) {
+        audio.src = `/audio/tracks/${currentTrack.file}`;
+        setIsPlaying(true);
+      }
+
+      if (isPlaying && isAudioReady) {
+        audio.play().catch(error => console.error('Play error:', error));
+      }
+
+      const handleCanPlay = () => {
+        setIsAudioReady(true);
+        if (isPlaying) {
+          audio.play().catch(error => console.error('Play error:', error));
+        }
+      };
+
+      audio.addEventListener('canplay', handleCanPlay);
+
       if (isPlaying) {
         audio.play();
         audio.volume = Math.max(0, Math.min(1, 1));
       } else {
         audio.pause();
       }
-    }
-  }, [isPlaying, currentTrack]);
 
-  // Window Resize Effect
+      return () => {
+        audio.removeEventListener('canplay', handleCanPlay);
+      };
+    }
+  }, [currentTrack, isPlaying, isAudioReady]);
+
+  // Pagination Functions
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(6);
+  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
+  const totalPages = Math.ceil(tracks.length / itemsPerPage);
+
+  const handleNext = useCallback(() => {
+    setCurrentPage(prev => Math.min(prev + 1, totalPages - 1));
+  }, [totalPages]);
+
+  const handlePrevious = useCallback(() => {
+    setCurrentPage(prev => Math.max(prev - 1, 0));
+  }, []);
+
+  const renderValue = (value: string) => {
+    return value && value !== 'n/a' && value !== '' ? value : null;
+  };
+
+  const displayedTracks = useMemo(() => {
+    return tracks.slice(
+      currentPage * itemsPerPage,
+      (currentPage + 1) * itemsPerPage
+    );
+  }, [tracks, currentPage, itemsPerPage]);
+
   useEffect(() => {
     const updateItemsPerPage = () => {
       if (window.innerWidth > 1500) {
@@ -121,13 +117,8 @@ const TrackCard: React.FC = () => {
     updateItemsPerPage();
     window.addEventListener('resize', updateItemsPerPage);
 
-    return () => window.removeEventListener('resize', updateItemsPerPage);
-  }, []);
-
-  // Keyboard Event Effect
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      switch (event.key) {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      switch (e.key) {
         case 'ArrowLeft':
           handlePrevious();
           break;
@@ -142,22 +133,10 @@ const TrackCard: React.FC = () => {
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
+      window.removeEventListener('resize', updateItemsPerPage);
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [currentPage, handlePrevious, handleNext]);
-
-  // Helper Function to Render Values
-  const renderValue = (value: string) => {
-    return value && value !== 'n/a' && value !== '' ? value : null;
-  };
-
-  // Tracks to Display
-  const displayedTracks = useMemo(() => {
-    return tracks.slice(
-      currentPage * itemsPerPage,
-      (currentPage + 1) * itemsPerPage
-    );
-  }, [tracks, currentPage, itemsPerPage]);
 
   return (
     <div className='w-full mx-auto flex flex-col'>
