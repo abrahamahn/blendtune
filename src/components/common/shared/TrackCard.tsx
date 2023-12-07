@@ -41,12 +41,16 @@ const TrackCard: React.FC = () => {
       audioRef.current?.pause();
     } else {
       setIsPlaying(true);
-      audioRef.current.currentTime = playbackPosition;
-      // Set position to playbackPosition
-      const position = playbackPosition;
-      audioRef.current?.play();
+      if (audioRef.current) {
+        // Check if audioRef.current is not null
+        audioRef.current.currentTime = playbackPosition;
+        audioRef.current
+          .play()
+          .catch(error => console.error('Play error:', error));
+      }
     }
   };
+
   useEffect(() => {
     const audio = audioRef.current;
 
@@ -65,6 +69,13 @@ const TrackCard: React.FC = () => {
         audio.pause();
       }
     }
+
+    return () => {
+      const audio = audioRef.current;
+      if (audio) {
+        audio.pause();
+      }
+    };
   }, [currentTrack, isPlaying, playbackPosition]);
 
   // Pagination Functions
@@ -108,7 +119,7 @@ const TrackCard: React.FC = () => {
     updateItemsPerPage();
     window.addEventListener('resize', updateItemsPerPage);
 
-    const handleKeyDown = event => {
+    const handleKeyDown = (event: KeyboardEvent) => {
       switch (event.key) {
         case 'ArrowLeft':
           handlePrevious();
