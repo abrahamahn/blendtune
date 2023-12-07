@@ -77,7 +77,7 @@ const Footer = () => {
 
   return (
     <div className='w-full justify-center h-72 flex-row md:flex-col mx-auto md:px-10'>
-      <div className='sm:w-full md:w-5/6 2xl:w-3/4 flex py-2 px-8 pb-8 mx-auto flex-wrap'>
+      <div className='sm:w-full md:w-5/6 2xl:w-3/4 flex py-2 px-5 md:px-8 pb-8 mx-auto flex-wrap'>
         <div className='w-full md:w-4/5 flex md:flex-row flex-wrap gap-0 md:gap-10 mx-auto mt-8 order-1 md:order-2'>
           {sections.map(section => (
             <div key={section.title} className='w-1/2 md:w-36 md:mb-0 mb-6'>

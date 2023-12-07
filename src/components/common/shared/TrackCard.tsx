@@ -155,7 +155,7 @@ const TrackCard: React.FC = () => {
       <div className='w-full xl:w-4/5 flex flex-col items-center justify-between py-4'>
         <div className='container mx-auto'>
           {/* Header and Navigation */}
-          <div className='w-full flex items-center justify-between mb-4 px-0 md:px-0'>
+          <div className='w-full flex items-center justify-between mb-4 px-2 md:px-0'>
             <h1 className='font-custom text-white text-2xl md:text-3xl'>
               What&apos;s New
             </h1>
@@ -192,7 +192,7 @@ const TrackCard: React.FC = () => {
           </div>
 
           {/* Album Cover Cards */}
-          <div className='w-full flex items-center justify-center mb-2 '>
+          <div className='w-full flex items-center justify-center mb-2 px-2'>
             <div className='flex space-x-0 sm:space-x-4 px-0 overflow-x-scroll'>
               {displayedTracks.map((track, index) => (
                 <div
