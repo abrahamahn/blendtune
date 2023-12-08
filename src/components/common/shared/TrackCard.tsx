@@ -202,18 +202,18 @@ const TrackCard: React.FC = () => {
                   className='flex-grow md:bg-neutral-900 rounded-lg p-3.5 pb-4 hover:bg-neutral-800 relative'
                 >
                   <div className='relative aspect-ratio-1/1'>
-                    <Image
+                    <img
                       src={`/images/artwork/${track.metadata.catalog}.jpg`}
                       alt={track.metadata.title}
-                      width={200}
-                      height={200}
+                      layout='fill'
+                      objectFit='cover'
                       className='rounded-sm hidden md:block'
                     />
-                    <Image
+                    <img
                       src={`/images/artwork/${track.metadata.catalog}.jpg`}
                       alt={track.metadata.title}
-                      width={125}
-                      height={125}
+                      layout='fill'
+                      objectFit='cover'
                       className='rounded-sm block md:hidden'
                     />
                     <button
