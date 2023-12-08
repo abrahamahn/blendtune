@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Track } from '@/types/track';
 import Image from 'next/image';
+import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import {
@@ -105,14 +106,14 @@ const TrackCard: React.FC = () => {
 
   useEffect(() => {
     const updateItemsPerPage = () => {
-      if (window.innerWidth > 1500) {
+      if (window.innerWidth > 1280) {
         setItemsPerPage(6);
-      } else if (window.innerWidth > 1000) {
+      } else if (window.innerWidth > 1024) {
         setItemsPerPage(5);
-      } else if (window.innerWidth > 480) {
+      } else if (window.innerWidth > 768) {
         setItemsPerPage(4);
-      } else {
-        setItemsPerPage(3);
+      } else if (window.innerWidth > 640) {
+        setItemsPerPage(15);
       }
     };
 
@@ -155,11 +156,17 @@ const TrackCard: React.FC = () => {
       <div className='w-full xl:w-4/5 flex flex-col items-center justify-between py-4'>
         <div className='container mx-auto'>
           {/* Header and Navigation */}
-          <div className='w-full flex items-center justify-between mb-4 px-3 md:px-0'>
+          <div className='w-full flex items-center justify-between mb-4 px-4'>
             <h1 className='font-custom text-white text-2xl md:text-3xl'>
               What&apos;s New
             </h1>
-            <div className='flex space-x-4'>
+            <Link
+              className='text-sm text-white px-3 py-1.5 rounded-full font-semibold bg-neutral-800 hover:bg-neutral-900 md:hidden'
+              href='/sounds'
+            >
+              See all
+            </Link>
+            <div className='hidden md:block space-x-4'>
               <button
                 onClick={handlePrevious}
                 className={`w-8 h-8 rounded-full ${
@@ -192,29 +199,22 @@ const TrackCard: React.FC = () => {
           </div>
 
           {/* Album Cover Cards */}
-          <div className='w-full flex items-center justify-center mb-2 px-2'>
+          <div className='w-full flex items-center justify-center mb-2 px-4 overflow-x-auto scrollbar-hide'>
             <div className='flex space-x-0 sm:space-x-4 px-0 overflow-x-scroll'>
               {displayedTracks.map((track, index) => (
                 <div
                   key={index}
                   onMouseEnter={() => setHoverIndex(index)}
                   onMouseLeave={() => setHoverIndex(null)}
-                  className='flex-grow md:bg-neutral-900 rounded-lg hover:bg-neutral-800 relative'
+                  className='flex-grow md:bg-neutral-900 rounded-lg md:hover:bg-neutral-800 relative snap-start'
                 >
-                  <div className='flex items-center justify-center relative m-3 aspect-ratio-1/1'>
+                  <div className='w-48 md:w-auto flex items-center justify-center relative m-0 mr-3 md:m-3 aspect-ratio-1/1 user-select-none'>
                     <Image
                       src={`/images/artwork/${track.metadata.catalog}.jpg`}
                       alt={track.metadata.title}
                       width={200}
                       height={200}
-                      className='rounded-sm hidden md:block'
-                    />
-                    <Image
-                      src={`/images/artwork/${track.metadata.catalog}.jpg`}
-                      alt={track.metadata.title}
-                      width={115}
-                      height={115}
-                      className='rounded-sm block md:hidden '
+                      className='rounded-md user-select-none'
                     />
                     <button
                       className={`absolute w-10 h-10 bottom-2 right-2 bg-indigo-700 rounded-full p-2 z-10 opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out hover:bg-indigo-500 ${
@@ -236,10 +236,10 @@ const TrackCard: React.FC = () => {
                       />
                     </button>
                   </div>
-                  <p className='text-white text-base mt-3 hover:underline hover:cursor-pointer mx-4'>
+                  <p className='text-white text-base mt-3 hover:underline hover:cursor-pointer mx-0 md:mx-4'>
                     {track.metadata.title}
                   </p>
-                  <p className='text-neutral-400 text-sm hover:underline hover:cursor-pointer overflow-x-auto w-28 mx-4 mb-4'>
+                  <p className='text-neutral-400 text-sm hover:underline hover:cursor-pointer overflow-x-auto w-28 mt-1 md:mx-4 mb-4'>
                     {renderValue(track.info.relatedartist[1])}
                   </p>
                 </div>
