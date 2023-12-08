@@ -199,22 +199,22 @@ const TrackCard: React.FC = () => {
                   key={index}
                   onMouseEnter={() => setHoverIndex(index)}
                   onMouseLeave={() => setHoverIndex(null)}
-                  className='flex-grow md:bg-neutral-900 rounded-lg p-3.5 pb-4 hover:bg-neutral-800 relative'
+                  className='flex-grow md:bg-neutral-900 rounded-lg hover:bg-neutral-800 relative'
                 >
-                  <div className='relative aspect-ratio-1/1'>
-                    <img
+                  <div className='flex items-center justify-center relative m-3 aspect-ratio-1/1'>
+                    <Image
                       src={`/images/artwork/${track.metadata.catalog}.jpg`}
                       alt={track.metadata.title}
-                      layout='fill'
-                      objectFit='cover'
+                      width={200}
+                      height={200}
                       className='rounded-sm hidden md:block'
                     />
-                    <img
+                    <Image
                       src={`/images/artwork/${track.metadata.catalog}.jpg`}
                       alt={track.metadata.title}
-                      layout='fill'
-                      objectFit='cover'
-                      className='rounded-sm block md:hidden'
+                      width={115}
+                      height={115}
+                      className='rounded-sm block md:hidden '
                     />
                     <button
                       className={`absolute w-10 h-10 bottom-2 right-2 bg-indigo-700 rounded-full p-2 z-10 opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out hover:bg-indigo-500 ${
@@ -236,12 +236,11 @@ const TrackCard: React.FC = () => {
                       />
                     </button>
                   </div>
-                  <p className='text-white text-base mt-3 hover:underline hover:cursor-pointer'>
+                  <p className='text-white text-base mt-3 hover:underline hover:cursor-pointer mx-4'>
                     {track.metadata.title}
                   </p>
-                  <p className='text-neutral-400 text-sm hover:underline hover:cursor-pointer overflow-x-auto w-28'>
+                  <p className='text-neutral-400 text-sm hover:underline hover:cursor-pointer overflow-x-auto w-28 mx-4 mb-4'>
                     {renderValue(track.info.relatedartist[1])}
-                    {renderValue(track.info.relatedartist[2])}
                   </p>
                 </div>
               ))}

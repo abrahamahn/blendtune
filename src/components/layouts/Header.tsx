@@ -129,18 +129,22 @@ const Header: React.FC<HeaderProps> = ({
           {/* First Row */}
           <div className='flex justify-between items-center w-full'>
             {/* Search Icon */}
-            <div className='text-white cursor-pointer bg-neutral-800 rounded-full px-3.5 py-2'>
-              <FontAwesomeIcon icon={faSearch} size='sm' />
-            </div>
+            <button className='text-white cursor-pointer bg-neutral-800 rounded-full px-3.5 py-2'>
+              <FontAwesomeIcon
+                icon={faSearch}
+                size='sm'
+                className='text-white'
+              />
+            </button>
             {/* Logo */}
             <Logo />
             {/* Menu Icon */}
-            <div
+            <button
               onClick={openMobileMenu}
               className='text-white cursor-pointer bg-neutral-800 rounded-full px-3.5 py-2'
             >
-              <FontAwesomeIcon icon={faBars} size='sm' />
-            </div>
+              <FontAwesomeIcon icon={faBars} size='sm' className='text-white' />
+            </button>
           </div>
           {/* Second Row */}
           <div className='flex w-full pb-1'>
