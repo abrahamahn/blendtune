@@ -327,7 +327,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
         </div>
       </div>
       {/*Mobile Player */}
-      <div className='fixed bottom-2 left-0 w-full px-4 z-30 block md:hidden'>
+      <div className='fixed bottom-6 left-0 w-full px-4 z-30 block md:hidden'>
         <div className='flex flex-col items-center p-1 w-full rounded-md bg-blue-800 overflow-hidden h-14 backdrop-blur-md'>
           <div className='flex items-center w-full h-full'>
             <div className='flex items-center justify-center w-14 h-14 ml-1 rounded-md'>
@@ -364,9 +364,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
               <div className='mr-2 cursor-pointer hover:opacity-75'>
                 <Icon.Plus width={18} height={18} fill='white' />
               </div>
-              <div onClick={() => setIsPlaying(!isPlaying)}>
-                {playPauseButtonMobile}
-              </div>
+              <div onClick={togglePlayPause}>{playPauseButtonMobile}</div>
             </div>
           </div>
           <div className='w-full' style={{ width: 'calc(100% + 11px)' }}>
