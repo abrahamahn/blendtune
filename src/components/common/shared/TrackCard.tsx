@@ -200,7 +200,7 @@ const TrackCard: React.FC = () => {
 
           {/* Album Cover Cards */}
           <div className='w-full flex items-center justify-center mb-2 px-4 overflow-x-auto scrollbar-hide'>
-            <div className='flex space-x-0 sm:space-x-4 px-0 overflow-x-scroll'>
+            <div className='flex space-x-0 sm:space-x-4 px-0 overflow-x-scroll scrollbar-hide'>
               {displayedTracks.map((track, index) => (
                 <div
                   key={index}
