@@ -76,28 +76,29 @@ const Footer = () => {
   ];
 
   return (
-    <div className='w-full justify-center h-72 flex-row md:flex-col mx-auto md:px-10'>
-      <div className='sm:w-full md:w-5/6 2xl:w-3/4 flex py-2 px-5 md:px-8 pb-8 mx-auto flex-wrap'>
-        <div className='w-full md:w-4/5 flex md:flex-row flex-wrap gap-0 md:gap-10 mx-auto mt-8 order-1 md:order-2'>
-          {sections.map(section => (
-            <div key={section.title} className='w-1/2 md:w-36 md:mb-0 mb-6'>
-              <ListSection title={section.title} items={section.items} />
-            </div>
-          ))}
-        </div>
-        {/* Left Section (20%) - Displayed below on mobile */}
-        <div className='w-full md:w-1/5 flex flex-col items-start justify-center mx-auto space-y-4 order-2 md:order-1'>
-          <Logo />
-          <div className='flex space-x-2 md:space-x-1 lg:space-x-2'>
-            <SocialIcon icon={faYoutube} />
-            <SocialIcon icon={faInstagram} />
-            <SocialIcon icon={faFacebook} />
-            <SocialIcon icon={faTwitter} />
+    <div className='flex flex-col lg:flex-row w-full justify-center items-center h-auto px-4 md:px-10 lg:px-0 pt-0 pb-16 lg:pb-24'>
+      <div className='flex flex-wrap gap-0 lg:justify-center md:gap-10 mt-8 lg:order-2'>
+        {sections.map(section => (
+          <div
+            key={section.title}
+            className='lg:ml-2 text-base w-1/2 md:w-28 lg:w-32 md:mb-0 mb-6'
+          >
+            <ListSection title={section.title} items={section.items} />
           </div>
-          <p className='text-xs text-neutral-400'>
-            © 2023 Blend, Inc. All rights reserved.
-          </p>
+        ))}
+      </div>
+      {/* Left Section (20%) - Displayed below on mobile */}
+      <div className='ml-0 sm:ml-0 md:ml-12 lg:ml-0 xl:ml-0 w-full lg:w-72 flex flex-col lg:justify-center mt-8 lg:order-1'>
+        <Logo />
+        <div className='flex mb-8 space-x-2 md:space-x-1 lg:space-x-2'>
+          <SocialIcon icon={faYoutube} />
+          <SocialIcon icon={faInstagram} />
+          <SocialIcon icon={faFacebook} />
+          <SocialIcon icon={faTwitter} />
         </div>
+        <p className='text-xs text-neutral-400 mb-8'>
+          © 2023 Blend, Inc. All rights reserved.
+        </p>
       </div>
     </div>
   );

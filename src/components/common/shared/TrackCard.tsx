@@ -142,7 +142,7 @@ const TrackCard: React.FC = () => {
   }, [currentPage, handlePrevious, handleNext]);
 
   return (
-    <div className='w-full flex justify-center items-center'>
+    <div className='w-full flex justify-center items-center max-w-screen-2xl mx-auto'>
       <audio
         key={currentTrack?.id}
         className='hidden'
@@ -153,7 +153,7 @@ const TrackCard: React.FC = () => {
           setIsPlaying(false);
         }}
       />
-      <div className='w-full xl:w-4/5 flex flex-col items-center justify-between py-4'>
+      <div className='w-full xl:w-4/5 flex flex-col items-center justify-between'>
         <div className='container mx-auto'>
           {/* Header and Navigation */}
           <div className='w-full flex items-center justify-between mb-4 px-4'>
@@ -200,13 +200,13 @@ const TrackCard: React.FC = () => {
 
           {/* Album Cover Cards */}
           <div className='w-full flex items-center justify-center mb-2 px-4 overflow-x-auto scrollbar-hide'>
-            <div className='flex space-x-0 sm:space-x-4 px-0 overflow-x-scroll scrollbar-hide'>
+            <div className='flex space-x-0 sm:space-x-4 xl:space-x-6 px-0 overflow-x-scroll scrollbar-hide w-full'>
               {displayedTracks.map((track, index) => (
                 <div
                   key={index}
                   onMouseEnter={() => setHoverIndex(index)}
                   onMouseLeave={() => setHoverIndex(null)}
-                  className='flex-grow md:bg-neutral-900 rounded-lg md:hover:bg-neutral-800 relative snap-start'
+                  className='flex-grow w-60 md:bg-neutral-900 rounded-lg md:hover:bg-neutral-800 relative snap-start'
                 >
                   <div className='w-48 md:w-auto flex items-center justify-center relative m-0 mr-3 md:m-3 aspect-ratio-1/1 user-select-none'>
                     <Image

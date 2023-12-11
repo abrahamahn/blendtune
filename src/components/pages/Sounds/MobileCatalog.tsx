@@ -24,7 +24,7 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
   }
 
   return (
-    <div className='w-full md:w-4/6 mx-auto mt-24 md:mt-16 px-1'>
+    <div className='w-full max-w-screen-xl mx-auto mt-24 md:mt-16 px-1'>
       <div className='flex flex-col relative'>
         {tracks.map((track: Track) => (
           <div

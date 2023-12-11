@@ -69,8 +69,8 @@
   inset: 0;
   pointer-events: none;
   z-index: 2;
-  background: linear-gradient(0deg, black 20%, transparent 130%),
-    radial-gradient(circle at center, transparent 70%, black 90%);
+  background: linear-gradient(0deg, black 10%, transparent 150%),
+    radial-gradient(circle at top, transparent 50%, black 90%);
 }
 
 /* CSS to hide the scrollbar on Firefox */

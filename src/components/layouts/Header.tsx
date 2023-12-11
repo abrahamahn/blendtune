@@ -59,8 +59,8 @@ const Header: React.FC<HeaderProps> = ({
   return (
     <React.Fragment>
       {/* Desktop Menu */}
-      <nav className='items-center justify-between hidden md:block fixed top-0 z-50 w-full h-16 border-b border-neutral-900 bg-black'>
-        <div className='flex items-center justify-between mx-auto w-full 2xl:w-4/5 px-4 xl:px-6'>
+      <nav className='items-center justify-between hidden lg:block fixed top-0 z-50 w-full h-16 border-b border-neutral-900 bg-black'>
+        <div className='flex items-center justify-between mx-auto w-full max-w-screen-xl 2xl:w-4/5 px-6 2xl:px-0'>
           <div className='flex items-center space-x-2 lg:space-x-4'>
             <Logo />
             {/* Search Bar */}
@@ -124,7 +124,7 @@ const Header: React.FC<HeaderProps> = ({
         </div>
       </nav>
       {/* Mobile Menu */}
-      <nav className='md:hidden fixed top-0 z-20 w-full h-30 bg-black border-b border-neutral-800'>
+      <nav className='lg:hidden fixed top-0 z-20 w-full h-30 bg-black border-b border-neutral-800'>
         <div className='flex flex-col items-center w-full px-2'>
           {/* First Row */}
           <div className='flex justify-between items-center w-full'>
