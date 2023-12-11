@@ -66,16 +66,22 @@ const Hero: React.FC<HeroProps> = ({ openSignUpModal }) => {
         </div>
         <div className={styles.overlay}></div>
         <div className='flex flex-col justify-center items-center text-center w-full md:h-5/6 z-10 px-10'>
-          <div className='flex flex-col justify-center text-center w-full md:w-4/6 lg:w-3/4 xl:w-4/5 mb-5 mt-24 md:mt-48'>
-            <h1 className='font-custom text-3xl font-medium mb-3 mx-auto leading-tight xl:text-6xl lg:text-5xl md:text-3xl'>
+          <div
+            className={`flex flex-col justify-center text-center w-full md:w-4/6 lg:w-3/4 xl:w-4/5 mb-5 mt-24 md:mt-48 ${styles.fadeInUp}`}
+          >
+            <h1
+              className={`font-custom text-3xl font-medium mb-3 mx-auto leading-tight xl:text-6xl lg:text-5xl md:text-3xl ${styles.fadeInUp}`}
+            >
               World&apos;s best web studio and music library
             </h1>
-            <p className='text-center text-neutral-400 text-sm md:text-base lg:text-lg xl:text-xl mx-auto w-full sm:w-3/4 md:w-4/5 lg:w-3/5 xl:w-1/2 2xl:w-1/2 mb-4'>
+            <p
+              className={`text-center text-neutral-400 text-sm md:text-base lg:text-lg xl:text-xl mx-auto w-full sm:w-3/4 md:w-4/5 lg:w-3/5 xl:w-1/2 2xl:w-1/2 mb-4 ${styles.fadeInUp}`}
+            >
               Create your masterpiece with highly-curated instrumentals, and
               share it with the world.
             </p>
           </div>
-          <div className='flex justify-center'>
+          <div className={`flex justify-center ${styles.fadeInUp}`}>
             <Link
               className='md:w-56 w-40 text-sm md:text-base text-white rounded-full py-3 sm:py-4 px-10 bg-neutral-800 hover:bg-neutral-700 mr-4 font-semibold'
               href='/sounds'

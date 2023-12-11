@@ -176,7 +176,12 @@ const Header: React.FC<HeaderProps> = ({
         </div>
       </nav>
       <div>
-        {isMobileMenuOpen && <MobileMenu closeMenu={closeMobileMenu} />}
+        {isMobileMenuOpen && (
+          <MobileMenu
+            closeMenu={closeMobileMenu}
+            openSignUpModal={openSignUpModal}
+          />
+        )}
       </div>
     </React.Fragment>
   );

@@ -10,11 +10,15 @@ import {
 
 interface MobileMenuProps {
   closeMenu: () => void;
+  openSignUpModal: () => void;
 }
 
-const MobileMenu: React.FC<MobileMenuProps> = ({ closeMenu }) => {
+const MobileMenu: React.FC<MobileMenuProps> = ({
+  closeMenu,
+  openSignUpModal,
+}) => {
   return (
-    <div className='fixed bottom-0 left-0 w-full z-50'>
+    <div className='fixed bottom-0 left-0 w-full z-20'>
       <div className='fixed inset-0 bg-neutral-700 opacity-40'></div>
       <div className='fixed bottom-0 left-0 w-full rounded-t-lg bg-black'>
         <div className='p-4 pb-3 rounded-t-xl bg-black'>
@@ -35,7 +39,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ closeMenu }) => {
             <button className='flex-1 m-1 py-3 bg-neutral-700 rounded-3xl hover:bg-neutral-800 text-neutral-200'>
               Sign in
             </button>
-            <button className='flex-1 m-1 py-3 bg-indigo-600 rounded-3xl hover:bg-indigo-700 text-neutral-200'>
+            <button
+              onClick={openSignUpModal}
+              className='flex-1 m-1 py-3 bg-indigo-600 rounded-3xl hover:bg-indigo-700 text-neutral-200'
+            >
               Get started
               <FontAwesomeIcon
                 icon={faArrowRight}

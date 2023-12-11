@@ -5,20 +5,22 @@ import Logo from '@/components/common/shared/Logo';
 
 const ResetPassword: React.FC = () => {
   return (
-    <div className='w-full h-screen bg-opacity-60 bg-gray-900'>
-      <div className='w-96 rounded-lg bg-gray-900 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10'>
-        <div className='rounded-lg bg-gray-900 px-6 py-4'>
-          <div className='flex items-center pt-6 justify-center'>
+    <div className='w-full h-full bg-opacity-80 bg-gray-900'>
+      <div className='w-80 lg:w-96 rounded-lg bg-gray-900 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30'>
+        <div className='rounded-lg bg-gray-900 px-6 lg:py-4'>
+          <div className='flex items-center pt-4 lg:pt-6 justify-center'>
             <Logo />
           </div>
           <div className='flex flex-col items-center mt-8'>
-            <h1 className='text-base text-white'>Forgot Your Password?</h1>
+            <h1 className='hidden lg:flex text-base text-white'>
+              Forgot Your Password?
+            </h1>
           </div>
           <div className='w-full'>
             <input
               type='email'
               placeholder='Email Address'
-              className='mt-4 w-full bg-transparent text-gray-500 text-sm border-gray-500 p-3 rounded-md hover:border-indigo-500'
+              className='lg:mt-4 w-full bg-transparent text-gray-500 text-sm border-gray-500 p-3 rounded-md hover:border-indigo-500'
             />
           </div>
           <div>
@@ -31,7 +33,7 @@ const ResetPassword: React.FC = () => {
           {/* Close the div here */}
           <div className='text-indigo-500 text-sm mt-4'>
             <Link
-              href='/auth/signin/'
+              href='/auth/signin'
               className='cursor-pointer hover:opacity-80 text-xs'
             >
               Back to Sign In

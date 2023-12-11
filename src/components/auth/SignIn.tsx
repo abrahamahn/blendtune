@@ -20,14 +20,16 @@ const SignIn: React.FC<SignInProps> = ({ openSignUp, openResetPassword }) => {
   const signInWithGoogle = async () => {};
 
   return (
-    <div className='w-full h-full bg-opacity-60 bg-gray-900'>
-      <div className='w-96 rounded-lg bg-gray-900 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10'>
-        <div className='rounded-lg bg-gray-900 px-6 py-4'>
-          <div className='flex items-center pt-6 justify-center'>
+    <div className='w-full h-full bg-opacity-80 bg-gray-900'>
+      <div className='w-80 lg:w-96 rounded-lg bg-gray-900 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30'>
+        <div className='rounded-lg bg-gray-900 px-6 lg:py-4'>
+          <div className='flex items-center pt-4 lg:pt-6 justify-center'>
             <Logo />
           </div>
           <div className='flex flex-col items-center mt-8'>
-            <h1 className='text-base text-white'>Log into your account</h1>
+            <h1 className='hidden lg:flex text-base text-white'>
+              Log into Your Account
+            </h1>
           </div>
           <button
             className='mt-4 flex items-center w-full bg-transparent border border-gray-500 text-white p-3 rounded-md cursor-pointer mb-2'
@@ -38,7 +40,7 @@ const SignIn: React.FC<SignInProps> = ({ openSignUp, openResetPassword }) => {
           </button>
           <div className='divider-container flex py-2 items-center justify-center w-full'>
             <div className='border-t border-gray-500 w-1/4 mb-2'></div>
-            <span className='text-gray-500 text-sm mb-2 mx-2'>
+            <span className='text-gray-500 text-xs lg:text-sm mb-2 mx-2'>
               or sign in using email
             </span>
             <div className='border-t border-gray-500 w-1/4 mb-2'></div>

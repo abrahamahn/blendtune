@@ -142,7 +142,7 @@ const TrackCard: React.FC = () => {
   }, [currentPage, handlePrevious, handleNext]);
 
   return (
-    <div className='w-full flex justify-center items-center max-w-screen-2xl mx-auto'>
+    <div className='w-full flex justify-center items-center '>
       <audio
         key={currentTrack?.id}
         className='hidden'
