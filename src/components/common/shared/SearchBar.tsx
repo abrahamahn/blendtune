@@ -92,7 +92,7 @@ const SearchBar: React.FC = () => {
         type='text'
         value={inputValue}
         onChange={e => setInputValue(e.target.value)}
-        className={`focus:outline-none w-full h-8 pl-4 pr-8 text-sm rounded-2xl text-neutral-200 bg-transparent z-10`}
+        className={`focus:outline-none w-full h-8 pl-4 pr-8 text-sm rounded-2xl text-neutral-300 dark:text-neutral-200 bg-transparent border-transparent z-10`}
         placeholder='Search...'
         style={{
           outline: 'none',
@@ -104,16 +104,16 @@ const SearchBar: React.FC = () => {
           <FontAwesomeIcon
             icon={faTimes}
             size='xs'
-            className='text-neutral-800 bg-neutral-400 rounded-full px-1 py-0.5 mr-2 cursor-pointer'
+            className='text-neutral-500 bg-neutral-200 dark:text-neutral-800 dark:bg-neutral-400 rounded-full px-1 py-0.5 mr-2 cursor-pointer'
             onClick={clearInput}
           />
         )}
         {isFocused && (
           <div
-            className='flex items-center border-l border-neutral-600 px-3 dropdown-trigger'
+            className='flex items-center border-l border-neutral-400 dark:border-neutral-600 px-3 dropdown-trigger'
             onClick={toggleDropdown}
           >
-            <span className='text-neutral-400 text-sm mr-2'>
+            <span className='text-neutral-500 text-sm mr-2'>
               {selectedMenu}
             </span>
             <FontAwesomeIcon
@@ -128,12 +128,12 @@ const SearchBar: React.FC = () => {
         {isDropdownOpen && (
           <div
             ref={dropdownRef}
-            className='absolute top-10 left-2 bg-neutral-800 rounded-xl w-32'
+            className='absolute top-10 left-2 bg-neutral-100 dark:bg-neutral-800 rounded-xl w-32'
           >
             <ul className='p-3'>
               {menuItems.map(menuItem => (
                 <li
-                  className='mb-0.5 text-sm hover:bg-neutral-500 rounded-md text-neutral-400 hover:text-neutral-200'
+                  className='mb-0.5 text-sm hover:bg-neutral-200 dark:hover:bg-neutral-500 rounded-md text-neutral-800 hover:text-neutral-400 dark:text-neutral-400 dark:hover:text-neutral-200'
                   key={menuItem}
                   onClick={() => handleMenuItemClick(menuItem)}
                 >

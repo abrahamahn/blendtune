@@ -107,22 +107,22 @@ const TrackCard: React.FC<TrackCardProps> = ({
         <div className='container mx-auto'>
           {/* Header and Navigation */}
           <div className='w-full flex items-center justify-between mb-4 px-4'>
-            <h1 className='font-custom text-white text-2xl md:text-3xl'>
+            <h1 className='font-custom text-neutral-800 dark:text-white text-2xl md:text-3xl'>
               What&apos;s New
             </h1>
             <Link
-              className='text-sm text-white px-3 py-1.5 rounded-full font-semibold bg-neutral-800 hover:bg-neutral-900 md:hidden'
+              className='text-sm px-3 py-1.5 rounded-full font-semibold text-neutral-800 bg-neutral-200 hover:bg-neutral-300 dark:text-white  dark:bg-neutral-800 dark:hover:bg-neutral-900 md:hidden'
               href='/sounds'
             >
-              See all
+              See All
             </Link>
             <div className='hidden md:block space-x-4'>
               <button
                 onClick={handlePrevious}
                 className={`w-8 h-8 rounded-full ${
                   currentPage === 0
-                    ? 'bg-neutral-900'
-                    : 'bg-neutral-800 hover:bg-neutral-900'
+                    ? 'bg-neutral-300 dark:bg-neutral-900'
+                    : 'bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-900'
                 }`}
               >
                 <FontAwesomeIcon
@@ -156,7 +156,7 @@ const TrackCard: React.FC<TrackCardProps> = ({
                   key={index}
                   onMouseEnter={() => setHoverIndex(index)}
                   onMouseLeave={() => setHoverIndex(null)}
-                  className='flex-grow w-60 md:bg-neutral-900 rounded-lg md:hover:bg-neutral-800 relative snap-start'
+                  className='flex-grow w-60  rounded-lg md:bg-neutral-200 md:hover:bg-neutral-300 dark:md:bg-neutral-900 dark:md:hover:bg-neutral-800 relative snap-start'
                 >
                   <div className='w-48 md:w-auto flex items-center justify-center relative m-0 mr-3 md:m-3 aspect-ratio-1/1 user-select-none'>
                     <Image
@@ -167,7 +167,7 @@ const TrackCard: React.FC<TrackCardProps> = ({
                       className='rounded-md user-select-none'
                     />
                     <button
-                      className={`absolute w-10 h-10 bottom-2 right-2 bg-indigo-700 rounded-full p-2 z-10 opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out hover:bg-indigo-500 ${
+                      className={`absolute w-10 h-10 bottom-2 right-2 rounded-full p-2 z-10 opacity-0 hover:opacity-100 transition-opacity duration-300 ease-in-out bg-indigo-600 hover:bg-indigo-500 dark:bg-indigo-700 dark:hover:bg-indigo-500 ${
                         hoverIndex === index ? 'opacity-100' : 'opacity-0'
                       }`}
                       onClick={() => {
@@ -186,10 +186,10 @@ const TrackCard: React.FC<TrackCardProps> = ({
                       />
                     </button>
                   </div>
-                  <p className='text-white text-base mt-3 hover:underline hover:cursor-pointer mx-0 md:mx-4'>
+                  <p className='text-neutral-900 dark:text-white text-base mt-3 hover:underline hover:cursor-pointer mx-0 md:mx-4'>
                     {track.metadata.title}
                   </p>
-                  <p className='text-neutral-400 text-sm hover:underline hover:cursor-pointer overflow-x-auto w-28 mt-1 md:mx-4 mb-4'>
+                  <p className='text-neutral-600 dark:text-neutral-400 text-sm hover:underline hover:cursor-pointer overflow-x-auto w-28 mt-1 md:mx-4 mb-4'>
                     {renderValue(track.info.relatedartist[1])}
                   </p>
                 </div>

@@ -14,17 +14,20 @@ const Hero: React.FC<HeroProps> = ({ openSignUpModal }) => {
   );
 
   const chunks = [
-    artworks.slice(0, 12),
-    artworks.slice(12, 24),
-    artworks.slice(24, 36),
-    artworks.slice(36, 48),
-    artworks.slice(48, 60),
+    artworks.slice(0, 10),
+    artworks.slice(10, 20),
+    artworks.slice(20, 30),
+    artworks.slice(30, 40),
+    artworks.slice(40, 50),
+    artworks.slice(50, 60),
+    artworks.slice(15, 25),
+    artworks.slice(25, 35),
   ];
 
   return (
-    <div className='max-w-screen-2xl mx-auto'>
-      <div className='flex flex-col justify-center items-center text-white relative w-full h-96 md:h-screen overflow-hidden mt-24 md:mt-0'>
-        <div className='absolute top-0 left-0 right-0 bottom-0 md:h-4/6 flex justify-center overflow-visible'>
+    <div className='max-w-screen-2xl mx-auto bg-gradient-to-r from-cyan-100 via-sky-100 to-red-100 dark:from-black dark:to-black'>
+      <div className='flex flex-col justify-center items-center text-black dark:text-white relative w-full h-96 md:h-[60vh] overflow-hidden mt-24 md:mt-0'>
+        <div className='absolute top-0 left-0 right-0 bottom-0 flex justify-center overflow-visible'>
           {chunks.map((chunk, chunkIndex) => (
             <div
               key={chunkIndex}
@@ -45,7 +48,7 @@ const Hero: React.FC<HeroProps> = ({ openSignUpModal }) => {
                         alt='artwork'
                         width={110}
                         height={110}
-                        className='object-cover w-full border-black rounded-xl'
+                        className='object-cover w-full border-black dark:border-black rounded-xl'
                       />
                     </div>
                     {/* Div for Desktop View */}
@@ -55,7 +58,7 @@ const Hero: React.FC<HeroProps> = ({ openSignUpModal }) => {
                         alt='artwork'
                         width={200}
                         height={200}
-                        className='object-cover w-full border-black rounded-xl'
+                        className='object-cover w-full border-black dark:border-black rounded-xl'
                       />
                     </div>
                   </div>
@@ -65,17 +68,17 @@ const Hero: React.FC<HeroProps> = ({ openSignUpModal }) => {
           ))}
         </div>
         <div className={styles.overlay}></div>
-        <div className='flex flex-col justify-center items-center text-center w-full md:h-5/6 z-10 px-10'>
+        <div className='flex flex-col justify-center items-center text-center w-full z-10 px-10'>
           <div
             className={`flex flex-col justify-center text-center w-full md:w-4/6 lg:w-3/4 xl:w-4/5 mb-5 mt-24 md:mt-48 ${styles.fadeInUp}`}
           >
             <h1
-              className={`font-custom text-3xl font-medium mb-3 mx-auto leading-tight xl:text-6xl lg:text-5xl md:text-3xl ${styles.fadeInUp}`}
+              className={`font-custom text-3xl font-medium mb-3 mx-auto leading-tight xl:text-6xl text-neutral-900 dark:text-white lg:text-5xl md:text-3xl ${styles.fadeInUp}`}
             >
               World&apos;s best web studio and music library
             </h1>
             <p
-              className={`text-center text-neutral-400 text-sm md:text-base lg:text-lg xl:text-xl mx-auto w-full sm:w-3/4 md:w-4/5 lg:w-3/5 xl:w-1/2 2xl:w-1/2 mb-4 ${styles.fadeInUp}`}
+              className={`text-center font-semibold text-neutral-600 dark:text-neutral-400 text-sm md:text-base lg:text-lg xl:text-xl mx-auto w-full sm:w-3/4 md:w-4/5 lg:w-3/5 xl:w-1/2 2xl:w-1/2 mb-4 ${styles.fadeInUp}`}
             >
               Create your masterpiece with highly-curated instrumentals, and
               share it with the world.
@@ -83,14 +86,14 @@ const Hero: React.FC<HeroProps> = ({ openSignUpModal }) => {
           </div>
           <div className={`flex justify-center ${styles.fadeInUp}`}>
             <Link
-              className='md:w-56 w-40 text-sm md:text-base text-white rounded-full py-3 sm:py-4 px-10 bg-neutral-800 hover:bg-neutral-700 mr-4 font-semibold'
+              className='md:w-56 w-40 text-sm md:text-base text-black dark:text-white rounded-full py-3 sm:py-4 px-10 bg-neutral-300 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 mr-4 dark:font-semibold'
               href='/sounds'
             >
               Explore
             </Link>
             <button
               onClick={openSignUpModal}
-              className='md:w-56 w-40 text-sm md:text-base text-white rounded-full py-3 md:py-4 px-10 bg-indigo-700 hover:bg-indigo-800 cursor-pointer font-semibold'
+              className='md:w-56 w-40 text-sm md:text-base text-white rounded-full py-3 md:py-4 px-10 hover:bg-indigo-600 bg-indigo-700 dark:hover:bg-indigo-800 cursor-pointer dark:font-semibold'
             >
               Try Free
             </button>

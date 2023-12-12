@@ -76,7 +76,7 @@ const Footer = () => {
   ];
 
   return (
-    <div className='flex flex-col lg:flex-row w-full justify-center items-center h-auto px-4 md:px-10 lg:px-0 pt-0 pb-16 lg:pb-24'>
+    <div className='flex flex-col lg:flex-row w-full justify-center items-center h-auto px-4 md:px-10 lg:px-0 pt-0 pb-16 lg:pb-24 dark:bg-black bg-white'>
       <div className='flex flex-wrap gap-0 lg:justify-center md:gap-10 mt-8 lg:order-2'>
         {sections.map(section => (
           <div

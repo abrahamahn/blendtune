@@ -15,8 +15,10 @@
   padding: 0;
   width: 100%;
   height: 100%;
-
+  --bg-color-light: white;
+  --bg-color-dark: black;
 }
+
 
 * {
   padding: 0;
@@ -31,9 +33,13 @@ body {
 }
 
 body {
-  color: black;
-  background: black;
   overflow-x: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: black;
+  }
 }
 
 a {

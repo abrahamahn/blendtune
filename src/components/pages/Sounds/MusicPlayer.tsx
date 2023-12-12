@@ -134,11 +134,10 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
       <div className='fixed bottom-0 left-0 w-full z-50 hidden md:block'>
         <div className='flex flex-row items-center justify-center w-full h-20 border-t border-neutral-800 backdrop-blur-md px-6'>
           {/* Song Navigation Button */}
-          <div className='flex flex-row w-48 h-full items-center justify-center'>
+          <div className='flex flex-row w-48 h-full items-center justify-center text-neutral-400 dark:text-white cursor-pointer'>
             <div className='items-center mr-4 p-2'>
               <FontAwesomeIcon
                 icon={faBackwardStep}
-                style={{ color: '#ffffff' }}
                 size='xl'
                 onClick={playPreviousTrack}
                 className='cursor-pointer hover:opacity-75'
@@ -146,23 +145,22 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
             </div>
             {/* Play Button */}
             <div
-              className='flex bg-white rounded-full w-10 h-10 items-center justify-center user-select-none' // Apply user-select-none here
+              className='flex bg-neutral-300 dark:bg-white rounded-full w-10 h-10 items-center justify-center user-select-none' // Apply user-select-none here
               onClick={togglePlayPause}
             >
               <p className='ml-0.5 cursor-pointer hover:opacity-75'>
                 {playPauseButton}
               </p>
             </div>
-            <div className='items-center p-2 ml-4'>
+            <div className='items-center p-2 ml-4 text-neutral-400 dark:text-white cursor-pointer'>
               <FontAwesomeIcon
                 icon={faForwardStep}
-                style={{ color: '#ffffff' }}
                 size='xl'
                 onClick={playNextTrack}
                 className='cursor-pointer hover:opacity-75'
               />
             </div>
-            <div className='items-center p-2 ml-2 cursor-pointer'>
+            <div className='items-center p-2 ml-2 text-neutral-400 dark:text-white cursor-pointer'>
               <FontAwesomeIcon
                 icon={faRepeat}
                 style={{ color: isRepeatEnabled ? '#4B0082' : '#adadad' }}

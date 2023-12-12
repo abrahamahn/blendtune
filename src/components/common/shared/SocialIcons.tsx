@@ -23,9 +23,9 @@ const SocialIcon: React.FC<SocialIconProps> = ({ icon }) => {
   return (
     <a
       href={url}
-      className='w-8 h-8 rounded-full bg-neutral-800 flex items-center justify-center'
+      className='w-8 h-8 rounded-full bg-neutral-200 dark:bg-neutral-800 text-black dark:text-white flex items-center justify-center'
     >
-      <FontAwesomeIcon icon={icon} style={{ color: '#ffffff' }} />
+      <FontAwesomeIcon icon={icon} />
     </a>
   );
 };

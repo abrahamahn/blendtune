@@ -15,7 +15,7 @@ const PrivacyPolicy: React.FC = () => {
 
   return (
     <div className='flex justify-center items-center'>
-      <div className='w-4/5 p-10 mt-16 text-white'>
+      <div className='w-4/5 p-10 mt-16 text-black dark:text-white'>
         <div
           className='w-full overflow-scroll z-auto'
           dangerouslySetInnerHTML={{ __html: htmlContent }}

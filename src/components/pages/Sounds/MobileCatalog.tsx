@@ -29,7 +29,7 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
         {tracks.map((track: Track) => (
           <div
             key={track.id}
-            className='z-10 flex px-2 border-b border-neutral-800 group hover:bg-neutral-900 '
+            className='z-10 flex px-2 border-b border-neutral-300 hover:bg-neutral-200 dark:border-neutral-800 group dark:hover:bg-neutral-900 '
             onClick={() => playTrack(track)}
           >
             <div className='z-10 w-20 md:w-16 h-14 p-1 md:p-0.5 transition-transform duration-300 ease-in-out rounded-md group-hover:scale-105 mt-1'>
@@ -49,32 +49,32 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
               </div>
             </div>
             <div className='flex flex-col w-full ml-3'>
-              <div className='flex border-b mt-0.5 border-neutral-800 py-1'>
-                <div className='md:ml-1 absolute w-auto items-left text-sm text-neutral-300'>
+              <div className='cursor-pointer flex border-b mt-0.5 border-neutral-300 dark:border-neutral-800 py-1'>
+                <div className='md:ml-1 absolute w-auto items-left text-sm text-neutral-800 dark:text-neutral-300'>
                   <h3>{renderValue(track.metadata.title)}</h3>
                 </div>
-                <div className='ml-auto justify-end text-white text-2xs md:text-xs mr-0'>
+                <div className='ml-auto justify-end text-black dark:text-white text-2xs md:text-xs mr-0'>
                   {renderValue(track.info.genre[1].maingenre) && (
-                    <p className='inline-block bg-blue-900 mr-1 px-2 py-0.5 rounded-md overflow-hidden'>
+                    <p className='inline-block bg-blue-200 dark:bg-blue-900 mr-1 px-2 py-0.5 rounded-md overflow-hidden'>
                       {renderValue(track.info.genre[1].maingenre)}
                     </p>
                   )}
                   {renderValue(track.info.key.note) &&
                     renderValue(track.info.key.scale.substring(0, 3)) && (
-                      <p className='inline-block bg-neutral-800 mr-1 px-2 py-0.5 rounded-md overflow-hidden'>
+                      <p className='inline-block bg-neutral-200 dark:bg-neutral-800 mr-1 px-2 py-0.5 rounded-md overflow-hidden'>
                         {renderValue(track.info.key.note)}
                         {renderValue(track.info.key.scale.substring(0, 3))}
                       </p>
                     )}
                   {renderValue(track.info.bpm) && (
-                    <p className='inline-block bg-gray-900 px-2 py-0.5 rounded-md overflow-hidden'>
+                    <p className='inline-block bg-gray-200 dark:bg-gray-900 px-2 py-0.5 rounded-md overflow-hidden'>
                       {renderValue(track.info.bpm)}
                     </p>
                   )}
                 </div>
               </div>
               <div className='flex flex-row justify-between items center py-1 w-full h-full'>
-                <div className='hidden md:flex flex-row justify-start text-neutral-400 hover:text-white text-center text-2xs md:text-xs w-auto md:w-auto'>
+                <div className='cursor-pointer hidden md:flex flex-row justify-start text-neutral-500 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-white text-center text-2xs md:text-xs w-auto md:w-auto'>
                   {renderValue(track.info.genre[1].subgenre) && (
                     <p className='px-1 overflow-x-hidden'>
                       {renderValue(track.info.genre[1].subgenre)}
@@ -106,26 +106,34 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
                     </p>
                   )}
                 </div>
-                <div className='flex flex-row ml-auto text-neutral-400 hover:text-white text-center text-2xs md:text-xs w-auto'>
+                <div className='flex flex-row ml-auto text-center text-2xs md:text-xs w-auto'>
                   {renderValue(track.info.mood.mood1) && (
-                    <p className='px-1'>{renderValue(track.info.mood.mood1)}</p>
+                    <p className='px-1 cursor-pointer text-neutral-600 hover:text-neutral-400 dark:text-neutral-400 dark:hover:text-white'>
+                      {renderValue(track.info.mood.mood1)}
+                    </p>
                   )}
                   {renderValue(track.info.mood.mood2) && (
-                    <p className='px-1'>{renderValue(track.info.mood.mood2)}</p>
+                    <p className='px-1 cursor-pointer text-neutral-600 hover:text-neutral-400 dark:text-neutral-400 dark:hover:text-white'>
+                      {renderValue(track.info.mood.mood2)}
+                    </p>
                   )}
                   {renderValue(track.info.mood.mood3) && (
-                    <p className='px-1'>{renderValue(track.info.mood.mood3)}</p>
+                    <p className='px-1 cursor-pointer text-neutral-600 hover:text-neutral-400 dark:text-neutral-400 dark:hover:text-white'>
+                      {renderValue(track.info.mood.mood3)}
+                    </p>
                   )}
                   {renderValue(track.info.mood.energy) && (
-                    <p className='px-1'>
+                    <p className='px-1 cursor-pointer text-neutral-600 hover:text-neutral-400 dark:text-neutral-400 dark:hover:text-white'>
                       {renderValue(track.info.mood.energy)}
                     </p>
                   )}
                   {renderValue(track.info.mood.color) && (
-                    <p className='px-1'>{renderValue(track.info.mood.color)}</p>
+                    <p className='px-1 cursor-pointer text-neutral-600 hover:text-neutral-400 dark:text-neutral-400 dark:hover:text-white'>
+                      {renderValue(track.info.mood.color)}
+                    </p>
                   )}
                   {renderValue(track.info.mood.character) && (
-                    <p className='px-1'>
+                    <p className='px-1 cursor-pointer text-neutral-600 hover:text-neutral-400 dark:text-neutral-400 dark:hover:text-white'>
                       {renderValue(track.info.mood.character)}
                     </p>
                   )}
@@ -133,7 +141,7 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
               </div>
             </div>
             <div className='flex items-center p-1.5 w-70px'>
-              <div className='flex justify-center mr-0 md:mr-4'>
+              <div className='dark:text-white text-neutral-300 flex justify-center mr-0 md:mr-4'>
                 <Icon.Plus width={18} height={18} fill='white' />
               </div>
             </div>

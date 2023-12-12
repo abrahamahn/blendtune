@@ -20,7 +20,7 @@ const NewTracks: React.FC<NewTracksProps> = ({
   audioRef,
 }) => {
   return (
-    <div className='w-full mt-8 md:mt-0 sm:mt-0 md:h-auto px-0'>
+    <div className='w-full md:mt-0 sm:mt-0 md:h-auto px-0 dark:bg-black bg-white'>
       <TrackCard
         tracks={tracks}
         currentTrack={currentTrack}
