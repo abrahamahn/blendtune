@@ -69,7 +69,7 @@ const Sounds: React.FC = () => {
   return (
     <div className='w-full overflow-scroll z-auto'>
       <div className='m-0 p-0'>
-        <div className='mt-32'></div>
+        <div className='mt-16'></div>
         <MobileCatalog
           tracks={tracks}
           playTrack={playTrack}
