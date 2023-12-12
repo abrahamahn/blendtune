@@ -12,78 +12,28 @@ import {
   faStop,
 } from '@fortawesome/free-solid-svg-icons';
 
-const TrackCard: React.FC = () => {
-  // State for Fetching Data
-  const [tracks, setTracks] = useState<Track[]>([]);
-  const [currentTrack, setCurrentTrack] = useState<Track | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [playbackPosition, setPlaybackPosition] = useState<number>(0);
+interface TrackCardProps {
+  tracks: Track[];
+  currentTrack: Track | null;
+  isPlaying: boolean;
+  setIsPlaying: (isPlaying: boolean) => void;
+  togglePlayPause: (track: Track) => void;
+  audioRef: React.RefObject<HTMLAudioElement>;
+}
 
-  const audioRef = React.useRef<HTMLAudioElement>(null);
-
-  useEffect(() => {
-    fetch('/data/tracks.json')
-      .then(response => response.json())
-      .then((data: Track[]) => {
-        const reversedTracks = [...data].reverse();
-        setTracks(reversedTracks);
-      })
-      .catch(error => console.error(error));
-  }, []);
-
-  const togglePlayPause = (track: Track) => {
-    if (track !== currentTrack) {
-      setCurrentTrack(track);
-      setIsPlaying(true);
-      setPlaybackPosition(0);
-    } else if (isPlaying) {
-      setIsPlaying(false);
-      setPlaybackPosition(audioRef.current?.currentTime || 0);
-      audioRef.current?.pause();
-    } else {
-      setIsPlaying(true);
-      if (audioRef.current) {
-        // Check if audioRef.current is not null
-        audioRef.current.currentTime = playbackPosition;
-        audioRef.current
-          .play()
-          .catch(error => console.error('Play error:', error));
-      }
-    }
-  };
-
-  useEffect(() => {
-    const audio = audioRef.current;
-
-    if (audio) {
-      const audioSrc = `/audio/tracks/${currentTrack?.file}`;
-
-      if (currentTrack && audio.src !== audioSrc) {
-        audio.src = audioSrc;
-        audio.load();
-      }
-
-      if (isPlaying) {
-        audio.currentTime = playbackPosition;
-        audio.play().catch(error => console.error('Play error:', error));
-      } else {
-        audio.pause();
-      }
-    }
-
-    return () => {
-      const audio = audioRef.current;
-      if (audio) {
-        audio.pause();
-      }
-    };
-  }, [currentTrack, isPlaying, playbackPosition]);
-
+const TrackCard: React.FC<TrackCardProps> = ({
+  tracks,
+  currentTrack,
+  isPlaying,
+  setIsPlaying,
+  togglePlayPause,
+  audioRef,
+}) => {
   // Pagination Functions
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(6);
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
-  const totalPages = Math.ceil(tracks.length / itemsPerPage);
+  const totalPages = Math.ceil(tracks?.length / itemsPerPage);
 
   const handleNext = useCallback(() => {
     setCurrentPage(prev => Math.min(prev + 1, totalPages - 1));
@@ -98,7 +48,7 @@ const TrackCard: React.FC = () => {
   };
 
   const displayedTracks = useMemo(() => {
-    return tracks.slice(
+    return tracks?.slice(
       currentPage * itemsPerPage,
       (currentPage + 1) * itemsPerPage
     );
@@ -201,7 +151,7 @@ const TrackCard: React.FC = () => {
           {/* Album Cover Cards */}
           <div className='w-full flex items-center justify-center mb-2 px-4 overflow-x-auto scrollbar-hide'>
             <div className='flex space-x-0 sm:space-x-4 xl:space-x-6 px-0 overflow-x-scroll scrollbar-hide w-full'>
-              {displayedTracks.map((track, index) => (
+              {displayedTracks?.map((track, index) => (
                 <div
                   key={index}
                   onMouseEnter={() => setHoverIndex(index)}

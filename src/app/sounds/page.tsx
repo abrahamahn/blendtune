@@ -12,9 +12,19 @@ const Sounds: React.FC = () => {
   const [currentTrack, setCurrentTrack] = useState<Track | null | undefined>(
     null
   );
-  const audioRef = useRef<HTMLAudioElement>(null) as CustomAudioRef;
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMusicPlayerVisible, setIsMusicPlayerVisible] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null) as CustomAudioRef;
+
+  useEffect(() => {
+    fetch('/data/tracks.json')
+      .then(response => response.json())
+      .then((data: Track[]) => {
+        const reversedTracks = [...data].reverse();
+        setTracks(reversedTracks);
+      })
+      .catch(error => console.log(error));
+  }, []);
 
   const playTrack = (track: Track) => {
     if (currentTrack === track && isPlaying === true) {
@@ -33,16 +43,6 @@ const Sounds: React.FC = () => {
       setIsMusicPlayerVisible(true);
     }
   };
-
-  useEffect(() => {
-    fetch('/data/tracks.json')
-      .then(response => response.json())
-      .then((data: Track[]) => {
-        const reversedTracks = [...data].reverse();
-        setTracks(reversedTracks);
-      })
-      .catch(error => console.log(error));
-  }, []);
 
   const handleBackwardClick = () => {
     const currentIndex = tracks.findIndex(
@@ -69,22 +69,22 @@ const Sounds: React.FC = () => {
   return (
     <div className='w-full overflow-scroll z-auto'>
       <div className='m-0 p-0'>
+        <div className='mt-32'></div>
         <MobileCatalog
           tracks={tracks}
           playTrack={playTrack}
           isPlaying={isPlaying}
         />
-        {isMusicPlayerVisible &&
-          currentTrack && ( // Check for currentTrack existence
-            <MusicPlayer
-              currentTrack={currentTrack}
-              isPlaying={isPlaying}
-              setIsPlaying={setIsPlaying}
-              audioRef={audioRef}
-              playPreviousTrack={handleBackwardClick}
-              playNextTrack={handleForwardClick}
-            />
-          )}
+        {isMusicPlayerVisible && currentTrack && (
+          <MusicPlayer
+            currentTrack={currentTrack}
+            isPlaying={isPlaying}
+            setIsPlaying={setIsPlaying}
+            audioRef={audioRef}
+            playPreviousTrack={handleBackwardClick}
+            playNextTrack={handleForwardClick}
+          />
+        )}
       </div>
     </div>
   );
