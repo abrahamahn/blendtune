@@ -29,7 +29,7 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
         {tracks.map((track: Track) => (
           <div
             key={track.id}
-            className='z-10 flex px-2 border-b border-neutral-300 hover:bg-neutral-200 dark:border-neutral-800 group dark:hover:bg-neutral-900 '
+            className='z-10 flex px-2 border-b border-neutral-300 hover:bg-neutral-100 dark:border-neutral-800 group dark:hover:bg-neutral-900 justify-center items-center'
             onClick={() => playTrack(track)}
           >
             <div className='z-10 w-20 md:w-16 h-14 p-1 md:p-0.5 transition-transform duration-300 ease-in-out rounded-md group-hover:scale-105 mt-1'>
@@ -48,9 +48,9 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
                 )}
               </div>
             </div>
-            <div className='flex flex-col w-full ml-3'>
-              <div className='cursor-pointer flex border-b mt-0.5 border-neutral-300 dark:border-neutral-800 py-1'>
-                <div className='md:ml-1 absolute w-auto items-left text-sm text-neutral-800 dark:text-neutral-300'>
+            <div className='flex flex-col w-full ml-2 '>
+              <div className='cursor-pointer flex border-neutral-300 dark:border-neutral-800 pt-1'>
+                <div className='md:ml-1 absolute w-auto items-left text-xs md:text-sm text-neutral-800 dark:text-neutral-300 font-semibold'>
                   <h3>{renderValue(track.metadata.title)}</h3>
                 </div>
                 <div className='ml-auto justify-end text-black dark:text-white text-2xs md:text-xs mr-0'>
@@ -73,36 +73,11 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
                   )}
                 </div>
               </div>
-              <div className='flex flex-row justify-between items center py-1 w-full h-full'>
-                <div className='cursor-pointer hidden md:flex flex-row justify-start text-neutral-500 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-white text-center text-2xs md:text-xs w-auto md:w-auto'>
-                  {renderValue(track.info.genre[1].subgenre) && (
-                    <p className='px-1 overflow-x-hidden'>
-                      {renderValue(track.info.genre[1].subgenre)}
-                    </p>
-                  )}
-                  {renderValue(track.info.genre[2].maingenre) && (
-                    <p className='px-1 overflow-x-scroll'>
-                      {renderValue(track.info.genre[2].maingenre)}
-                    </p>
-                  )}
-                  {renderValue(track.info.genre[2].subgenre) && (
-                    <p className='px-1 overflow-x-scroll'>
-                      {renderValue(track.info.genre[2].subgenre)}
-                    </p>
-                  )}
-                  {renderValue(track.info.relatedartist[1]) && (
-                    <p className='px-1 overflow-x-scroll'>
-                      {renderValue(track.info.relatedartist[1])}
-                    </p>
-                  )}
-                  {renderValue(track.info.relatedartist[2]) && (
-                    <p className='px-1 overflow-x-scroll'>
-                      {renderValue(track.info.relatedartist[2])}
-                    </p>
-                  )}
-                  {renderValue(track.info.relatedartist[3]) && (
-                    <p className='px-1 overflow-x-scroll'>
-                      {renderValue(track.info.relatedartist[3])}
+              <div className='flex flex-row justify-between items-center'>
+                <div className='cursor-pointer md:flex flex-row text-neutral-500 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-white text-center text-2xs md:text-xs w-auto md:w-auto'>
+                  {renderValue(track.metadata.producer) && (
+                    <p className='overflow-x-hidden'>
+                      {renderValue(track.metadata.producer)}
                     </p>
                   )}
                 </div>

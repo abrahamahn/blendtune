@@ -14,14 +14,14 @@ const Hero: React.FC<HeroProps> = ({ openSignUpModal }) => {
   );
 
   const chunks = [
-    artworks.slice(0, 10),
-    artworks.slice(10, 20),
-    artworks.slice(20, 30),
-    artworks.slice(30, 40),
-    artworks.slice(40, 50),
-    artworks.slice(50, 60),
-    artworks.slice(15, 25),
-    artworks.slice(25, 35),
+    artworks.slice(0, 12),
+    artworks.slice(10, 22),
+    artworks.slice(20, 32),
+    artworks.slice(30, 42),
+    artworks.slice(40, 52),
+    artworks.slice(50, 62),
+    artworks.slice(15, 27),
+    artworks.slice(25, 37),
   ];
 
   return (
