@@ -3,9 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import * as Icon from '@/components/common/icons';
 import { Track } from '@/types/track';
-import { Track } from '@/types/track';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import { faEllipsisVertical, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
@@ -30,7 +28,7 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
   }
 
   return (
-    <div className='w-full max-w-screen-xl mx-auto mt-24 md:mt-16'>
+    <div className='w-full max-w-screen-xl mx-auto mt-24 md:mt-16 '>
       <div className='flex flex-col relative'>
         {tracks.map((track: Track) => (
           <div
@@ -54,11 +52,18 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
                 )}
               </div>
             </div>
-            <div className='flex flex-col w-full ml-2'>
-              <div className='cursor-pointer flex border-neutral-300 dark:border-neutral-800 pt-1'>
-                <div className='md:ml-1 absolute w-auto items-left text-xs md:text-sm text-neutral-800 dark:text-neutral-300 font-semibold'>
+            <div className='flex flex-row justify-between w-full ml-2'>
+              <div className='flex flex-col cursor-pointer dark:border-neutral-800 pt-1'>
+                <div className='md:ml-1 text-xs md:text-sm text-neutral-800 dark:text-neutral-300 font-semibold'>
                   <h3>{renderValue(track.metadata.title)}</h3>
                 </div>
+                <div className='cursor-pointer md:flex flex-row text-neutral-500 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-white text-center text-2xs md:text-xs w-auto md:w-auto md:ml-1'>
+                  {renderValue(track.metadata.producer) && (
+                    <p>{renderValue(track.metadata.producer)}</p>
+                  )}
+                </div>
+              </div>
+              <div className='flex flex-col justify-center items-center'>
                 <div className='ml-auto justify-end text-black dark:text-white text-2xs md:text-xs mr-0'>
                   {renderValue(track.info.genre[1].maingenre) && (
                     <p className='inline-block bg-blue-200 dark:bg-blue-900 mr-1 px-2 py-0.5 rounded-md overflow-hidden'>
@@ -76,13 +81,6 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
                     <p className='inline-block bg-gray-200 dark:bg-gray-900 px-2 py-0.5 rounded-md overflow-hidden'>
                       {renderValue(track.info.bpm)}
                     </p>
-                  )}
-                </div>
-              </div>
-              <div className='flex flex-row justify-between items-center'>
-                <div className='cursor-pointer md:flex flex-row text-neutral-500 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-white text-center text-2xs md:text-xs w-auto md:w-auto md:ml-1'>
-                  {renderValue(track.metadata.producer) && (
-                    <p>{renderValue(track.metadata.producer)}</p>
                   )}
                 </div>
                 <div className='flex flex-row ml-auto text-center text-2xs md:text-xs w-auto'>
@@ -119,20 +117,20 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
                 </div>
               </div>
             </div>
-            <div className='absolute flex right-2 items-center group-hover:shadow-3xl group-hover:shadow-neutral-900 '>
-              <div className='text-neutral-300 p-3 group-hover:bg-neutral-900'>
+            <div className='absolute flex right-2 items-center group-hover:shadow-3xl group-hover:shadow-neutral-100 dark:group-hover:shadow-neutral-900 '>
+              <div className='text-neutral-500 group-hover:bg-neutral-100 dark:text-neutral-300 p-3 dark:group-hover:bg-neutral-900'>
                 <FontAwesomeIcon
                   icon={faHeart}
                   className='invisible group-hover:visible '
                 />
               </div>
-              <div className='text-neutral-300 p-3 group-hover:bg-neutral-900'>
+              <div className='text-neutral-500 group-hover:bg-neutral-100 dark:text-neutral-300 p-3 dark:group-hover:bg-neutral-900'>
                 <FontAwesomeIcon
                   icon={faPlus}
                   className='invisible group-hover:visible'
                 />
               </div>
-              <div className='dark:text-white text-neutral-300 flex justify-center p-3 mr-1'>
+              <div className='dark:text-white text-neutral-500 flex justify-center p-3 mr-1'>
                 <FontAwesomeIcon icon={faEllipsisVertical} />
               </div>
             </div>

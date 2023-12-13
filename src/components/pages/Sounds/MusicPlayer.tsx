@@ -1,7 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import * as Icon from '@/components/common/icons';
 import { Track } from '@/types/track';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -10,8 +9,12 @@ import {
   faForwardStep,
   faRepeat,
   faVolumeLow,
-  faHeart,
+  faPlay,
+  faStop,
+  faEllipsisVertical,
+  faPlus,
 } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
 
 type CustomAudioRef = React.RefObject<HTMLAudioElement> & {
   volume: number;
@@ -117,55 +120,57 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
   }, [audioRef, isRepeatEnabled]);
 
   const playPauseButton = isPlaying ? (
-    <Icon.Pause width={20} height={20} fill='black' />
+    <FontAwesomeIcon icon={faStop} className='text-white dark:text-black' />
   ) : (
-    <Icon.Play width={20} height={20} fill='black' />
+    <FontAwesomeIcon
+      icon={faPlay}
+      className='ml-0.5 text-white dark:text-black'
+    />
   );
 
   const playPauseButtonMobile = isPlaying ? (
-    <Icon.Pause width={20} height={20} fill='white' />
+    <FontAwesomeIcon icon={faStop} className='text-white' />
   ) : (
-    <Icon.Play width={18} height={18} fill='white' />
+    <FontAwesomeIcon icon={faPlay} className='ml-0.5 text-white' />
   );
 
   return (
     <div>
       {/* Desktop Player */}
       <div className='fixed bottom-0 left-0 w-full z-50 hidden md:block'>
-        <div className='flex flex-row items-center justify-center w-full h-20 border-t border-neutral-800 backdrop-blur-md px-6'>
+        <div className='flex flex-row items-center justify-center w-full h-20 border-t dark:border-neutral-800 bg-white dark:bg-transparent border-neutral-300 backdrop-blur-md px-6'>
           {/* Song Navigation Button */}
-          <div className='flex flex-row w-48 h-full items-center justify-center text-neutral-400 dark:text-white cursor-pointer'>
+          <div className='flex flex-row w-48 h-full items-center justify-center '>
             <div className='items-center mr-4 p-2'>
               <FontAwesomeIcon
                 icon={faBackwardStep}
                 size='xl'
                 onClick={playPreviousTrack}
-                className='cursor-pointer hover:opacity-75'
+                className='cursor-pointer hover:opacity-75 text-black dark:text-white'
               />
             </div>
             {/* Play Button */}
             <div
-              className='flex bg-neutral-300 dark:bg-white rounded-full w-10 h-10 items-center justify-center user-select-none' // Apply user-select-none here
+              className='flex bg-black dark:bg-white rounded-full w-10 h-10 items-center justify-center user-select-none '
               onClick={togglePlayPause}
             >
-              <p className='ml-0.5 cursor-pointer hover:opacity-75'>
+              <div className='cursor-pointer hover:opacity-75 text-white dark:text-black'>
                 {playPauseButton}
-              </p>
+              </div>
             </div>
-            <div className='items-center p-2 ml-4 text-neutral-400 dark:text-white cursor-pointer'>
+            <div className='items-center p-2 ml-4'>
               <FontAwesomeIcon
                 icon={faForwardStep}
                 size='xl'
                 onClick={playNextTrack}
-                className='cursor-pointer hover:opacity-75'
+                className='cursor-pointer hover:opacity-75 text-black dark:text-white'
               />
             </div>
             <div className='items-center p-2 ml-2 text-neutral-400 dark:text-white cursor-pointer'>
               <FontAwesomeIcon
                 icon={faRepeat}
-                style={{ color: isRepeatEnabled ? '#4B0082' : '#adadad' }}
                 onClick={() => setIsRepeatEnabled(!isRepeatEnabled)}
-                className='cursor-pointer hover:opacity-75'
+                className='cursor-pointer hover:opacity-75 text-black dark:text-white'
               />
             </div>
           </div>
@@ -185,7 +190,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
                 preload='auto'
               />
               <div
-                className='w-full border-md bg-white/10 h-1 rounded-full shadow-xl overflow-hidden cursor-pointer'
+                className='w-full border-md bg-black/10 dark:bg-white/10 h-1 rounded-full shadow-xl overflow-hidden cursor-pointer'
                 onClick={e => {
                   // Calculate the click position relative to the duration bar's width
                   const durationBar = e.currentTarget;
@@ -204,7 +209,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
                 }}
               >
                 <div
-                  className='bg-white h-1 rounded-md shadow-md w-full transition-width duration-100 ease-in-out cursor-pointer'
+                  className='bg-black dark:bg-white h-1 rounded-md shadow-md w-full transition-width duration-100 ease-in-out cursor-pointer'
                   style={{
                     width: `${
                       (currentTime / (audioRef?.current?.duration ?? 1)) * 100
@@ -217,7 +222,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
             <div className='text-xs ml-2 w-28 h-full flex items-center justify-center user-select-none'>
               {' '}
               {/* Apply user-select-none here */}
-              <p className='text-white'>
+              <p className='text-black dark:text-white'>
                 {formatTime(currentTime)}
                 <span className='text-transparent'> / </span>
                 {/* Separate trackDuration */}
@@ -235,7 +240,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
               <div className='cursor-pointer'>
                 <FontAwesomeIcon
                   icon={faVolumeLow}
-                  style={{ color: isVolumeVisible ? '#ffffff' : '#adadad' }}
+                  style={{ color: isVolumeVisible ? '#ababab' : '#888888' }}
                   size='lg'
                   className='cursor-pointer hover:opacity-75'
                 />
@@ -257,13 +262,13 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
                     setIsDraggingVolume(false);
                   }}
                   onClick={handleVolumeChange} // Call it when you click anywhere on the volume bar
-                  className='bg-neutral-800 h-28 w-6 rounded-full absolute bottom-10 right-[-3px] transform z-10 flex justify-center items-center'
+                  className='bg-neutral-200 border border-neutral-300 dark:bg-neutral-700 dark:bg-neutral-800 h-28 w-6 rounded-full absolute bottom-10 right-[-3px] transform z-10 flex justify-center items-center'
                 >
                   {/* Full Volume Bar */}
                   <div className='bg-indigo-500 rounded-lg h-20 w-1 relativ cursor-pointer'>
                     {/* Threshold (currently set to full, with h-20) */}
                     <div
-                      className='bg-neutral-500 rounded-lg w-1'
+                      className='bg-neutral-50 dark:bg-neutral-500 rounded-lg w-1'
                       style={{ height: `${(1 - volume) * 100}%` }}
                     ></div>
                     {/* Volume Bar */}
@@ -271,7 +276,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
                       className='rounded-full h-3 w-3 bg-indigo-500 absolute cursor-pointer'
                       style={{
                         bottom: `${volume * 70 + 10}%`,
-                        left: '6px',
+                        left: '5px',
                         zIndex: '50',
                       }}
                     ></div>
@@ -295,19 +300,24 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
               />
             </div>
             <div className='flex flex-col justify-center items-left p-4 w-56 h-full'>
-              <div className='flex flex-row justify-left items-center'>
-                <p className='text-white text-sm mb-1 cursor-pointer hover:underline user-select-none'>
+              <div className='flex flex-col justify-left items-left'>
+                <p className='text-black dark:text-white text-sm font-semibold cursor-pointer hover:underline user-select-none'>
                   {' '}
                   {/* Apply user-select-none here */}
                   {currentTrack?.metadata.title}
                 </p>
+                <p className='text-neutral-600 dark:text-neutral-400 text-xs mb-1 cursor-pointer hover:underline user-select-none'>
+                  {' '}
+                  {/* Apply user-select-none here */}
+                  {currentTrack?.metadata.producer}
+                </p>
               </div>
               <div className='flex items-left flex-row justify-left m-0 p-0 mr-auto'>
-                <p className='flex items-center text-2xs text-white px-2 mr-1 border border-neutral-500 rounded-md cursor-default'>
+                <p className='flex items-center text-2xs text-neutral-400 dark:text-white px-2 mr-1 border border-neutral-400 dark:border-neutral-500 rounded-md cursor-default'>
                   {currentTrack?.info.key.note}{' '}
                   {currentTrack?.info.key.scale.substring(0, 3)}
                 </p>
-                <p className='flex justify-center items-center text-2xs text-black mr-1 bg-neutral-500 rounded-md w-12 cursor-default'>
+                <p className='flex justify-center items-center text-2xs text-neutral-400 dark:text-black mr-1 bg-transparent dark:bg-neutral-500 rounded-md w-12 cursor-default border border-neutral-400 dark:border-transparent'>
                   {currentTrack?.info.bpm} BPM
                 </p>
                 <p className='flex justify-center items-center text-2xs bg-blue-800 text-white rounded-md w-16 cursor-default'>
@@ -316,9 +326,24 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
               </div>
             </div>
             {/* Song Buttons */}
-            <div className='flex flex-row justify-center items-center w-20 h-full'>
-              <div className='flex items-center justify-center mx-auto bg-neutral-700 p-3 rounded-full relative cursor-pointer hover:opacity-75'>
-                <FontAwesomeIcon icon={faHeart} style={{ color: '#ffffff' }} />
+            <div className='flex flex-row justify-center items-center w-28 h-full '>
+              <div className='flex items-center justify-center mx-auto bg-neutral-200 dark:bg-neutral-700 p-2 rounded-full relative cursor-pointer hover:opacity-75'>
+                <FontAwesomeIcon
+                  icon={faPlus}
+                  className='text-black dark:text-white'
+                />
+              </div>
+              <div className='ml-2 flex items-center justify-center mx-auto bg-neutral-200 dark:bg-neutral-700 p-2 rounded-full relative cursor-pointer hover:opacity-75'>
+                <FontAwesomeIcon
+                  icon={faHeart}
+                  className='text-black dark:text-white'
+                />
+              </div>
+              <div className='ml-2 flex items-center justify-center mx-auto bg-neutral-200 dark:bg-neutral-700 p-2 px-3.5 rounded-full relative cursor-pointer hover:opacity-75'>
+                <FontAwesomeIcon
+                  icon={faEllipsisVertical}
+                  className='text-black dark:text-white'
+                />
               </div>
             </div>
           </div>
@@ -358,9 +383,9 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
                 </p>
               </div>
             </div>
-            <div className='flex flex-row justify-center items-center h-full w-20'>
-              <div className='mr-2 cursor-pointer hover:opacity-75'>
-                <Icon.Plus width={18} height={18} fill='white' />
+            <div className='flex flex-row justify-center items-center h-full w-24'>
+              <div className='mr-4 cursor-pointer hover:opacity-75'>
+                <FontAwesomeIcon icon={faPlus} className='text-white' />
               </div>
               <div onClick={togglePlayPause}>{playPauseButtonMobile}</div>
             </div>

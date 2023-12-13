@@ -5,14 +5,14 @@ import Logo from '@/components/common/shared/Logo';
 
 const ResetPassword: React.FC = () => {
   return (
-    <div className='w-full h-full bg-opacity-80 bg-gray-900'>
-      <div className='w-80 lg:w-96 rounded-lg bg-gray-900 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30'>
-        <div className='rounded-lg bg-gray-900 px-6 lg:py-4'>
+    <div className='w-full h-full bg-opacity-80 bg-gray-500 dark:bg-gray-900'>
+      <div className='w-80 lg:w-96 rounded-lg  absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30'>
+        <div className='rounded-lg bg-neutral-100 dark:bg-gray-900 px-6 lg:py-8'>
           <div className='flex items-center pt-4 lg:pt-6 justify-center'>
             <Logo />
           </div>
           <div className='flex flex-col items-center mt-8'>
-            <h1 className='hidden lg:flex text-base text-white'>
+            <h1 className='hidden lg:flex text-base font-semibold text-black dark:text-white'>
               Forgot Your Password?
             </h1>
           </div>
@@ -26,9 +26,12 @@ const ResetPassword: React.FC = () => {
           <div>
             {' '}
             {/* Add a closing div tag here */}
-            <button className='w-full mt-6 bg-indigo-600 text-white text-sm p-2 rounded-md cursor-pointer hover:bg-indigo-700'>
+            <Link
+              href='/auth/verify-email'
+              className='w-full mt-6 bg-indigo-600 text-white text-sm p-2 rounded-md cursor-pointer hover:bg-indigo-700'
+            >
               Continue
-            </button>
+            </Link>
           </div>{' '}
           {/* Close the div here */}
           <div className='text-indigo-500 text-sm mt-4'>
@@ -39,22 +42,6 @@ const ResetPassword: React.FC = () => {
               Back to Sign In
             </Link>
           </div>
-        </div>
-        <div className='text-xs text-center text-neutral-500 p-6'>
-          <p>
-            By continuing, you agree to Blend&apos;s{' '}
-            <Link href='/terms' className='text-indigo-500 hover:opacity-500'>
-              Terms
-            </Link>{' '}
-            and{' '}
-            <Link
-              href='/privacy-policy'
-              className='text-indigo-500 hover:opacity-500'
-            >
-              Policy
-            </Link>
-            .
-          </p>
         </div>
       </div>
     </div>
