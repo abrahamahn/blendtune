@@ -3,6 +3,12 @@ import React from 'react';
 import Image from 'next/image';
 import * as Icon from '@/components/common/icons';
 import { Track } from '@/types/track';
+import { Track } from '@/types/track';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import { faEllipsisVertical, faPlus } from '@fortawesome/free-solid-svg-icons';
+
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
 
 export interface MobileCatalogProps {
   tracks: Track[];
@@ -24,19 +30,19 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
   }
 
   return (
-    <div className='w-full max-w-screen-xl mx-auto mt-24 md:mt-16 px-1'>
+    <div className='w-full max-w-screen-xl mx-auto mt-24 md:mt-16'>
       <div className='flex flex-col relative'>
         {tracks.map((track: Track) => (
           <div
             key={track.id}
-            className='z-10 flex px-2 border-b border-neutral-300 hover:bg-neutral-100 dark:border-neutral-800 group dark:hover:bg-neutral-900 justify-center items-center'
+            className='flex px-2 border-b border-neutral-300 hover:bg-neutral-100 dark:border-neutral-800 group dark:hover:bg-neutral-900 justify-center items-center pr-12 z-10'
             onClick={() => playTrack(track)}
           >
-            <div className='z-10 w-20 md:w-16 h-14 p-1 md:p-0.5 transition-transform duration-300 ease-in-out rounded-md group-hover:scale-105 mt-1'>
+            <div className=' w-20 md:w-16 h-14 p-1 md:p-0.5 transition-transform duration-300 ease-in-out rounded-md group-hover:scale-105 mt-1'>
               <Image
                 src={`/images/artwork/${track.metadata.catalog}.jpg`}
                 alt={track.metadata.title}
-                className='z-20 rounded-md object-center object-cover w-full h-full'
+                className='rounded-md object-center object-cover w-full h-full'
                 width={50}
                 height={50}
               />
@@ -48,7 +54,7 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
                 )}
               </div>
             </div>
-            <div className='flex flex-col w-full ml-2 '>
+            <div className='flex flex-col w-full ml-2'>
               <div className='cursor-pointer flex border-neutral-300 dark:border-neutral-800 pt-1'>
                 <div className='md:ml-1 absolute w-auto items-left text-xs md:text-sm text-neutral-800 dark:text-neutral-300 font-semibold'>
                   <h3>{renderValue(track.metadata.title)}</h3>
@@ -74,11 +80,9 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
                 </div>
               </div>
               <div className='flex flex-row justify-between items-center'>
-                <div className='cursor-pointer md:flex flex-row text-neutral-500 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-white text-center text-2xs md:text-xs w-auto md:w-auto'>
+                <div className='cursor-pointer md:flex flex-row text-neutral-500 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-white text-center text-2xs md:text-xs w-auto md:w-auto md:ml-1'>
                   {renderValue(track.metadata.producer) && (
-                    <p className='overflow-x-hidden'>
-                      {renderValue(track.metadata.producer)}
-                    </p>
+                    <p>{renderValue(track.metadata.producer)}</p>
                   )}
                 </div>
                 <div className='flex flex-row ml-auto text-center text-2xs md:text-xs w-auto'>
@@ -115,9 +119,21 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
                 </div>
               </div>
             </div>
-            <div className='flex items-center p-1.5 w-70px'>
-              <div className='dark:text-white text-neutral-300 flex justify-center mr-0 md:mr-4'>
-                <Icon.Plus width={18} height={18} fill='white' />
+            <div className='absolute flex right-2 items-center group-hover:shadow-3xl group-hover:shadow-neutral-900 '>
+              <div className='text-neutral-300 p-3 group-hover:bg-neutral-900'>
+                <FontAwesomeIcon
+                  icon={faHeart}
+                  className='invisible group-hover:visible '
+                />
+              </div>
+              <div className='text-neutral-300 p-3 group-hover:bg-neutral-900'>
+                <FontAwesomeIcon
+                  icon={faPlus}
+                  className='invisible group-hover:visible'
+                />
+              </div>
+              <div className='dark:text-white text-neutral-300 flex justify-center p-3 mr-1'>
+                <FontAwesomeIcon icon={faEllipsisVertical} />
               </div>
             </div>
           </div>

@@ -26,7 +26,7 @@ const Hero: React.FC<HeroProps> = ({ openSignUpModal }) => {
 
   return (
     <div className='max-w-screen-2xl mx-auto bg-gradient-to-r from-cyan-100 via-sky-100 to-red-100 dark:from-black dark:to-black'>
-      <div className='flex flex-col justify-center items-center text-black dark:text-white relative w-full h-96 md:h-[60vh] overflow-hidden mt-24 md:mt-0'>
+      <div className='flex flex-col justify-center items-center text-black dark:text-white relative w-full h-96 md:h-[60vh] overflow-hidden mt-24 pb-4 md:mt-0'>
         <div className='absolute top-0 left-0 right-0 bottom-0 flex justify-center overflow-visible'>
           {chunks.map((chunk, chunkIndex) => (
             <div
@@ -68,12 +68,12 @@ const Hero: React.FC<HeroProps> = ({ openSignUpModal }) => {
           ))}
         </div>
         <div className={styles.overlay}></div>
-        <div className='flex flex-col justify-center items-center text-center w-full z-10 px-10'>
+        <div className='flex flex-col justify-center items-center text-center w-full z-10'>
           <div
             className={`flex flex-col justify-center text-center w-full md:w-4/6 lg:w-3/4 xl:w-4/5 mb-5 mt-24 md:mt-48 ${styles.fadeInUp}`}
           >
             <h1
-              className={`font-custom text-3xl font-medium mb-3 mx-auto leading-tight xl:text-6xl text-neutral-900 dark:text-white lg:text-5xl md:text-3xl ${styles.fadeInUp}`}
+              className={`font-custom text-2xl font-medium mb-3 mx-auto leading-tight xl:text-6xl text-neutral-900 dark:text-white lg:text-5xl md:text-3xl ${styles.fadeInUp}`}
             >
               World&apos;s best web studio and music library
             </h1>

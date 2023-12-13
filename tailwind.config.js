@@ -10,6 +10,9 @@ module.exports = {
       fontFamily: {
         custom: ['Header', 'ui-sans-serif', 'system-ui'],
       },
+      boxShadow: {
+        '3xl': '0px 0px 5px 8px rgba(0, 0, 0, 1)',
+      }
     },
     fontSize: {
       '2xs': '0.65rem',
