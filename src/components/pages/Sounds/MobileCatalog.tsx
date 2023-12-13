@@ -28,12 +28,12 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
   }
 
   return (
-    <div className='w-full max-w-screen-xl mx-auto mt-24 md:mt-16 '>
-      <div className='flex flex-col relative'>
+    <div className='w-full pt-20 lg:pt-12 justify-center items-center mx-auto'>
+      <div className='flex max-w-screen-xl  mx-auto flex-col relative'>
         {tracks.map((track: Track) => (
           <div
             key={track.id}
-            className='flex px-2 border-b border-neutral-300 hover:bg-neutral-100 dark:border-neutral-800 group dark:hover:bg-neutral-900 justify-center items-center pr-12 z-10'
+            className='flex p-2 border-neutral-300 hover:bg-neutral-100 dark:border-neutral-800 group dark:hover:bg-neutral-900 justify-center items-center rounded-lg pr-12 z-10'
             onClick={() => playTrack(track)}
           >
             <div className=' w-20 md:w-16 h-14 p-1 md:p-0.5 transition-transform duration-300 ease-in-out rounded-md group-hover:scale-105 mt-1'>
@@ -63,6 +63,7 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
                   )}
                 </div>
               </div>
+
               <div className='flex flex-col justify-center items-center'>
                 <div className='ml-auto justify-end text-black dark:text-white text-2xs md:text-xs mr-0'>
                   {renderValue(track.info.genre[1].maingenre) && (

@@ -1,6 +1,10 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
-import { MobileCatalog, MusicPlayer } from '@/components/pages/Sounds';
+import {
+  MobileCatalog,
+  MusicPlayer,
+  SoundFilter,
+} from '@/components/pages/Sounds';
 import { Track } from '@/types/track';
 
 type CustomAudioRef = React.RefObject<HTMLAudioElement> & {
@@ -67,9 +71,11 @@ const Sounds: React.FC = () => {
   };
 
   return (
-    <div className='w-full overflow-scroll z-auto bg-white dark:bg-black'>
+    <div className='flex flex-col overflow-scroll bg-white dark:bg-black'>
       <div className='m-0 p-0'>
-        <div className='mt-16'></div>
+        <div className='mt-16'>
+          <SoundFilter />
+        </div>
         <MobileCatalog
           tracks={tracks}
           playTrack={playTrack}

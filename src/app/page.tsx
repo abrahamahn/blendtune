@@ -6,10 +6,10 @@ import AuthModal from '@/components/auth';
 import { Track } from '@/types/track';
 
 const Home: React.FC = () => {
-  const [tracks, setTracks] = useState<Track[]>([]);
-
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [currentForm, setCurrentForm] = useState('signin');
+
+  const [tracks, setTracks] = useState<Track[]>([]);
   const [currentTrack, setCurrentTrack] = useState<Track | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [playbackPosition, setPlaybackPosition] = useState<number>(0);
@@ -87,7 +87,7 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className='flex flex-col min-h-screen'>
+    <div className='flex flex-col justify-center items-center min-h-screen'>
       <header>
         <Header
           openSignInModal={openSignInModal}

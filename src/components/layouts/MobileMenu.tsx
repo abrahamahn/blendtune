@@ -18,7 +18,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
   openSignUpModal,
 }) => {
   return (
-    <div className='fixed bottom-0 left-0 w-full z-20'>
+    <div className='fixed bottom-0 left-0 w-full z-40'>
       <div className='fixed inset-0 bg-neutral-700 opacity-40'></div>
       <div className='fixed bottom-0 left-0 w-full rounded-t-lg bg-white dark:bg-black'>
         <div className='p-4 pb-3 rounded-t-xl bg-white dark:bg-black'>

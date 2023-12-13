@@ -78,7 +78,7 @@ const Hero: React.FC<HeroProps> = ({ openSignUpModal }) => {
               World&apos;s best web studio and music library
             </h1>
             <p
-              className={`text-center font-semibold text-neutral-600 dark:text-neutral-400 text-sm md:text-base lg:text-lg xl:text-xl mx-auto w-full sm:w-3/4 md:w-4/5 lg:w-3/5 xl:w-1/2 2xl:w-1/2 mb-4 ${styles.fadeInUp}`}
+              className={`text-center font-medium text-neutral-600 dark:text-neutral-400 text-sm md:text-base lg:text-lg xl:text-xl mx-auto w-full sm:w-3/4 md:w-4/5 lg:w-3/5 xl:w-1/2 2xl:w-1/2 mb-4 ${styles.fadeInUp}`}
             >
               Create your masterpiece with highly-curated instrumentals, and
               share it with the world.
@@ -86,14 +86,14 @@ const Hero: React.FC<HeroProps> = ({ openSignUpModal }) => {
           </div>
           <div className={`flex justify-center ${styles.fadeInUp}`}>
             <Link
-              className='md:w-56 w-40 text-sm md:text-base text-black dark:text-white rounded-full py-3 sm:py-4 px-10 bg-neutral-300 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 mr-4 dark:font-semibold'
+              className='md:w-56 w-40 text-sm md:text-base text-black dark:text-white rounded-full py-3 sm:py-4 px-10 bg-neutral-300 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 mr-4 dark:font-medium'
               href='/sounds'
             >
               Explore
             </Link>
             <button
               onClick={openSignUpModal}
-              className='md:w-56 w-40 text-sm md:text-base text-white rounded-full py-3 md:py-4 px-10 hover:bg-indigo-600 bg-indigo-700 dark:hover:bg-indigo-800 cursor-pointer dark:font-semibold'
+              className='md:w-56 w-40 text-sm md:text-base text-white rounded-full py-3 md:py-4 px-10 hover:bg-indigo-600 bg-indigo-700 dark:hover:bg-indigo-800 cursor-pointer dark:font-medium'
             >
               Try Free
             </button>
