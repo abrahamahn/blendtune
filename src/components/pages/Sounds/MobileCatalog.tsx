@@ -33,7 +33,7 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
         {tracks.map((track: Track) => (
           <div
             key={track.id}
-            className='flex p-2 border-neutral-300 hover:bg-neutral-100 dark:border-neutral-800 group dark:hover:bg-neutral-900 justify-center items-center rounded-lg pr-12 z-10'
+            className='flex p-1 border-neutral-300 hover:bg-neutral-100 dark:border-neutral-800 group dark:hover:bg-neutral-900 justify-center items-center rounded-lg pr-12 z-10'
             onClick={() => playTrack(track)}
           >
             <div className=' w-20 md:w-16 h-14 p-1 md:p-0.5 transition-transform duration-300 ease-in-out rounded-md group-hover:scale-105 mt-1'>

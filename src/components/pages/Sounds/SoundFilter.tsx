@@ -9,7 +9,7 @@ import {
 
 const SoundFilter: React.FC = () => {
   return (
-    <div className='fixed mt-10 lg:mt-0 z-30 w-full py-1 lg:py-2 bg-black items-center'>
+    <div className='fixed mt-8 lg:mt-0 z-30 w-full py-1 lg:py-2 bg-black items-center'>
       <div className='max-w-screen-xl mx-auto px-2 lg:px-6'>
         <div className='lg:flex-row lg:flex justify-between items-center w-full hidden'>
           <div className='flex flex-row'>
