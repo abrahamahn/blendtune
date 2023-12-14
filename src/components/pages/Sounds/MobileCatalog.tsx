@@ -53,11 +53,11 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
               </div>
             </div>
             <div className='flex flex-row justify-between w-full ml-2'>
-              <div className='flex flex-col cursor-pointer dark:border-neutral-800 pt-1'>
-                <div className='md:ml-1 text-xs md:text-sm text-neutral-800 dark:text-neutral-300 font-semibold'>
+              <div className='flex-start flex-col cursor-pointer dark:border-neutral-800 pt-1'>
+                <div className='md:ml-1 text-left text-xs md:text-sm text-neutral-800 dark:text-neutral-300 font-semibold'>
                   <h3>{renderValue(track.metadata.title)}</h3>
                 </div>
-                <div className='cursor-pointer md:flex flex-row text-neutral-500 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-white text-center text-2xs md:text-xs w-auto md:w-auto md:ml-1'>
+                <div className='cursor-pointer md:flex flex-row text-neutral-500 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-white text-left text-2xs md:text-xs w-auto md:w-auto md:ml-1'>
                   {renderValue(track.metadata.producer) && (
                     <p>{renderValue(track.metadata.producer)}</p>
                   )}
