@@ -29,7 +29,7 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
 
   return (
     <div className='w-full pt-20 lg:pt-12 justify-center items-center mx-auto'>
-      <div className='flex max-w-screen-xl px-2 lg:px-4 mx-auto flex-col relative'>
+      <div className='flex max-w-screen-xl pl-2 lg:px-4 mx-auto flex-col relative'>
         {tracks.map((track: Track) => (
           <div
             key={track.id}
@@ -118,7 +118,7 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
                 </div>
               </div>
             </div>
-            <div className='absolute flex right-4 lg:right-6 items-center group-hover:shadow-3xl group-hover:shadow-neutral-100 dark:group-hover:shadow-neutral-900 '>
+            <div className='absolute flex right-0 lg:right-6 items-center group-hover:shadow-3xl group-hover:shadow-neutral-100 dark:group-hover:shadow-neutral-900 '>
               <div className='text-neutral-500 group-hover:bg-neutral-100 dark:text-neutral-300 p-3 dark:group-hover:bg-neutral-900'>
                 <FontAwesomeIcon
                   icon={faHeart}
