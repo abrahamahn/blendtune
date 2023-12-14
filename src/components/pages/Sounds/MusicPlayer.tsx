@@ -137,7 +137,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
   return (
     <div>
       {/* Desktop Player */}
-      <div className='fixed bottom-0 left-0 w-full z-50 hidden lg:block'>
+      <div className='fixed bottom-0 left-0 w-full z-50 hidden md:block'>
         <div className='flex flex-row items-center justify-center w-full h-20 border-t dark:border-neutral-800 bg-white dark:bg-transparent border-neutral-300 backdrop-blur-md px-6'>
           {/* Song Navigation Button */}
           <div className='flex flex-row w-48 h-full items-center justify-center '>
@@ -350,7 +350,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
         </div>
       </div>
       {/*Mobile Player */}
-      <div className='fixed bottom-6 left-0 w-full px-4 z-30 block lg:hidden'>
+      <div className='fixed bottom-6 left-0 w-full px-4 z-30 block md:hidden'>
         <div className='flex flex-col items-center p-1 w-full rounded-md bg-blue-800 overflow-hidden h-14 backdrop-blur-md'>
           <div className='flex items-center w-full h-full'>
             <div className='flex items-center justify-center w-14 h-14 ml-1 rounded-md'>
