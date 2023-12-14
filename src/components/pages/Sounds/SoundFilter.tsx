@@ -10,8 +10,6 @@ import {
   TempoFilter,
 } from '@/components/common/filters';
 
-import styles from '@/styles/Sounds.module.css';
-
 import {
   faFilter,
   faChevronDown,
@@ -31,7 +29,7 @@ const SoundFilter: React.FC = () => {
   };
 
   return (
-    <div className='fixed mt-8 lg:mt-0 z-30 w-full py-1 lg:py-2 bg-black items-center'>
+    <div className='fixed mt-8 lg:mt-0 z-30 w-full py-1 lg:py-2 bg-neutral-50 dark:bg-black items-center border-b-0 border-neutral-100'>
       <div className='max-w-screen-xl mx-auto px-2 lg:px-6'>
         <div className='lg:flex-row lg:flex justify-between items-center w-full hidden'>
           <div className='flex flex-row'>
@@ -46,10 +44,10 @@ const SoundFilter: React.FC = () => {
             ].map(({ name, component }) => (
               <div className='mr-2' key={name}>
                 <button
-                  className={`flex flex-row px-3 py-1.5 bg-neutral-800 text-neutral-300 border rounded-lg ${
+                  className={`flex flex-row px-3 py-1.5 bg-transparent dark:bg-neutral-800 text-neutral-500 dark:text-neutral-300 border rounded-lg ${
                     openFilter === name
                       ? 'border-indigo-500'
-                      : 'border-neutral-600 hover:border-neutral-500'
+                      : 'border-neutral-400 hover:border-neutral-300 dark:border-neutral-600 dark:hover:border-neutral-500'
                   }`}
                   onClick={() => toggleFilter(name)}
                 >
@@ -78,7 +76,7 @@ const SoundFilter: React.FC = () => {
             ))}
           </div>
           <div className='flex'>
-            <button className='flex flex-row py-1.5 px-4 mb-1 bg-transparent border rounded-full border-neutral-600 hover:border-neutral-500 text-neutral-300'>
+            <button className='flex flex-row py-1.5 px-4 mb-1 bg-transparent border rounded-full border-neutral-500 hover:border-neutral-400 dark:border-neutral-600 dark:hover:border-neutral-500 text-neutral-500 dark:text-neutral-300'>
               <p className='text-2xs mr-1.5'>Sort by: </p>
               <p className='text-semibold text-2xs mr-1.5'>Popular</p>
               <FontAwesomeIcon
@@ -89,8 +87,8 @@ const SoundFilter: React.FC = () => {
             </button>
           </div>
         </div>
-        <div className='w-full p-1 block lg:hidden'>
-          <button className='w-full text-sm p-1 font-semibold text-white bg-indigo-600 hover:bg-violet-500 rounded-full'>
+        <div className='w-full sm:w-36 ml-auto p-1 block lg:hidden'>
+          <button className='w-full text-sm p-1 font-semibold text-white bg-indigo-500 hover:bg-indigo-400 dark:bg-indigo-600 dark:hover:bg-violet-500 rounded-full'>
             <FontAwesomeIcon
               icon={faFilter}
               className='cursor-pointer mt-1 mr-2'

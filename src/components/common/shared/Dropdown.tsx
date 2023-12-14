@@ -66,7 +66,7 @@ const instrumentItems = [
 
 const DropdownMenu: React.FC<DropdownMenuProps> = () => {
   return (
-    <div className='flex absolute top-9 pt-1 bg-neutral-800 rounded-2xl shadow-lg'>
+    <div className='flex absolute top-11 pt-1 bg-neutral-800 rounded-2xl shadow-lg'>
       <div className='flex-1 py-4 px-4 pr-2 w-96 border-r border-neutral-700 text-neutral-500 text-xs'>
         <h4 className='mb-2 ml-2'>EXPLORE</h4>
         <ul className='text-neutral-400 text-sm'>

@@ -1,10 +1,8 @@
 import React from 'react';
 
-interface MoodFilterProps {
-  props: string;
-}
+interface MoodFilterProps {}
 
-const MoodFilter: React.FC<MoodFilterProps> = ({ props }) => {
+const MoodFilter: React.FC<MoodFilterProps> = () => {
   return (
     <div className='absolute bg-white p-4 shadow rounded-lg'>
       <h2 className='text-lg font-semibold mb-2'>Artist Filter</h2>

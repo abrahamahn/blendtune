@@ -77,7 +77,7 @@ const Header: React.FC<HeaderProps> = ({
                 </Link>
               </div>
               <div
-                className='relative group'
+                className='relative group h-full'
                 onMouseEnter={() => setIsSoundsHovered(true)}
                 onMouseLeave={() => setIsSoundsHovered(false)}
               >
@@ -100,7 +100,7 @@ const Header: React.FC<HeaderProps> = ({
               </div>
             </div>
           </div>
-          <div className='flex items-center space-x-2 lg:space-x-4'>
+          <div className='flex items-center space-x-2 lg:space-x-2'>
             <Link
               className='text-sm text-neutral-800 hover:text-neutral-600 hover:bg-neutral-200 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-300 px-1 lg:px-3 py-2 rounded-md'
               href='/'
@@ -109,13 +109,13 @@ const Header: React.FC<HeaderProps> = ({
             </Link>
             <button
               onClick={openSignInModal}
-              className='text-sm text-neutral-800 dark:text-neutral-300 dark:hover:text-neutral-200 bg-neutral-300 dark:bg-neutral-800 hover:bg-neutral-200 hover:text-neutral-700   dark:hover:bg-neutral-700 py-1.5 px-4 rounded-xl '
+              className='text-sm text-neutral-800 dark:text-neutral-200 dark:hover:text-neutral-200 bg-neutral-200 dark:bg-neutral-800 hover:bg-neutral-200 hover:text-neutral-700 dark:hover:bg-neutral-700 py-1.5 px-4 rounded-full '
             >
               Sign in
             </button>
             <button
               onClick={openSignUpModal}
-              className='flex flex-row text-sm text-neutral-100 py-1.5 px-4 bg-indigo-700 rounded-xl hover:bg-indigo-500'
+              className='flex flex-row text-sm text-neutral-100 py-1.5 px-4 bg-indigo-500 dark:bg-indigo-700 rounded-full dark:hover:bg-indigo-600'
             >
               Get started
               <AiOutlineRight className='lg:block mt-1 ml-2' />

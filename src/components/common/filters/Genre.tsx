@@ -1,10 +1,8 @@
 import React from 'react';
 
-interface GenreFilterProps {
-  props: string;
-}
+interface GenreFilterProps {}
 
-const GenreFilter: React.FC<GenreFilterProps> = ({ props }) => {
+const GenreFilter: React.FC<GenreFilterProps> = () => {
   return (
     <div className='absolute bg-white p-4 shadow rounded-lg'>
       <h2 className='text-lg font-semibold mb-2'>Artist Filter</h2>

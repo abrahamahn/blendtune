@@ -1,10 +1,8 @@
 import React from 'react';
 
-interface KeyFilterProps {
-  props: string;
-}
+interface KeyFilterProps {}
 
-const KeyFilter: React.FC<KeyFilterProps> = ({ props }) => {
+const KeyFilter: React.FC<KeyFilterProps> = () => {
   return (
     <div className='absolute bg-white p-4 shadow rounded-lg'>
       <h2 className='text-lg font-semibold mb-2'>Artist Filter</h2>

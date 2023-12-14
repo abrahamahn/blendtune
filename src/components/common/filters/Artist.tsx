@@ -1,10 +1,8 @@
 import React from 'react';
 
-interface ArtistFilterProps {
-  props: string;
-}
+interface ArtistFilterProps {}
 
-const ArtistFilter: React.FC<ArtistFilterProps> = ({ props }) => {
+const ArtistFilter: React.FC<ArtistFilterProps> = () => {
   return (
     <div className='absolute bg-white p-4 shadow rounded-lg'>
       <h2 className='text-lg font-semibold mb-2'>Artist Filter</h2>
