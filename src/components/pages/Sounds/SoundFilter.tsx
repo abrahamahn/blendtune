@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Track } from '@/types/track';
 import {
   ArtistFilter,
   GenreFilter,
@@ -17,16 +18,120 @@ import {
   faPlus,
 } from '@fortawesome/free-solid-svg-icons';
 
-const SoundFilter: React.FC = () => {
+interface SoundFilterProps {
+  tracks: Track[];
+  applyTempoFilter: (minTempo: number, maxTempo: number, includeHalfTime: boolean, includeDoubleTime: boolean) => void;
+  applyKeyFilter: (key: string | null, scale: string | null, includeRelative: boolean) => void;
+  applyGenreFilter: (selectedGenres: string[]) => void;
+
+  applyArtistFilter: (selectedArtists: string[]) => void;
+  selectedArtists: string[];
+  setSelectedArtists: (selectedArtists: string[]) => void; //
+
+  applyInstrumentsFilter: (selectedInstruments: string[]) => void;
+  selectedInstruments: string[];
+  setSelectedInstruments: (selectedInstruments: string[]) => void;
+
+  applyMoodFilter: (selectedMoods: string[]) => void;
+}
+const SoundFilter: React.FC<SoundFilterProps> = ({
+  tracks, 
+  applyTempoFilter,
+  applyKeyFilter,
+  applyGenreFilter,
+
+  applyArtistFilter,
+  selectedArtists,
+  setSelectedArtists,
+
+  applyInstrumentsFilter,
+  selectedInstruments,
+  setSelectedInstruments,
+
+  applyMoodFilter,
+}) => {
+  console.log('Current tracks:', tracks);
+  
   const [openFilter, setOpenFilter] = useState<string | null>(null);
+  const [uniqueArtists, setUniqueArtists] = useState<string[]>([]);
+  const [uniqueMoods, setUniqueMoods] = useState<string[]>([]);
+  const [uniqueKeywords, setUniqueKeywords] = useState<string[]>([]);
 
   const toggleFilter = (filterName: string) => {
     if (openFilter === filterName) {
+      console.log('Closing filter:', filterName);
       setOpenFilter(null);
     } else {
+      console.log('Opening filter:', filterName);
       setOpenFilter(filterName);
     }
   };
+
+  useEffect(() => {
+    const extractUniqueArtists = () => {
+      const artistSet = new Set<string>();
+      tracks.forEach((track) => {
+        track.info?.relatedartist?.forEach((combinedArtists) => {
+          combinedArtists.split(',').forEach((artist) => {
+            artistSet.add(artist.trim()); // This should handle duplicates
+          });
+        });
+      });
+
+      const uniqueArtistsArray = Array.from(artistSet).sort();
+      console.log('Unique artists:', uniqueArtistsArray);
+      setUniqueArtists(uniqueArtistsArray);
+    };
+
+    extractUniqueArtists();
+  }, [tracks]);
+
+  useEffect(() => {
+    const extractUniqueMoods = () => {
+      const moodSet = new Set<string>();
+      tracks.forEach((track) => {
+        track.info?.mood?.forEach((mood) => {
+          moodSet.add(mood); // This should handle duplicates
+        });
+      });
+
+      const uniqueMoodsArray = Array.from(moodSet).sort();
+      console.log('Unique moods:', uniqueMoodsArray);
+      setUniqueMoods(uniqueMoodsArray);
+    };
+
+    extractUniqueMoods();
+  }, [tracks]);
+
+  useEffect(() => {
+    const extractKeywords = () => {
+      const keywordSet = new Set<string>();
+
+      // Adding unique artists and moods
+      tracks.forEach((track) => {
+        track.info?.relatedartist?.forEach(artist => artist.split(',').forEach(a => keywordSet.add(a.trim())));
+        track.info?.mood?.forEach(mood => keywordSet.add(mood));
+        
+        // Adding other fields
+        if (track.metadata?.producer) keywordSet.add(track.metadata.producer);
+        if (track.metadata?.title) keywordSet.add(track.metadata.title);
+        track.info?.genre?.forEach(genre => {
+          if (genre.maingenre) keywordSet.add(genre.maingenre);
+          if (genre.subgenre) keywordSet.add(genre.subgenre);
+        });
+        track.instruments?.forEach(instrument => {
+          if (instrument.main) keywordSet.add(instrument.main);
+          if (instrument.sub) keywordSet.add(instrument.sub);
+        });
+      });
+
+      const uniqueKeywordsArray = Array.from(keywordSet).sort();
+      console.log('Unique keywords:', uniqueKeywordsArray);
+      setUniqueKeywords(uniqueKeywordsArray);
+    };
+
+    extractKeywords();
+  }, [tracks]);
 
   return (
     <div className='fixed mt-8 lg:mt-0 z-30 w-full py-1 lg:py-2 bg-neutral-50 dark:bg-black items-center border-b-0 border-neutral-100'>
@@ -34,13 +139,32 @@ const SoundFilter: React.FC = () => {
         <div className='lg:flex-row lg:flex justify-between items-center w-full hidden'>
           <div className='flex flex-row'>
             {[
-              { name: 'Tempo', component: <TempoFilter /> },
-              { name: 'Key', component: <KeyFilter /> },
-              { name: 'Genre', component: <GenreFilter /> },
-              { name: 'Artist', component: <ArtistFilter /> },
-              { name: 'Instrument', component: <InstrumentFilter /> },
-              { name: 'Mood', component: <MoodFilter /> },
-              { name: 'Keyword', component: <KeywordFilter /> },
+              { name: 'Tempo', 
+                component: <TempoFilter onApplyTempoFilter={applyTempoFilter}/> 
+              },
+              { name: 'Key', 
+                component: <KeyFilter onApplyKeyFilter={applyKeyFilter} /> 
+              },
+              { name: 'Genre', 
+                component: <GenreFilter onApplyGenreFilter={applyGenreFilter }/> 
+              },
+              { 
+                name: 'Artist', 
+                component: <ArtistFilter artists={uniqueArtists} onApplyArtistFilter={applyArtistFilter} selectedArtists={selectedArtists} setSelectedArtists={setSelectedArtists}/> 
+              },
+              { 
+                name: 'Instrument', 
+                component: <InstrumentFilter onApplyInstrumentsFilter={applyInstrumentsFilter} selectedInstruments={selectedInstruments}
+                setSelectedInstruments={setSelectedInstruments}/> 
+              },
+              { 
+                name: 'Mood', 
+                component: <MoodFilter moods={uniqueMoods} onApplyMoodFilter={applyMoodFilter}/> 
+              },
+              { 
+                name: 'Keyword', 
+                component: <KeywordFilter keywords={uniqueKeywords} /> 
+              },
             ].map(({ name, component }) => (
               <div className='mr-2' key={name}>
                 <button

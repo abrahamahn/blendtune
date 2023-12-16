@@ -66,16 +66,16 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
 
               <div className='flex flex-col justify-center items-center'>
                 <div className='ml-auto justify-end text-black dark:text-white text-2xs md:text-xs mr-0'>
-                  {renderValue(track.info.genre[1].maingenre) && (
+                  {renderValue(track.info.genre[0].maingenre) && (
                     <p className='inline-block bg-blue-200 dark:bg-blue-900 mr-1 px-2 py-0.5 rounded-md overflow-hidden'>
-                      {renderValue(track.info.genre[1].maingenre)}
+                      {renderValue(track.info.genre[0].maingenre)}
                     </p>
                   )}
                   {renderValue(track.info.key.note) &&
-                    renderValue(track.info.key.scale.substring(0, 3)) && (
+                    renderValue(track.info.key.scale.substring(0, 3).toLowerCase()) && (
                       <p className='inline-block bg-neutral-200 dark:bg-neutral-800 mr-1 px-2 py-0.5 rounded-md overflow-hidden'>
                         {renderValue(track.info.key.note)}
-                        {renderValue(track.info.key.scale.substring(0, 3))}
+                        {renderValue(track.info.key.scale.substring(0, 3).toLowerCase())}
                       </p>
                     )}
                   {renderValue(track.info.bpm) && (
@@ -85,34 +85,25 @@ const MobileCatalog: React.FC<MobileCatalogProps> = ({
                   )}
                 </div>
                 <div className='flex flex-row ml-auto text-center text-2xs md:text-xs w-auto'>
-                  {renderValue(track.info.mood.mood1) && (
+                  {renderValue(track.info.mood[0]) && (
                     <p className='px-1 cursor-pointer text-neutral-600 hover:text-neutral-400 dark:text-neutral-400 dark:hover:text-white'>
-                      {renderValue(track.info.mood.mood1)}
+                      {renderValue(track.info.mood[0])}
                     </p>
                   )}
-                  {renderValue(track.info.mood.mood2) && (
+                  {renderValue(track.info.mood[1]) && (
                     <p className='px-1 cursor-pointer text-neutral-600 hover:text-neutral-400 dark:text-neutral-400 dark:hover:text-white'>
-                      {renderValue(track.info.mood.mood2)}
+                      {renderValue(track.info.mood[1])}
                     </p>
                   )}
-                  {renderValue(track.info.mood.mood3) && (
+                  {renderValue(track.info.mood[2]) && (
                     <p className='px-1 cursor-pointer text-neutral-600 hover:text-neutral-400 dark:text-neutral-400 dark:hover:text-white'>
-                      {renderValue(track.info.mood.mood3)}
+                      {renderValue(track.info.mood[2])}
                     </p>
                   )}
-                  {renderValue(track.info.mood.energy) && (
+
+                  {renderValue(track.info.mood[3]) && (
                     <p className='px-1 cursor-pointer text-neutral-600 hover:text-neutral-400 dark:text-neutral-400 dark:hover:text-white'>
-                      {renderValue(track.info.mood.energy)}
-                    </p>
-                  )}
-                  {renderValue(track.info.mood.color) && (
-                    <p className='px-1 cursor-pointer text-neutral-600 hover:text-neutral-400 dark:text-neutral-400 dark:hover:text-white'>
-                      {renderValue(track.info.mood.color)}
-                    </p>
-                  )}
-                  {renderValue(track.info.mood.character) && (
-                    <p className='px-1 cursor-pointer text-neutral-600 hover:text-neutral-400 dark:text-neutral-400 dark:hover:text-white'>
-                      {renderValue(track.info.mood.character)}
+                      {renderValue(track.info.mood[3])}
                     </p>
                   )}
                 </div>

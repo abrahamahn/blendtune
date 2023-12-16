@@ -1,46 +1,91 @@
 import React, { useState } from 'react';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
 
-interface TempoFilterProps {}
+interface TempoFilterProps {
+  onApplyTempoFilter: (minTempo: number, maxTempo: number, includeHalfTime: boolean, includeDoubleTime: boolean) => void;
+}
 
-const TempoFilter: React.FC<TempoFilterProps> = () => {
-  // State to manage min and max values
+const TempoFilter: React.FC<TempoFilterProps> = ({ onApplyTempoFilter }) => {
+  const [isFilterActive, setIsFilterActive] = useState(false);
+
   const [minTempo, setMinTempo] = useState(0);
   const [maxTempo, setMaxTempo] = useState(200);
   const [includeHalfTime, setIncludeHalfTime] = useState(false);
+  const [includeDoubleTime, setIncludeDoubleTime] = useState(false);
 
-  // Handle checkbox change
-  const handleCheckboxChange = () => {
+  const handleHalfTimeCheckboxChange = () => {
     setIncludeHalfTime(!includeHalfTime);
   };
 
-  // Handle Clear button click
-  const handleClearClick = () => {
+  const handleDoubleTimeCheckboxChange = () => {
+    setIncludeDoubleTime(!includeDoubleTime);
+  };
+
+  const clearFilter = () => {
     setMinTempo(0);
     setMaxTempo(200);
     setIncludeHalfTime(false);
+    setIncludeDoubleTime(false);
+    setIsFilterActive(false); // Deactivate the filter
   };
 
-  // Handle Apply Filter button click (You can define your logic here)
+  const handleClearClick = () => {
+    clearFilter();
+  };
+
   const handleApplyFilterClick = () => {
-    // Implement your filter logic here
-    console.log('Applying filter...');
+    onApplyTempoFilter(minTempo, maxTempo, includeHalfTime, includeDoubleTime);
+  };
+
+  const handleSliderChange = (values: number | number[]) => {
+    if (Array.isArray(values)) {
+      const [minValue, maxValue] = values;
+
+      // Ensure the minimum value is less than or equal to the maximum value
+      if (minValue > maxValue) {
+        // Swap the values if necessary
+        setMinTempo(maxValue);
+        setMaxTempo(minValue);
+      } else {
+        // Values are in the correct order, set them as-is
+        setMinTempo(minValue);
+        setMaxTempo(maxValue);
+      }
+    } else {
+      // Handle the case when a single value is received (not a range)
+      setMinTempo(values);
+      setMaxTempo(values);
+    }
   };
 
   return (
-    <div className='absolute top-14 bg-neutral-800 border border-neutral-700 py-4 px-8 shadow rounded-lg text-neutral-300 text-xs'>
-      {/* First Row */}
-      <div className='w-full flex items-center'>
-        <div className='range-slider'>
-          <input
-            type='range'
-            min={0}
-            max={200}
-            value={minTempo}
-            onChange={e => setMinTempo(parseInt(e.target.value))}
-          />
-        </div>
-      </div>
-      {/* Second Row */}
+    <div className='absolute top-12 bg-neutral-800 border border-neutral-700 py-4 px-8 shadow rounded-lg text-neutral-300 text-xs'>
+      <Slider
+        min={40}
+        max={200}
+        range
+        value={[minTempo, maxTempo]}
+        onChange={handleSliderChange}
+        className="w-full mt-4"
+        handleStyle={[
+          {
+            backgroundColor: "#4338CA",
+            borderColor: "#5148c9",
+            opacity: 1,
+            borderWidth: 1,
+          },
+          {
+            backgroundColor: "#4338CA", 
+            borderColor: "#5148c9",
+            opacity: 1,
+            borderWidth: 1,
+          },
+        ]}
+        trackStyle={[{ backgroundColor: "#5148c9" }]}
+        railStyle={{ backgroundColor: "#737373" }}
+        activeDotStyle={{ borderColor: 'yellow' }}
+      />
       <div className='flex flex-row mt-4'>
         <div className='flex flex-col w-24'>
           <label htmlFor='minTempo' className='text-neutral-400'>
@@ -70,23 +115,34 @@ const TempoFilter: React.FC<TempoFilterProps> = () => {
           />
         </div>
       </div>
-      {/* Third Row */}
-      <div className='flex items-center mt-4'>
-        <input
-          type='checkbox'
-          checked={includeHalfTime}
-          onChange={handleCheckboxChange}
-          className='bg-neutral-800 rounded-md border-2 border-neutral-500 w-5 h-5'
-        />
-        <span className='ml-2.5'>Include half time</span>
+      <div className='flex flex-col items-start mt-4'>
+        <div className='flex flex-row mb-2'>
+          <input
+            type='checkbox'
+            checked={includeHalfTime}
+            onChange={handleHalfTimeCheckboxChange}
+            className='checked:bg-indigo-600 active:outline-none focus:outline-none checked:border-indigo-500 hover:bg-neutral-700 bg-neutral-800 rounded-md border-2 border-neutral-500 w-5 h-5'
+          />
+          <span className='ml-2.5'>Include half time</span>
+        </div>
+        <div>
+          <input
+            type='checkbox'
+            checked={includeDoubleTime}
+            onChange={handleDoubleTimeCheckboxChange}
+            className='checked:bg-indigo-600 active:outline-none focus:outline-none checked:border-indigo-500 hover:bg-neutral-700 bg-neutral-800 rounded-md border-2 border-neutral-500 w-5 h-5'
+          />
+          <span className='ml-2.5'>Include double time</span>
+        </div>
+
       </div>
-      {/* Fourth Row */}
       <div className='border-t border-neutral-600 mt-4'></div>
-      {/* Fifth Row */}
       <div className='flex justify-end mt-6'>
         <button
           onClick={handleClearClick}
-          className='text-sm rounded-full mr-3 text-white bg-neutral-600 px-6 py-2.5'
+          className={`text-sm rounded-full mr-3 text-white ${
+            isFilterActive ? 'bg-indigo-700' : 'bg-neutral-600'
+          } px-6 py-2.5`}
         >
           Clear
         </button>

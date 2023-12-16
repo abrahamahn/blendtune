@@ -315,13 +315,13 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
               <div className='flex items-left flex-row justify-left m-0 p-0 mr-auto'>
                 <p className='flex items-center text-2xs text-neutral-400 dark:text-white px-2 mr-1 border border-neutral-400 dark:border-neutral-500 rounded-md cursor-default'>
                   {currentTrack?.info.key.note}{' '}
-                  {currentTrack?.info.key.scale.substring(0, 3)}
+                  {currentTrack?.info.key.scale.substring(0, 3).toLowerCase()}
                 </p>
                 <p className='flex justify-center items-center text-2xs text-neutral-400 dark:text-black mr-1 bg-transparent dark:bg-neutral-500 rounded-md w-12 cursor-default border border-neutral-400 dark:border-transparent'>
                   {currentTrack?.info.bpm} BPM
                 </p>
                 <p className='flex justify-center items-center text-2xs bg-blue-800 text-white rounded-md w-16 cursor-default'>
-                  {currentTrack?.info.genre[1].maingenre}
+                  {currentTrack?.info.genre[0].maingenre}
                 </p>
               </div>
             </div>
@@ -379,7 +379,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
                   {currentTrack?.info.bpm}BPM
                 </p>
                 <p className='text-2xs text-white mr-1 bg-purple-700 px-2 rounded-md'>
-                  {currentTrack?.info.genre[1].maingenre}
+                  {currentTrack?.info.genre[0].maingenre}
                 </p>
               </div>
             </div>
