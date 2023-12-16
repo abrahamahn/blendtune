@@ -3,10 +3,16 @@ import React, { useState } from 'react';
 interface MoodFilterProps {
   moods: string[];
   onApplyMoodFilter: (mood: string[]) => void;
+  selectedMoods: string[];
+  setSelectedMoods: (mood: string[]) => void;
 }
 
-const MoodFilter: React.FC<MoodFilterProps> = ({ onApplyMoodFilter, moods }) => {
-  const [selectedMoods, setSelectedMoods] = useState<string[]>([]);
+const MoodFilter: React.FC<MoodFilterProps> = ({ 
+  onApplyMoodFilter, 
+  moods, 
+  selectedMoods, 
+  setSelectedMoods 
+}) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleMoodToggle = (mood: string) => {

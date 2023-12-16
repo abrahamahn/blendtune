@@ -17,7 +17,7 @@ interface GenreFilterProps {
 
 const genreItems = [
   { icon: faStar, text: 'Pop' },
-  { icon: faGem, text: 'Hiphop' },
+  { icon: faGem, text: 'Hip-Hop' },
   { icon: faMoneyBill, text: 'Trap' },
   { icon: faWater, text: 'R&B' },
   { icon: faLeaf, text: 'Reggaeton' },

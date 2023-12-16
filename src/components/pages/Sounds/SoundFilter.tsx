@@ -33,6 +33,12 @@ interface SoundFilterProps {
   setSelectedInstruments: (selectedInstruments: string[]) => void;
 
   applyMoodFilter: (selectedMoods: string[]) => void;
+  selectedMoods: string[];
+  setSelectedMoods: (selectedMoods: string[]) => void;
+
+  applyKeywordFilter: (selectedKeywords: string[]) => void;
+  selectedKeywords: string[];
+  setSelectedKeywords: (selecteKeywords: string[]) => void;
 }
 const SoundFilter: React.FC<SoundFilterProps> = ({
   tracks, 
@@ -49,6 +55,12 @@ const SoundFilter: React.FC<SoundFilterProps> = ({
   setSelectedInstruments,
 
   applyMoodFilter,
+  selectedMoods,
+  setSelectedMoods,
+
+  applyKeywordFilter,
+  selectedKeywords,
+  setSelectedKeywords,
 }) => {
   console.log('Current tracks:', tracks);
   
@@ -159,11 +171,11 @@ const SoundFilter: React.FC<SoundFilterProps> = ({
               },
               { 
                 name: 'Mood', 
-                component: <MoodFilter moods={uniqueMoods} onApplyMoodFilter={applyMoodFilter}/> 
+                component: <MoodFilter moods={uniqueMoods} onApplyMoodFilter={applyMoodFilter} selectedMoods={selectedMoods} setSelectedMoods={setSelectedMoods}/> 
               },
               { 
                 name: 'Keyword', 
-                component: <KeywordFilter keywords={uniqueKeywords} /> 
+                component: <KeywordFilter keywords={uniqueKeywords} onApplyKeywordFilter={applyKeywordFilter} selectedKeywords={selectedKeywords} setSelectedKeywords={setSelectedKeywords}/> 
               },
             ].map(({ name, component }) => (
               <div className='mr-2' key={name}>

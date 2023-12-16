@@ -2,10 +2,17 @@ import React, { useState } from 'react';
 
 interface KeywordFilterProps {
   keywords: string[];
+  onApplyKeywordFilter: (selectedKeywords: string[]) => void;
+  selectedKeywords: string[];
+  setSelectedKeywords: (selectedKeywords: string[]) => void;
 }
 
-const KeywordFilter: React.FC<KeywordFilterProps> = ({ keywords }) => {
-  const [selectedKeywords, setSelectedKeywords] = useState<string[]>([]);
+const KeywordFilter: React.FC<KeywordFilterProps> = ({ 
+  keywords, 
+  onApplyKeywordFilter, 
+  selectedKeywords,
+  setSelectedKeywords 
+}) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleKeywordToggle = (keyword: string) => {
@@ -21,7 +28,7 @@ const KeywordFilter: React.FC<KeywordFilterProps> = ({ keywords }) => {
   };
 
   const handleApplyFilterClick = () => {
-    console.log('Selected keywords:', selectedKeywords);
+    onApplyKeywordFilter(selectedKeywords);
   };
 
   const filteredAndSortedKeywords = keywords

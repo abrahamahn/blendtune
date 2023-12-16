@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
   MobileCatalog,
+  DesktopCatalog,
   MusicPlayer,
   SoundFilter,
 } from '@/components/pages/Sounds';
@@ -196,10 +197,24 @@ const Sounds: React.FC = () => {
     }
   };
 
+
+  const [selectedMoods, setSelectedMoods] = useState<string[]>([]);
+
   const applyMoodFilter = (selectedMoods: string[]) => {
     const filtered = tracks.filter((track) => {
       return selectedMoods.some((mood) =>
         track.info?.mood?.includes(mood)
+      );
+    });
+    setFilteredTracks(filtered);
+  };
+
+  const [selectedKeywords, setSelectedKeywords] = useState<string[]>([]);
+
+  const applyKeywordFilter = (selectedKeywords: string[]) => {
+    const filtered = tracks.filter((track) => {
+      return selectedKeywords.some((keyword) =>
+        track.info?.mood?.includes(keyword)
       );
     });
     setFilteredTracks(filtered);
@@ -224,13 +239,28 @@ const Sounds: React.FC = () => {
             setSelectedInstruments={setSelectedInstruments}
             
             applyMoodFilter={applyMoodFilter}
+            selectedMoods={selectedMoods}
+            setSelectedMoods={setSelectedMoods}
+
+            applyKeywordFilter={applyKeywordFilter}
+            selectedKeywords={selectedKeywords}
+            setSelectedKeywords={setSelectedKeywords}
           />
         </div>
-        <MobileCatalog
-          tracks={filteredTracks} 
-          playTrack={playTrack}
-          isPlaying={isPlaying}
-        />
+        <div className='hidden sm:block'>
+          <DesktopCatalog
+            tracks={filteredTracks} 
+            playTrack={playTrack}
+            isPlaying={isPlaying}   
+          />
+        </div>
+        <div className='block sm:hidden'>
+          <MobileCatalog
+            tracks={filteredTracks} 
+            playTrack={playTrack}
+            isPlaying={isPlaying}
+          />
+        </div>
         {isMusicPlayerVisible && currentTrack && (
           <MusicPlayer
             currentTrack={currentTrack}
