@@ -196,7 +196,6 @@ const Sounds: React.FC = () => {
     }
   };
 
-
   const applyMoodFilter = (selectedMoods: string[]) => {
     const filtered = tracks.filter((track) => {
       return selectedMoods.some((mood) =>
@@ -205,8 +204,6 @@ const Sounds: React.FC = () => {
     });
     setFilteredTracks(filtered);
   };
-
-  
 
   return (
     <div className='flex flex-col overflow-scroll bg-white dark:bg-black'>

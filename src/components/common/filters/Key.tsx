@@ -75,24 +75,20 @@ const KeyFilter: React.FC<KeyFilterProps> = ({ onApplyKeyFilter }) => {
   };
 
   const addKeyAndRelativeScale = (key: string, combinations: Set<string>) => {
-    // Add Major key if selectedScale is 'Major'
     if (selectedScale === 'Major') {
         const majorKey = key + ' Major';
         combinations.add(JSON.stringify({ key: majorKey, 'key.note': key, 'key.scale': 'Major' }));
     }
 
-    // Add Minor key if selectedScale is 'Minor'
     if (selectedScale === 'Minor') {
         const minorKey = key + ' Minor';
         combinations.add(JSON.stringify({ key: minorKey, 'key.note': key, 'key.scale': 'Minor' }));
     }
 
-    // Add relative minor scale if includeRelativeScale is true
     if (includeRelativeScale) {
         const relativeMinor = getRelativeMinor(key) + ' Minor';
         combinations.add(JSON.stringify({ key: relativeMinor, 'key.note': getRelativeMinor(key), 'key.scale': 'Minor' }));
 
-        // Handle specific cases for enharmonic minors
         if (key === 'E' || key === 'A' || key === 'B') {
             const enharmonicMinor = getEnharmonicMinor(key) + ' Minor';
             combinations.add(JSON.stringify({ key: enharmonicMinor, 'key.note': getEnharmonicMinor(key), 'key.scale': 'Minor' }));

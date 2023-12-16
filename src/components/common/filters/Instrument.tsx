@@ -8,7 +8,6 @@ interface InstrumentFilterProps {
   setSelectedInstruments: (selectedInstruments: string[]) => void;
 }
 
-
 const instrumentItems = [
   { icon: faDrum, text: 'Drums' },
   { icon: faGuitar, text: 'Guitars' },

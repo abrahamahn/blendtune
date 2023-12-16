@@ -27,7 +27,7 @@ const TempoFilter: React.FC<TempoFilterProps> = ({ onApplyTempoFilter }) => {
     setMaxTempo(200);
     setIncludeHalfTime(false);
     setIncludeDoubleTime(false);
-    setIsFilterActive(false); // Deactivate the filter
+    setIsFilterActive(false);
   };
 
   const handleClearClick = () => {
@@ -42,18 +42,14 @@ const TempoFilter: React.FC<TempoFilterProps> = ({ onApplyTempoFilter }) => {
     if (Array.isArray(values)) {
       const [minValue, maxValue] = values;
 
-      // Ensure the minimum value is less than or equal to the maximum value
       if (minValue > maxValue) {
-        // Swap the values if necessary
         setMinTempo(maxValue);
         setMaxTempo(minValue);
       } else {
-        // Values are in the correct order, set them as-is
         setMinTempo(minValue);
         setMaxTempo(maxValue);
       }
     } else {
-      // Handle the case when a single value is received (not a range)
       setMinTempo(values);
       setMaxTempo(values);
     }

@@ -24,7 +24,6 @@ const KeywordFilter: React.FC<KeywordFilterProps> = ({ keywords }) => {
     console.log('Selected keywords:', selectedKeywords);
   };
 
-  // Filter the keywords based on the search term and sort them alphabetically
   const filteredAndSortedKeywords = keywords
     .filter((keyword) => keyword.toLowerCase().includes(searchTerm.toLowerCase()))
     .sort();
