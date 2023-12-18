@@ -124,7 +124,7 @@ const Header: React.FC<HeaderProps> = ({
         </div>
       </nav>
       {/* Mobile Menu */}
-      <nav className='lg:hidden fixed top-0 z-20 w-full h-30 bg-white dark:bg-black dark:border-neutral-800 border-b '>
+      <nav className='lg:hidden fixed top-0 z-50 w-full h-30 bg-white dark:bg-black dark:border-neutral-800 border-b '>
         <div className='flex flex-col items-center w-full px-2'>
           {/* First Row */}
           <div className='flex justify-between items-center w-full'>

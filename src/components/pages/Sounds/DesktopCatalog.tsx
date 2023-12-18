@@ -12,12 +12,14 @@ export interface DesktopCatalogProps {
   tracks: Track[];
   playTrack: (track: Track) => void;
   isPlaying: boolean;
+  openTrackInfo: () => void;
 }
 
 const DesktopCatalog: React.FC<DesktopCatalogProps> = ({
   tracks,
   playTrack,
   isPlaying,
+  openTrackInfo,
 }) => {
   function renderValue(value: string) {
     return value && value !== 'n/a' && value !== '' ? value : null;
@@ -27,7 +29,6 @@ const DesktopCatalog: React.FC<DesktopCatalogProps> = ({
     const [minutes, seconds] = duration.split(':');
     return `${minutes}:${seconds}`;
   }
-
 
   if (!tracks) {
     return null;
@@ -44,9 +45,7 @@ const DesktopCatalog: React.FC<DesktopCatalogProps> = ({
           >
             {/* Numbering*/}
             <div className='text-neutral-500 mr-4 w-8 h-8 justify-center items-center flex'>
-              <p className='text-sm group-hover:opacity-0'>
-                {index + 1}
-              </p>
+              <p className='text-sm group-hover:opacity-0'>{index + 1}</p>
               <div className='absolute opacity-0 transition-opacity duration-300 group-hover:opacity-100'>
                 {isPlaying ? (
                   <Icon.Pause width={20} height={20} fill='white' />
@@ -69,7 +68,9 @@ const DesktopCatalog: React.FC<DesktopCatalogProps> = ({
             <div className='flex flex-row justify-between w-full ml-2'>
               <div className='flex-start flex-col cursor-pointer w-1/2 dark:border-neutral-800 pt-1'>
                 <div className='md:ml-1 text-left text-xs md:text-sm text-neutral-800 dark:text-neutral-300 font-semibold'>
-                  <h3>{renderValue(track.metadata.title)}</h3>
+                  <button onClick={openTrackInfo}>
+                    {renderValue(track.metadata.title)}
+                  </button>
                 </div>
                 <div className='cursor-pointer md:flex flex-row text-neutral-500 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-white text-left text-2xs md:text-xs w-auto md:w-auto md:ml-1'>
                   {renderValue(track.metadata.producer) && (
@@ -96,7 +97,9 @@ const DesktopCatalog: React.FC<DesktopCatalogProps> = ({
                   <div className='flex justify-center items-center'>
                     <p className='text-center text-white bg-blue-200 dark:bg-neutral-900 text-xs px-2 py-0.5 rounded-md w-auto'>
                       {renderValue(track.info.key.note)}
-                      {renderValue(track.info.key.scale.substring(0, 3).toLowerCase())}
+                      {renderValue(
+                        track.info.key.scale.substring(0, 3).toLowerCase()
+                      )}
                     </p>
                   </div>
                 </div>
@@ -110,7 +113,7 @@ const DesktopCatalog: React.FC<DesktopCatalogProps> = ({
                   )}
                 </div>
               </div>
-              <div className='p-2 grid grid-cols-3 grid-rows-2 gap-2 w-56 bg-neutral-900/60 rounded-md justify-center items-center mr-20'>
+              <div className='p-2 grid grid-cols-3 grid-rows-2 gap-2 w-56 bg-neutral-100 dark:bg-neutral-900/60 rounded-md justify-center items-center mr-20'>
                 <div className='col-span-1 row-span-1'>
                   <div className='flex flex-row justify-center items-center text-center text-2xs md:text-xs w-full'>
                     {renderValue(track.info.relatedartist[0]) && (
@@ -157,19 +160,19 @@ const DesktopCatalog: React.FC<DesktopCatalogProps> = ({
                   </div>
                 </div>
               </div>
-            <div className='absolute p-1 right-0 flex flex-end justify-center items-center flex-grow'>
-              <div className='text-neutral-500 dark:text-neutral-300 p-2.5 sm:p-3 dark:group-hover:bg-neutral-900'>
-                <FontAwesomeIcon icon={faHeart} />
-              </div>
-              <div className='text-neutral-500 group-hover:bg-neutral-100 dark:text-neutral-300 p-2.5 sm:p-3 dark:group-hover:bg-neutral-900'>
-                <FontAwesomeIcon icon={faPlus} />
-              </div>
-              <div className='dark:text-white sm:p-3 text-neutral-500 flex justify-center p-2.5 mr-1'>
-                <FontAwesomeIcon icon={faEllipsisVertical} />
+              <div className='absolute p-1 right-0 flex flex-end justify-center items-center flex-grow'>
+                <div className='text-neutral-500 dark:text-neutral-300 p-2.5 sm:p-3 dark:group-hover:bg-neutral-900'>
+                  <FontAwesomeIcon icon={faHeart} />
+                </div>
+                <div className='text-neutral-500 group-hover:bg-neutral-100 dark:text-neutral-300 p-2.5 sm:p-3 dark:group-hover:bg-neutral-900'>
+                  <FontAwesomeIcon icon={faPlus} />
+                </div>
+                <div className='dark:text-white sm:p-3 text-neutral-500 flex justify-center p-2.5 mr-1'>
+                  <FontAwesomeIcon icon={faEllipsisVertical} />
+                </div>
               </div>
             </div>
           </div>
-        </div>
         ))}
       </div>
     </div>

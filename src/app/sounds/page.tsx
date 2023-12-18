@@ -5,6 +5,7 @@ import {
   DesktopCatalog,
   MusicPlayer,
   SoundFilter,
+  TrackInfo,
 } from '@/components/pages/Sounds';
 import { Track } from '@/types/track';
 
@@ -21,6 +22,7 @@ const Sounds: React.FC = () => {
   );
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMusicPlayerVisible, setIsMusicPlayerVisible] = useState(false);
+  const [isTrackInfoVisible, setIsTrackInfoVisible] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null) as CustomAudioRef;
 
   useEffect(() => {
@@ -74,18 +76,8 @@ const Sounds: React.FC = () => {
   };
 
   useEffect(() => {
-    setFilteredTracks(tracks); 
+    setFilteredTracks(tracks);
   }, [tracks]);
-
-
-
-
-
-
-
-
-
-
 
   const applyTempoFilter = (
     minTempo: number | null,
@@ -93,27 +85,35 @@ const Sounds: React.FC = () => {
     includeHalfTime: boolean,
     includeDoubleTime: boolean
   ) => {
-    if (minTempo === null && maxTempo === null && !includeHalfTime && !includeDoubleTime) {
+    if (
+      minTempo === null &&
+      maxTempo === null &&
+      !includeHalfTime &&
+      !includeDoubleTime
+    ) {
       setFilteredTracks(tracks);
     } else {
       const filtered = tracks.filter(track => {
-        const trackTempo = parseFloat(track.info.bpm); 
+        const trackTempo = parseFloat(track.info.bpm);
         if (isNaN(trackTempo)) {
           return false;
         }
-        
+
         let isInHalfTimeRange = false;
         let isInDoubleTimeRange = false;
 
         if (includeHalfTime) {
-          isInHalfTimeRange = trackTempo >= minTempo! / 2 && trackTempo <= maxTempo! / 2;
+          isInHalfTimeRange =
+            trackTempo >= minTempo! / 2 && trackTempo <= maxTempo! / 2;
         }
 
         if (includeDoubleTime) {
-          isInDoubleTimeRange = trackTempo >= minTempo! * 2 && trackTempo <= maxTempo! * 2;
+          isInDoubleTimeRange =
+            trackTempo >= minTempo! * 2 && trackTempo <= maxTempo! * 2;
         }
 
-        const isInNormalRange = trackTempo >= minTempo! && trackTempo <= maxTempo!;
+        const isInNormalRange =
+          trackTempo >= minTempo! && trackTempo <= maxTempo!;
 
         return isInNormalRange || isInHalfTimeRange || isInDoubleTimeRange;
       });
@@ -121,17 +121,21 @@ const Sounds: React.FC = () => {
     }
   };
 
-
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
   const [selectedScale, setSelectedScale] = useState<string | null>(null);
-  const [includeRelativeScales, setIncludeRelativeScales] = useState<boolean>(false);
+  const [includeRelativeScales, setIncludeRelativeScales] =
+    useState<boolean>(false);
 
-  const applyKeyFilter = (key: string | null, scale: string | null, includeRelative: boolean) => {
+  const applyKeyFilter = (
+    key: string | null,
+    scale: string | null,
+    includeRelative: boolean
+  ) => {
     setSelectedKey(key);
     setSelectedScale(scale);
     setIncludeRelativeScales(includeRelative);
   };
-  
+
   useEffect(() => {
     let filtered = tracks;
 
@@ -142,7 +146,11 @@ const Sounds: React.FC = () => {
         if (includeRelativeScales) {
           const relativeKey = 'Calculated Relative Key';
           const relativeScale = 'Calculated Relative Scale';
-          return (matchKey && matchScale) || (track.info.key.note === relativeKey && track.info.key.scale === relativeScale);
+          return (
+            (matchKey && matchScale) ||
+            (track.info.key.note === relativeKey &&
+              track.info.key.scale === relativeScale)
+          );
         } else {
           return matchKey && matchScale;
         }
@@ -156,11 +164,13 @@ const Sounds: React.FC = () => {
     if (selectedGenres.length === 0) {
       setFilteredTracks(tracks);
     } else {
-      const filtered = tracks.filter((track) => {
-        return selectedGenres.some((genre) =>
-          Array.isArray(track.info.genre) &&
-          track.info.genre.some((trackGenre) => trackGenre.maingenre === genre)
-      )});
+      const filtered = tracks.filter(track => {
+        return selectedGenres.some(
+          genre =>
+            Array.isArray(track.info.genre) &&
+            track.info.genre.some(trackGenre => trackGenre.maingenre === genre)
+        );
+      });
       setFilteredTracks(filtered);
     }
   };
@@ -172,8 +182,13 @@ const Sounds: React.FC = () => {
     if (selectedArtists.length === 0) {
       setFilteredTracks(tracks);
     } else {
-      const filtered = tracks.filter((track) => {
-        return Array.isArray(track.info.relatedartist) && track.info.relatedartist.some((artist) => selectedArtists.includes(artist));
+      const filtered = tracks.filter(track => {
+        return (
+          Array.isArray(track.info.relatedartist) &&
+          track.info.relatedartist.some(artist =>
+            selectedArtists.includes(artist)
+          )
+        );
       });
 
       setFilteredTracks(filtered);
@@ -187,8 +202,8 @@ const Sounds: React.FC = () => {
     if (selectedInstruments.length === 0) {
       setFilteredTracks(tracks);
     } else {
-      const filtered = tracks.filter((track) => {
-        return (track.instruments as { main: string }[]).some((instrument) =>
+      const filtered = tracks.filter(track => {
+        return (track.instruments as { main: string }[]).some(instrument =>
           selectedInstruments.includes(instrument.main)
         );
       });
@@ -197,14 +212,11 @@ const Sounds: React.FC = () => {
     }
   };
 
-
   const [selectedMoods, setSelectedMoods] = useState<string[]>([]);
 
   const applyMoodFilter = (selectedMoods: string[]) => {
-    const filtered = tracks.filter((track) => {
-      return selectedMoods.some((mood) =>
-        track.info?.mood?.includes(mood)
-      );
+    const filtered = tracks.filter(track => {
+      return selectedMoods.some(mood => track.info?.mood?.includes(mood));
     });
     setFilteredTracks(filtered);
   };
@@ -212,12 +224,20 @@ const Sounds: React.FC = () => {
   const [selectedKeywords, setSelectedKeywords] = useState<string[]>([]);
 
   const applyKeywordFilter = (selectedKeywords: string[]) => {
-    const filtered = tracks.filter((track) => {
-      return selectedKeywords.some((keyword) =>
-        track.info?.mood?.includes(keyword)
+    const filtered = tracks.filter(track => {
+      return selectedKeywords.some(
+        keyword => track.info?.mood?.includes(keyword)
       );
     });
     setFilteredTracks(filtered);
+  };
+
+  const openTrackInfo = () => {
+    setIsTrackInfoVisible(true);
+  };
+
+  const closeTrackInfo = () => {
+    setIsTrackInfoVisible(false);
   };
 
   return (
@@ -225,23 +245,19 @@ const Sounds: React.FC = () => {
       <div className='m-0 p-0'>
         <div className='mt-16'>
           <SoundFilter
-            tracks={tracks} 
-            applyTempoFilter={applyTempoFilter} 
+            tracks={tracks}
+            applyTempoFilter={applyTempoFilter}
             applyKeyFilter={applyKeyFilter}
             applyGenreFilter={applyGenreFilter}
-
             applyArtistFilter={applyArtistFilter}
             selectedArtists={selectedArtists}
             setSelectedArtists={setSelectedArtists}
-
             applyInstrumentsFilter={applyInstrumentsFilter}
             selectedInstruments={selectedInstruments}
             setSelectedInstruments={setSelectedInstruments}
-            
             applyMoodFilter={applyMoodFilter}
             selectedMoods={selectedMoods}
             setSelectedMoods={setSelectedMoods}
-
             applyKeywordFilter={applyKeywordFilter}
             selectedKeywords={selectedKeywords}
             setSelectedKeywords={setSelectedKeywords}
@@ -249,14 +265,16 @@ const Sounds: React.FC = () => {
         </div>
         <div className='hidden sm:block'>
           <DesktopCatalog
-            tracks={filteredTracks} 
+            openTrackInfo={openTrackInfo}
+            tracks={filteredTracks}
             playTrack={playTrack}
-            isPlaying={isPlaying}   
+            isPlaying={isPlaying}
           />
         </div>
         <div className='block sm:hidden'>
           <MobileCatalog
-            tracks={filteredTracks} 
+            openTrackInfo={openTrackInfo}
+            tracks={filteredTracks}
             playTrack={playTrack}
             isPlaying={isPlaying}
           />
@@ -269,6 +287,13 @@ const Sounds: React.FC = () => {
             audioRef={audioRef}
             playPreviousTrack={handleBackwardClick}
             playNextTrack={handleForwardClick}
+          />
+        )}
+        {isTrackInfoVisible && currentTrack && (
+          <TrackInfo
+            currentTrack={currentTrack}
+            audioRef={audioRef}
+            closeTrackInfo={closeTrackInfo}
           />
         )}
       </div>
