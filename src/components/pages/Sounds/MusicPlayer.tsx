@@ -24,7 +24,7 @@ export interface MusicPlayerProps {
   currentTrack?: Track;
   isPlaying: boolean;
   setIsPlaying: (isPlaying: boolean) => void;
-  audioRef: CustomAudioRef; // Updated type
+  audioRef: CustomAudioRef;
   playPreviousTrack: () => void;
   playNextTrack: () => void;
 }

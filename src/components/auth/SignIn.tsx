@@ -1,5 +1,6 @@
-'use client';
 import React, { useState } from 'react';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { useRouter } from 'next/navigation';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 import Link from 'next/link';
@@ -11,13 +12,26 @@ interface SignInProps {
 }
 
 const SignIn: React.FC<SignInProps> = ({ openSignUp, openResetPassword }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+
+  const supabase = createClientComponentClient();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
   const signInWithGoogle = async () => {};
+
+  const handleSignIn = async () => {
+    await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+    router.refresh();
+  };
 
   return (
     <div className='w-full h-full bg-opacity-80 bg-gray-500 dark:bg-gray-900'>
@@ -45,16 +59,22 @@ const SignIn: React.FC<SignInProps> = ({ openSignUp, openResetPassword }) => {
             </span>
             <div className='border-t border-gray-500 w-1/4 mb-2'></div>
           </div>
-          <div className='w-full'>
+          <form className='w-full'>
             <div className='flex flex-col items-center w-full mb-3 rounded'>
               <input
                 type='email'
+                name='email'
+                onChange={e => setEmail(e.target.value)}
+                value={email}
                 placeholder='Email Address'
                 className='w-full bg-transparent text-gray-500 text-sm border-gray-500 p-3 rounded-md hover:border-indigo-500'
               />
               <div className='relative w-full'>
                 <input
                   type={showPassword ? 'text' : 'password'}
+                  name='password'
+                  onChange={e => setPassword(e.target.value)}
+                  value={password}
                   placeholder='Password'
                   className='mt-4 w-full bg-transparent text-gray-500 text-sm border-gray-500 p-3 rounded-md hover:border-indigo-500'
                 />
@@ -66,18 +86,21 @@ const SignIn: React.FC<SignInProps> = ({ openSignUp, openResetPassword }) => {
                 </div>
               </div>
             </div>
-          </div>
-          <div className='flex justify-end'>
-            <a
-              onClick={openResetPassword}
-              className='ml-auto text--500 text-xs mb-2 cursor-pointer hover:opacity-80 text-indigo-500'
+            <div className='flex justify-end'>
+              <a
+                onClick={openResetPassword}
+                className='ml-auto text--500 text-xs mb-2 cursor-pointer hover:opacity-80 text-indigo-500'
+              >
+                Forgot password?
+              </a>
+            </div>
+            <button
+              onClick={handleSignIn}
+              className='w-full bg-indigo-600 text-white text-sm p-2 rounded-md cursor-pointer hover:bg-indigo-700'
             >
-              Forgot password?
-            </a>
-          </div>
-          <button className='w-full bg-indigo-600 text-white text-sm p-2 rounded-md cursor-pointer hover:bg-indigo-700'>
-            Continue
-          </button>
+              Continue
+            </button>
+          </form>
           <div className='flex items-center justify-start w-full text-sm py-2 mt-1'>
             <p className='text-gray-500 text-xs'>Don&apos;t have an account?</p>
             <a

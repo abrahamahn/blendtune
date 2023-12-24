@@ -1,5 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
+
 import { Header, Footer } from '@/components/layouts';
 import { Hero, NewTracks } from '@/components/pages/Home';
 import AuthModal from '@/components/auth';
@@ -49,7 +50,7 @@ const Home: React.FC = () => {
     const audio = audioRef.current;
 
     if (audio) {
-      const audioSrc = `/audio/tracks/${currentTrack?.file}`;
+      const audioSrc = currentTrack ? `/audio/tracks/${currentTrack.file}` : '';
 
       if (currentTrack && audio.src !== audioSrc) {
         audio.src = audioSrc;

@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import ResetPassword from './ResetPassword';
-import VerifyEmail from './VerifyEmail'; // Import the VerifyEmail component
+import VerifyEmail from './VerifyEmail';
+import ConfirmSignUp from './ConfirmSignUp';
 
 interface AuthModalProps {
   closeAuthModal: () => void;
@@ -16,29 +17,41 @@ const AuthModal: React.FC<AuthModalProps> = ({
   const [showSignIn, setShowSignIn] = useState(form === 'signin');
   const [showResetPassword, setShowResetPassword] = useState(false);
   const [showVerifyEmail, setShowVerifyEmail] = useState(false);
+  const [showConfirmSignUp, setShowConfirmSignUp] = useState(false);
 
   const openSignIn = () => {
     setShowSignIn(true);
     setShowResetPassword(false);
     setShowVerifyEmail(false);
+    setShowConfirmSignUp(false);
   };
 
   const openSignUp = () => {
     setShowSignIn(false);
     setShowResetPassword(false);
     setShowVerifyEmail(false);
+    setShowConfirmSignUp(false);
   };
 
   const openResetPassword = () => {
     setShowSignIn(false);
     setShowResetPassword(true);
     setShowVerifyEmail(false);
+    setShowConfirmSignUp(false);
   };
 
   const openVerifyEmail = () => {
     setShowSignIn(false);
     setShowResetPassword(false);
     setShowVerifyEmail(true);
+    setShowConfirmSignUp(false);
+  };
+
+  const openConfirmSignUp = () => {
+    setShowSignIn(false);
+    setShowResetPassword(false);
+    setShowVerifyEmail(false);
+    setShowConfirmSignUp(true);
   };
 
   const handleModalContentClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -60,8 +73,12 @@ const AuthModal: React.FC<AuthModalProps> = ({
     );
   } else if (showVerifyEmail) {
     modalContent = <VerifyEmail openSignIn={openSignIn} />;
+  } else if (showConfirmSignUp) {
+    modalContent = <ConfirmSignUp />;
   } else {
-    modalContent = <SignUp openSignIn={openSignIn} />;
+    modalContent = (
+      <SignUp openSignIn={openSignIn} openConfirmSignUp={openConfirmSignUp} />
+    );
   }
 
   return (

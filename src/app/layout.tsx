@@ -13,6 +13,8 @@ export const metadata: Metadata = {
   description: 'Music for Artists and Creators',
 };
 
+export const revalidate = 0;
+
 export default async function RootLayout({
   children,
 }: {
